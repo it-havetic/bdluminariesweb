@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+.slick-list{
+    height: 100% !important;
+    border-radius: 20px;
+}
+
+@media (max-width: 1024px) {
+    .slick-list{
+        border-radius: 0;
+    }
+    
+}
+
+.slick-track{
+    height: 100% !important;
+    border-radius: 20px;
+}
+
+.slick-slide div{
+    height: 100% !important;
+}
+
+/* .boottoom {
+    position: relative !important;
+} */
+
+/* .boottoom::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1000%;
+    
+    
+} */
+
+.boottoom .slick-dots{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    /* border: 1px solid rgba(255, 255, 255, 0.3); */
+}
+
+.boottoom .slick-dots li {
+    background: #000000;
+    width: 18%;
+    height: 18%;
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.566);
+}
+
+.boottoom .slick-dots li button{
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+}
+
+
+
+.boottoom .slick-dots li:nth-child(1){
+    top: 50% ;
+    left: 50%;
+    transform: translate(-250%,-250%);
+    background: url(/assets/b1.png) no-repeat center /cover;
+}
+
+.boottoom .slick-dots li:nth-child(2){
+    top: 50% ;
+    left: 50%;
+    transform: translate(-200%,-200%);
+    background: url(/assets/b10.png) no-repeat center /cover;
+}
+
+.boottoom .slick-dots li:nth-child(3){
+    top: 50%;
+    left: 50%;
+    transform: translate(-150%,-150%);
+    background: url(/assets/b11.png) no-repeat center /cover;
+}
+
+.boottoom .slick-dots li:nth-child(4){
+    top: 50% ;
+    left: 50%;
+    background: url(/assets/b12.png) no-repeat center /cover;
+    
+    transform: translate(-100%,-100%);
+}
+
+.boottoom .slick-dots li:nth-child(5){
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: url(/assets/b14.png) no-repeat center /cover;
+}
+
+.boottoom .slick-dots li:nth-child(6){
+    top: 50% ;
+    left: 50%;
+    background: url(/assets/b7.png) no-repeat center /cover;
+}
+
+.boottoom .slick-dots li:nth-child(7){
+    top: 50% ;
+    left: 50%;
+    transform: translate(50%,50%);
+    background: url(/assets/b3.png) no-repeat center /cover;
+}
+
+.boottoom .slick-dots li:nth-child(8){
+    top: 50% ;
+    left: 50%;
+    transform: translate(100%,100%);
+    background: url(/assets/b8.png) no-repeat center /cover;
+}
+
+.boottoom .slick-dots li:nth-child(9){
+    top: 50% ;
+    left: 50%;
+    transform: translate(150%,150%);
+    background: url(/assets/b16.png) no-repeat center /cover;
+}
+
+
+
+
+
+.productOverlay{
+    clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+}
+
+.Contactwith{
+    font-family: "Dancing Script", cursive;
+}
+
+
+
+
+/* 
+=====================================================================
+.boottoom .slick-dots li:nth-child(5):hover{
+    z-index: 99999 !important;
+    border-color: red !important;
+} */
