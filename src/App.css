@@ -54,6 +54,11 @@
     height: 20%;
     position: absolute;
     border: 1px solid rgb(255, 255, 255);
+    opacity: .5;
+}
+
+.boottoom .slick-dots .slick-active {
+    opacity: 1;
 }
 
 .boottoom .slick-dots li button{
