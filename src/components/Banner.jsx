@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Marquee from "react-fast-marquee";
 import b1 from'/assets/b1.png'
 // import b2 from'/assets/b2.png'
@@ -84,6 +84,10 @@ const Banner = () => {
         b24,
         b25
       ]
+      const [selectedImage, setSelectedImage] = useState(b7);
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl);
+  };
   return (
     <div className='h-[100vh] md:p-5  '> 
         <div className='h-[100%] relative  flex flex-col justify-between'>
@@ -114,7 +118,28 @@ const Banner = () => {
                             </Marquee>
                 <Link className='w-[8%] flex justify-center items-center text-[#F15B26]' to='/product/detail/one'><AiOutlineProduct /></Link>
             </div>
-            <Slider className='boottoom md:h-[100%] h-[48%] relative p-20 py-[85px] ' {...settings2}>
+            <div className='h-[48%] bg-slate-200 grid grid-cols-5 grid-rows-5 gap-1'>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b7} alt="" onClick={() => handleImageClick(b7)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b8} alt="" onClick={() => handleImageClick(b8)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b11} alt="" onClick={() => handleImageClick(b11)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b12} alt="" onClick={() => handleImageClick(b12)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b13} alt="" onClick={() => handleImageClick(b13)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b15} alt="" onClick={() => handleImageClick(b15)} /></div>
+      <div className="main bg-slate-400 col-span-3 row-span-3">
+        {selectedImage && <img className='h-full w-full object-cover' src={selectedImage} alt="" />}
+      </div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b16} alt="" onClick={() => handleImageClick(b16)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b17} alt="" onClick={() => handleImageClick(b17)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b18} alt="" onClick={() => handleImageClick(b18)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b19} alt="" onClick={() => handleImageClick(b19)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b20} alt="" onClick={() => handleImageClick(b20)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b21} alt="" onClick={() => handleImageClick(b21)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b22} alt="" onClick={() => handleImageClick(b22)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b23} alt="" onClick={() => handleImageClick(b23)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b24} alt="" onClick={() => handleImageClick(b24)} /></div>
+      <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b25} alt="" onClick={() => handleImageClick(b25)} /></div>
+    </div>
+            {/* <Slider className='boottoom md:h-[100%] h-[48%] relative p-20 py-[85px] ' {...settings2}>
                 {
                     bannerImg2.map((item,i)=>(
                         <div key={i}  onClick={()=> navigate('/work')} className=' h-full'>
@@ -122,7 +147,7 @@ const Banner = () => {
                         </div>
                     ))
                 }
-            </Slider>
+            </Slider> */}
         </div>
 
         
