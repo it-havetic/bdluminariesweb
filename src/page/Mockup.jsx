@@ -240,31 +240,23 @@ const Mockup = () => {
   return (
     <div>
       <div className="main h-screen ">
-        <div className="absolute top-0 left-0 bg-white h-10">
-          <marquee behavior="" direction="">
-            <div className='flex gap-2'>
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            <img src={slogan} alt="" />
-            </div>
-          </marquee>
+        <div className="absolute top-0 left-0 bg-white h-8">
+        <Marquee
+                                speed={20}
+                                direction="left"
+                                pauseOnHover={true}
+                                reverse={true}
+                                gradient={false}
+                            >
+                                <img className='h-8 ' src={slogan} alt="" />
+                                <img className='h-8 ' src={slogan} alt="" />
+                                <img className='h-8 ' src={slogan} alt="" />
+                            </Marquee>
         </div>
 
 
         <div className="top  grid gap-2 grid-cols-4 grid-rows-2  h-2/3">
-          <div className="one row-span-2 bg-slate-100 pt-10">
+          <div className="one row-span-2 bg-slate-100 pt-8">
           <div className="w-[100%] h-20  ">
             <Navbar/>
           </div>
