@@ -126,7 +126,7 @@ const Banner = () => {
       <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b13} alt="" onClick={() => handleImageClick(b13)} /></div>
       <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b15} alt="" onClick={() => handleImageClick(b15)} /></div>
       <div className="main bg-slate-400 col-span-3 row-span-3">
-        {selectedImage && <img className='h-full w-full object-cover' src={selectedImage} alt="" />}
+        {selectedImage && <img className='h-full w-full object-cover' onClick={()=> navigate('/work')} src={selectedImage} alt="" />}
       </div>
       <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b16} alt="" onClick={() => handleImageClick(b16)} /></div>
       <div className="one bg-slate-400"><img className='h-full w-full object-cover' src={b17} alt="" onClick={() => handleImageClick(b17)} /></div>

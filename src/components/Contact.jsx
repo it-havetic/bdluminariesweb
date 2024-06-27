@@ -1,10 +1,11 @@
 import React from 'react';
 import Footer from './Footer';
+import contactheader from '/assets/blog/b2.png'
 
 const ContactForm = () => {
   return (
     <>
-      <div className='relative bg-[url(./assets/blog/b2.png)] after:content-[""] after:w-full after:h-full after:absolute after:left-0 after:top-0 after:bg-black/70 after:z-[-1] z-10 py-10 '>
+      <div className={`relative bg-[url(${contactheader})] after:content-[""] after:w-full after:h-full after:absolute after:left-0 after:top-0 after:bg-black/70 after:z-[-1] z-10 py-10`}>
         <h2 className="text-center text-2xl text-white">Contact with us</h2>
       </div>
       <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4 pb-12">

@@ -5,13 +5,13 @@ import b2 from "/assets/blog/b2.png";
 import BlogPost from "../components/BlogPost";
 import { FaPaperPlane } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import blogheader from '/assets/blog/b2.png'
 const Blog = () => {
   let nevigate = useNavigate()
   return (
     <>
       <div className="flex flex-col h-screen">
-        <div className='relative bg-[url(./assets/blog/b2.png)] after:content-[""] after:w-full after:h-full after:absolute after:left-0 after:top-0 after:bg-black/70 after:z-[-1] z-10 py-10 '>
+        <div className={`relative bg-[url(${blogheader})] after:content-[""] after:w-full after:h-full after:absolute after:left-0 after:top-0 after:bg-black/70 after:z-[-1] z-10 py-10`}>
           <h2 className="text-center text-2xl text-white">Our Blog</h2>
         </div>
         <div className=" bg-gray-100 flex flex-col items-center p-4 pb-12 overflow-y-scroll">

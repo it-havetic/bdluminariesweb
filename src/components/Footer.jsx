@@ -1,5 +1,5 @@
 import React from 'react'
-import {  FaFacebookSquare, FaInstagram, FaLinkedinIn, FaTwitter, } from 'react-icons/fa'
+import {  FaFacebookSquare, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube, } from 'react-icons/fa'
 import {  FaMapLocationDot } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 
@@ -20,8 +20,10 @@ const Footer = ({ className }) => {
           <FaMapLocationDot />
         </Link>
         <Link to="/" className="text-[12px] text-[#1877F2]">
-          {/* <FaFacebookF /> */}
           <FaFacebookSquare />
+        </Link>
+        <Link to="/" className="text-[12px] text-[#f90000]">
+          <FaYoutube />
         </Link>
         <Link to="/" className="text-[12px] text-[#ffc273]">
           <FaInstagram />
