@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import b1 from "/assets/b1.png";
 import Navbar from "../components/Navbar";
 import slogan from'/assets/slogan.png'
+import Marquee from "react-fast-marquee";
 
 const Mockup = () => {
 
