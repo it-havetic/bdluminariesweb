@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Marquee from "react-fast-marquee";
-import b1 from "/assets/b1.png";
+import b1 from "/assets/mockup/m2.jpg";
 // import b2 from'/assets/b2.png'
 // import b3 from'/assets/b3.png'
 // import b4 from'/assets/b4.png'
@@ -9,11 +9,11 @@ import b1 from "/assets/b1.png";
 import b7 from "/assets/b7.png";
 import b8 from "/assets/b8.png";
 // import b9 from'/assets/b9.png'
-import b10 from "/assets/b10.png";
+import b10 from "/assets/mockup/m11.jpg";
 import b11 from "/assets/b11.png";
 import b12 from "/assets/b12.png";
 import b13 from "/assets/b13.png";
-import b14 from "/assets/b14.png";
+import b14 from "/assets/mockup/m7.jpg";
 import b15 from "/assets/b15.png";
 import b16 from "/assets/b16.png";
 import b17 from "/assets/b17.png";

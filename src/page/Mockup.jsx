@@ -1,261 +1,170 @@
-import React from "react";
-import Footer from "../components/Footer";
-import b1 from "/assets/b1.png";
-import Navbar from "../components/Navbar";
+
+import React, { useState } from 'react'
+import Footer from '../components/Footer'
+import { Link } from 'react-router-dom'
+import Marquee from 'react-fast-marquee'
+import { AiOutlineProduct } from 'react-icons/ai'
 import slogan from'/assets/slogan.png'
-import Marquee from "react-fast-marquee";
-import { Link } from "react-router-dom";
-import { AiOutlineProduct } from "react-icons/ai";
+// import b1 from "/assets/b1.png";
+
 
 const Mockup = () => {
-
-  const minimalistSeries = [
+  const [displayedProduct, setDisplayedProduct] = useState({
+    image: "/assets/mockup/m2.jpg",
+  });
+  const recent = [
     {
       id: 1,
-      image: "/assets/b2.png",
-    },
-    {
-      id: 3,
-      image: "/assets/b4.png",
+      image: "/assets/recent/r1.png",
     },
     {
       id: 1,
-      image: "/assets/b5.png",
+      image: "/assets/recent/r2.png",
     },
-    {
-      id: 2,
-      image: "/assets/b7.png",
+    { 
+      id: 2, 
+      image: "/assets/recent/r3.png" 
     },
-    {
+    { 
       id: 3,
-      image: "/assets/b8.png",
+      image: "/assets/recent/r4.png" 
+    },
+    { 
+      id: 4,
+      image: "/assets/recent/r5.png"
+     },
+    { 
+      id: 5,
+      image: "/assets/recent/r6.png" 
+    },
+    {
+      id: 6,
+      image: "/assets/recent/r7.png",
     },
     {
       id: 1,
-      image: "/assets/b22.png",
+      image: "/assets/recent/r8.png",
     },
-    {
-      id: 2,
-      image: "/assets/b11.png",
+    { 
+      id: 2, 
+      image: "/assets/recent/r9.png" 
     },
-    {
+    { 
       id: 3,
-      image: "/assets/b4.png",
+      image: "/assets/recent/r10.png" 
+    },
+    { 
+      id: 4,
+      image: "/assets/recent/r11.png"
+     },
+    { 
+      id: 5,
+      image: "/assets/recent/r12.png" 
+    },
+    {
+      id: 6,
+      image: "/assets/recent/r13.png",
     },
     {
       id: 1,
-      image: "/assets/b2.png",
+      image: "/assets/recent/r14.png",
     },
-    {
-      id: 2,
-      image: "/assets/b3.png",
+    { 
+      id: 2, 
+      image: "/assets/recent/r15.png" 
     },
-    {
+    { 
       id: 3,
-      image: "/assets/b4.png",
-    },
-    {
-      id: 1,
-      image: "/assets/b2.png",
-    },
-    {
-      id: 2,
-      image: "/assets/b3.png",
-    },
-    {
-      id: 3,
-      image: "/assets/b4.png",
-    },
-    {
-      id: 1,
-      image: "/assets/b2.png",
-    },
-    {
-      id: 2,
-      image: "/assets/b3.png",
-    },
-    {
-      id: 3,
-      image: "/assets/b4.png",
-    },
-    {
-      id: 1,
-      image: "/assets/b2.png",
-    },
-    {
-      id: 2,
-      image: "/assets/b3.png",
-    },
-    {
-      id: 3,
-      image: "/assets/b4.png",
-    },
-    {
-      id: 1,
-      image: "/assets/b2.png",
-    },
-    {
-      id: 2,
-      image: "/assets/b3.png",
-    },
-    {
-      id: 3,
-      image: "/assets/b4.png",
-    },
-    {
-      id: 1,
-      image: "/assets/b2.png",
-    },
-    {
-      id: 2,
-      image: "/assets/b3.png",
-    },
-    {
-      id: 3,
-      image: "/assets/b4.png",
-    },
-    {
-      id: 1,
-      image: "/assets/b2.png",
-    },
-    {
-      id: 2,
-      image: "/assets/b3.png",
-    },
-    {
-      id: 3,
-      image: "/assets/b4.png",
-    },
-    {
-      id: 1,
-      image: "/assets/b2.png",
-    },
-    {
-      id: 2,
-      image: "/assets/b3.png",
-    },
-    {
-      id: 3,
-      image: "/assets/b4.png",
-    },
-    {
-      id: 1,
-      image: "/assets/b2.png",
-    },
-    {
-      id: 2,
-      image: "/assets/b3.png",
-    },
-    {
-      id: 3,
-      image: "/assets/b4.png",
-    },
-    {
-      id: 1,
-      image: "/assets/b2.png",
-    },
-    {
-      id: 2,
-      image: "/assets/b3.png",
-    },
-    {
-      id: 3,
-      image: "/assets/b4.png",
-    },
-    {
-      id: 1,
-      image: "/assets/b2.png",
-    },
-    {
-      id: 2,
-      image: "/assets/b3.png",
-    },
-    {
-      id: 3,
-      image: "/assets/b4.png",
-    },
-    {
-      id: 1,
-      image: "/assets/b2.png",
-    },
-    {
-      id: 2,
-      image: "/assets/b3.png",
-    },
-    {
-      id: 3,
-      image: "/assets/b4.png",
-    },
+      image: "/assets/recent/r16.png" 
+    }
+    
   ];
-
-  const ledSpotLightSeries = [
+  const mockup = [
     {
       id: 1,
-      image: "/assets/b23.png",
+      image: "/assets/mockup/m11.jpg",
     },
     {
-      id: 2,
-      image: "/assets/b3.png",
+      id: 1,
+      image: "/assets/mockup/m1.png",
     },
-    {
+    { 
+      id: 2, 
+      image: "/assets/mockup/m1.jpg" 
+    },
+    { 
       id: 3,
-      image: "/assets/b4.png",
+      image: "/assets/mockup/m7.jpg" 
+    },
+    { 
+      id: 4,
+      image: "/assets/mockup/m2.jpg"
+     },
+    { 
+      id: 5,
+      image: "/assets/mockup/m5.png" 
     },
     {
-      id: 12,
-      image: "/assets/b3.png",
+      id: 6,
+      image: "/assets/mockup/m3.jpg",
     },
     {
+      id: 1,
+      image: "/assets/mockup/m4.jpg",
+    },
+    { 
+      id: 2, 
+      image: "/assets/mockup/m5.jpg" 
+    },
+    { 
       id: 3,
-      image: "/assets/b4.png",
+      image: "/assets/mockup/m6.jpg" 
+    },
+    { 
+      id: 4,
+      image: "/assets/mockup/m4.png"
+     },
+    { 
+      id: 5,
+      image: "/assets/mockup/m1.jpg" 
     },
     {
-      id: 11,
-      image: "/assets/b2.png",
+      id: 6,
+      image: "/assets/mockup/m2.jpg",
     },
     {
-      id: 20,
-      image: "/assets/b3.png",
+      id: 1,
+      image: "/assets/mockup/m3.jpg",
     },
-    {
-      id: 12,
-      image: "/assets/b3.png",
+    { 
+      id: 2, 
+      image: "/assets/mockup/m2.png" 
     },
-    {
+    { 
       id: 3,
-      image: "/assets/b4.png",
+      image: "/assets/mockup/m4.jpg" 
+    },
+    { 
+      id: 4,
+      image: "/assets/mockup/m4.png"
+     },
+    { 
+      id: 5,
+      image: "/assets/mockup/m5.jpg" 
     },
     {
-      id: 11,
-      image: "/assets/b2.png",
+      id: 6,
+      image: "/assets/mockup/m6.png",
     },
-    {
-      id: 20,
-      image: "/assets/b3.png",
-    },
+    
   ];
-  
-  const photoVideo = [
-    { id: 1, image: "/assets/b3.png" },
-    { id: 2, image: "/assets/b17.png" },
-  ];
-
+  const handleProductClick = (mockup) => {
+    setDisplayedProduct({
+      image: mockup.image,
+    });
+  };
   return (
-    <div>
-      <div className="main h-screen ">
-        {/* <div className="absolute top-0 left-0 bg-white h-8">
-          <Marquee
-            speed={20}
-            direction="left"
-            pauseOnHover={true}
-            reverse={true}
-            gradient={false}
-          >
-            <img className="h-8 " src={slogan} alt="" />
-            <img className="h-8 " src={slogan} alt="" />
-            <img className="h-8 " src={slogan} alt="" />
-          </Marquee>
-        </div> */}
+    <div className='h-screen pb-9 pt-8 bg-gray-100'>
         <div className="flex items-center justify-between absolute top-0 left-0  h-8 bg-[#000000] ">
           <Link
             className="flex items-center justify-center w-[20%] text-xs"
@@ -289,84 +198,54 @@ const Mockup = () => {
             <AiOutlineProduct />
           </Link>
         </div>
-
-        <div className="top  grid gap-2 grid-cols-4 grid-rows-2  h-2/3">
-          <div className="one row-span-2 bg-slate-100 pt-8">
-            <div className="w-[100%] h-20  ">
-              <Navbar />
-            </div>
-            <h3 className="text-xs bg-[#F15B26] py-1 text-center text-white font-bold">
-              Recent work
-            </h3>
-            <div className=" h-[77%] no-scrollbar overflow-scroll relative">
-              <div className=" p-1  flex flex-col gap-y-1">
-                <div className="w-[100%]  grid grid-cols-1 gap-2 p-1 no-scrollbar overflow-y-scroll h-[85%]">
-                  {ledSpotLightSeries.map((product) => (
-                    <div key={product.id} className="  shadow-md rounded ">
+      <div className='h-full  grid grid-rows-2 grid-cols-1'>
+        <div className='bg-green-200'>
+            <img
+              className="displayProduct object-cover h-full w-full"
+              src={displayedProduct.image}
+              alt="Icon"
+            />
+        </div>
+        <div className=' grid grid-cols-4  gap-4  p-2'>
+              <div className='col-span-1 grid grid-cols-1 gap-2 h-full overflow-y-scroll no-scrollbar relative  '>
+                <h3 className="text-xs bg-[#F15B26] sticky top-0 left-0 py-1.5 text-center text-white font-bold w-full shadow-md rounded">
+                  Recent work
+                </h3>
+                  {recent.map((recent) => (
+                    <div
+                      key={recent.id}
+                      className=" shadow-md rounded"
+                      // onClick={() => handleProductClick(mockup)}
+                    >
                       <img
-                        src={product.image}
-                        className=" w-full h-14 object-cover rounded"
+                        src={recent.image}
+                        className="w-full h-14 object-cover rounded"
                       />
                     </div>
                   ))}
-                </div>
               </div>
-            </div>
-          </div>
-          <div className="one col-span-3  pt-10">
-            <div className="bg-orange-500 h-full">
-              <img className="h-full w-full object-cover" src={b1} alt="" />
-            </div>
-          </div>
-
-          <div className="one col-span-3 bg-slate-400">
-            <div className="bg-slate-100 h-full no-scrollbar overflow-scroll">
-              <section className="mb-4 h-full ">
-                <h2 className="text-xs font-semibold uppercase mb-4 text-left bg-[#F15B26] pl-3 text-white py-1.5">
+              <div className='col-span-3 grid grid-cols-3 gap-2 h-full overflow-y-scroll no-scrollbar relative'>
+                  <h3 className="text-xs bg-[#F15B26] sticky top-0 left-0 py-1.5 text-center text-white font-bold w-full col-span-3 shadow-md rounded">
                   Other's mockup room
-                </h2>
-                <div className="grid grid-cols-3 gap-4 px-3 no-scrollbar overflow-y-scroll h-[83%]">
-                  {minimalistSeries.map((mockup) => (
-                    <div key={mockup.id} className="shadow-md rounded">
+                  </h3>
+                  {mockup.map((mockup) => (
+                    <div
+                      key={mockup.id}
+                      className=" shadow-md rounded"
+                      onClick={() => handleProductClick(mockup)}
+                    >
                       <img
                         src={mockup.image}
-                        className=" w-full h-14 object-cover rounded"
+                        className="w-full h-14 object-cover rounded"
                       />
                     </div>
                   ))}
-                </div>
-              </section>
-            </div>
-          </div>
-        </div>
-
-        <div className="bottom  h-1/3 pb-10 pt-2">
-          <div className="h-full bg-slate-100 ">
-            <section className="h-full ">
-              <h2 className="text-xs font-bold text-center uppercase mb-4 bg-[#F15B26] pl-3 text-white py-1.5">
-                Photo & Video
-              </h2>
-              <div className="grid grid-cols-2 gap-4 px-3 h-[80%] pb-9 ">
-                {photoVideo.map((item) => (
-                  <div
-                    key={item.id}
-                    className="bg-transparent border p-2 h-[100%]  shadow-md rounded"
-                  >
-                    <img
-                      src={item.image}
-                      alt="Photo"
-                      className=" w-full h-full object-contain"
-                    />
-                  </div>
-                ))}
               </div>
-            </section>
-          </div>
         </div>
-        <Footer />
       </div>
+      <Footer/>
     </div>
-  );
-};
+  )
+}
 
-export default Mockup;
+export default Mockup
