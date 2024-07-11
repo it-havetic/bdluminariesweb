@@ -17,6 +17,7 @@ import ProductDetailNext from './page/ProductDetailNext';
 import Mockup from './page/Mockup';
 import Test from './page/Test';
 import RecentWork from './page/RecentWork';
+import Profile from './page/Profile';
 
 
 const router = createBrowserRouter(
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
       <Route path="/product/detail/next" element={<ProductDetailNext />} />
       <Route path="/mockup" element={<Mockup />} />
       <Route path="/work" element={<RecentWork />} />
+      <Route path="/company/profile" element={<Profile />} />
       <Route path="/test" element={<Test />} />
     </Route>
   )
