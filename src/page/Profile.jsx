@@ -26,7 +26,7 @@ const Profile = () => {
         autoplay: true,
         autoplaySpeed: 4000,
     };
-    let bannerImg = [b1, b10, b14];
+    let bannerImg = [b10, b1, b14];
     return (
         <div className='h-screen pb-9 pt-8 bg-gray-100 grid grid-cols-1 grid-rows-6 gap-2'>
             <div className="flex items-center justify-between absolute top-0 left-0  h-8 bg-[#000000] ">
