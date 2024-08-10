@@ -134,7 +134,7 @@ const Banner = () => {
             <AiOutlineProduct />
           </Link>
         </div>
-        <div className="h-[48%] bg-slate-200 grid grid-cols-5 grid-rows-5 gap-1">
+        {/* <div className="h-[48%] bg-slate-200 grid grid-cols-5 grid-rows-5 gap-1">
           <div className="one bg-slate-400">
             <img
               className="h-full w-full object-cover"
@@ -143,7 +143,7 @@ const Banner = () => {
               onClick={() => handleImageClick(b7)}
             />
           </div>
-          <div className="one bg-slate-400">
+          <div className="two bg-slate-400">
             <img
               className="h-full w-full object-cover"
               src={b8}
@@ -151,7 +151,7 @@ const Banner = () => {
               onClick={() => handleImageClick(b8)}
             />
           </div>
-          <div className="one bg-slate-400">
+          <div className="three bg-slate-400">
             <img
               className="h-full w-full object-cover"
               src={b11}
@@ -159,7 +159,7 @@ const Banner = () => {
               onClick={() => handleImageClick(b11)}
             />
           </div>
-          <div className="one bg-slate-400">
+          <div className="four bg-slate-400">
             <img
               className="h-full w-full object-cover"
               src={b12}
@@ -167,7 +167,7 @@ const Banner = () => {
               onClick={() => handleImageClick(b12)}
             />
           </div>
-          <div className="one bg-slate-400">
+          <div className="five bg-slate-400">
             <img
               className="h-full w-full object-cover"
               src={b13}
@@ -175,7 +175,7 @@ const Banner = () => {
               onClick={() => handleImageClick(b13)}
             />
           </div>
-          <div className="one bg-slate-400">
+          <div className="six bg-slate-400">
             <img
               className="h-full w-full object-cover"
               src={b15}
@@ -273,16 +273,61 @@ const Banner = () => {
               onClick={() => handleImageClick(b25)}
             />
           </div>
+        </div> */}
+
+        <div className="h-[48%] bg-slate-200 grid grid-cols-5 grid-rows-5 gap-1">
+          <div className="one bg-red-400">
+            <p>1</p>
+          </div>
+          <div className="two bg-blue-400">
+            <p>2</p>
+          </div>
+          <div className="three bg-green-400">
+            <p>3</p>
+          </div>
+          <div className="four bg-yellow-400">
+            <p>4</p>
+          </div>
+          <div className="five bg-purple-400">
+            <p>5</p>
+          </div>
+          <div className="six bg-pink-400">
+            <p>6</p>
+          </div>
+          <div className="seven bg-teal-400 col-span-3 row-span-3">
+            <p>7</p>
+          </div>
+          <div className="eight bg-indigo-400">
+            <p>8</p>
+          </div>
+          <div className="nine bg-orange-400">
+            <p>9</p>
+          </div>
+          <div className="ten bg-gray-400">
+            <p>10</p>
+          </div>
+          <div className="eleven bg-cyan-400">
+            <p>11</p>
+          </div>
+          <div className="twelve bg-lime-400">
+            <p>12</p>
+          </div>
+          <div className="thirteen bg-amber-400">
+            <p>13</p>
+          </div>
+          <div className="fourteen bg-emerald-400">
+            <p>14</p>
+          </div>
+          <div className="fifteen bg-fuchsia-400">
+            <p>15</p>
+          </div>
+          <div className="sixteen bg-rose-400">
+            <p>16</p>
+          </div>
+          <div className="seventeen bg-violet-400">
+            <p>17</p>
+          </div>
         </div>
-        {/* <Slider className='boottoom md:h-[100%] h-[48%] relative p-20 py-[85px] ' {...settings2}>
-                {
-                    bannerImg2.map((item,i)=>(
-                        <div key={i}  onClick={()=> navigate('/work')} className=' h-full'>
-                            <img className='image h-full w-full object-cover' src={item} alt="" />
-                        </div>
-                    ))
-                }
-            </Slider> */}
       </div>
     </div>
   );

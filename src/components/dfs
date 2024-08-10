@@ -1,0 +1,10 @@
+<div className="h-[48%] bg-slate-200 grid grid-cols-5 grid-rows-5 gap-1">
+  <div className="one bg-slate-400">
+    <img
+      className="h-full w-full object-cover"
+      src={b15}
+      alt=""
+      onClick={() => handleImageClick(b15)}
+    />
+  </div>
+</div>;
