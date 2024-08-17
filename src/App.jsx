@@ -83,6 +83,8 @@ import Test from "./page/Test";
 import RecentWork from "./page/RecentWork";
 import UserReviewForm from "./components/UserReviewForm";
 import ReviewDisplay from "./components/ReviewDisplay";
+import BDLSCAN from "../public/BDLWEB.png";
+
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
@@ -129,7 +131,8 @@ const App = () => {
   return isMobile ? (
     <RouterProvider router={router} />
   ) : (
-    <div className=" py-7 px-6 bg-slate-200 rounded-xl m-4">
+    <div className="flex h-screen items-center gap-4 p-4">
+      <div className="w-1/2 h-full py-7 px-9 bg-slate-200 rounded-xl flex flex-col justify-center ">
       <h1 className="text-xl font-bold text-green-800 mb-2">
         Thank you for visiting our website!
       </h1>
@@ -146,6 +149,11 @@ const App = () => {
         </a>
         .
       </p>
+    </div>
+    <div className="w-1/2 h-full bg-slate-200 rounded-xl flex flex-col items-center justify-center ">
+       <h3 className="text-xl font-bold text-green-800 uppercase">Scan for mobile view</h3>
+       <img className="w-3/5" src={BDLSCAN} alt="" />
+    </div>
     </div>
   );
 };

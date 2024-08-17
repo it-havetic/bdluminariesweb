@@ -437,7 +437,10 @@ function ProductDetailOne() {
       <header className="flex justify-center h-[65%]">
         <div className="w-[25%] p-1 flex flex-col gap-y-1">
           <div className="w-[100%] h-[15%] bg-green-900">
-            <Navbar />
+            {/* <Navbar /> */}
+            <h2 className="text-xs font-bold text-center uppercase mb-4 bg-[#F15B26] pl-3 text-white py-1.5">
+            Photo & Video
+          </h2>
           </div>
           <div className="w-[100%] grid grid-cols-1 gap-2 p-1 no-scrollbar overflow-y-scroll h-[85%]">
             {ledSpotLightSeries.map((product) => (

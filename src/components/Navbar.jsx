@@ -70,10 +70,22 @@ const Navbar = () => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`w-full h-1/2  bg-slate-700 absolute  left-0 transition-all duration-500 ${
-          navShow ? "top-full" : "top-full"
+        className={`w-full h-1/2  bg-slate-700 opacity-100 invisible absolute  left-0 transition-all duration-500 ease-linear ${
+          navShow ? "top-full opacity-100 !visible" : "top-full"
         }`}
       >
+      </div>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={`w-full h-1/2  bg-slate-600 opacity-100 invisible absolute  left-0 transition-all duration-500 ease-linear group ${
+          navShow ? "top-[150%] !opacity-100 !visible" : "top-full"
+        }`}
+      >
+        <ul className="absolute bg-black transition-all duration-300 left-0 top-0 opacity-0 invisible group-hover:visible group-hover:left-full group-hover:opacity-100 ">
+          <li>home</li>
+          <li>home</li>
+          <li>home</li>
+        </ul>
       </div>
     </div>
   );
