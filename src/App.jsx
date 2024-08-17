@@ -72,6 +72,7 @@ import {
 } from "react-router-dom";
 import RootLayOut from "./RootLayOut";
 import Home from "./page/Home";
+import Profile from "./page/Profile";
 import AllProduct from "./page/AllProduct";
 import ContactForm from "./components/Contact";
 import ProductDetails from "./components/ProductDetails";
@@ -115,6 +116,7 @@ const App = () => {
         <Route path="/product/detail/next" element={<ProductDetailNext />} />
         <Route path="/mockup" element={<Mockup />} />
         <Route path="/work" element={<RecentWork />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/test" element={<Test />} />
         <Route
           path="/review/:mockID"
