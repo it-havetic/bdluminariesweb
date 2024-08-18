@@ -85,6 +85,7 @@ import RecentWork from "./page/RecentWork";
 import UserReviewForm from "./components/UserReviewForm";
 import ReviewDisplay from "./components/ReviewDisplay";
 import BDLSCAN from "../public/BDLWEB.png";
+import Menu from "./page/Menu";
 
 
 const App = () => {
@@ -117,6 +118,7 @@ const App = () => {
         <Route path="/mockup" element={<Mockup />} />
         <Route path="/work" element={<RecentWork />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/Menu" element={<Menu />} />
         <Route path="/test" element={<Test />} />
         <Route
           path="/review/:mockID"
