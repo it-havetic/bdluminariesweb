@@ -134,19 +134,11 @@ function ProductDetailOne() {
   return (
     <div className="bg-green-100 h-screen flex flex-col">
       <header className="flex justify-center h-[65%]">
-<<<<<<< HEAD
-        <div className="w-[25%]  flex flex-col gap-y-1">
-          <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] text-white py-1.5">
-            All series
-          </h2>
-          <div className="w-[100%] grid grid-cols-1 gap-2 p-1 no-scrollbar overflow-y-scroll h-[96%]">
-=======
         <div className="w-[25%] flex flex-col gap-y-1">
             <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5">
             All Series
           </h2>
           <div className="flex flex-col gap-1 p-1 no-scrollbar overflow-y-scroll h-[100%]">
->>>>>>> 3fefcc3f0e7c33be76c359e792c9f16c11b45cb3
             {ledSpotLightSeries.map((product) => (
               <div key={product.id} className="shadow-md rounded bg-[#8ac249]">
                 <img
