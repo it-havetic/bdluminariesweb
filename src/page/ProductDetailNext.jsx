@@ -127,9 +127,21 @@ function ProductDetailNext() {
 
   return (
     <div className="bg-green-100 h-screen grid gap-y-1 ">
-      <div className="top row-span-6 grid gap-1 grid-cols-5 grid-rows-4">
-        <div className="one col-span-4 row-span-3 bg-[#8ac249] flex items-center justify-center">
+      <div className="top row-span-6 grid gap-1 grid-cols-5 grid-rows-6">
+        <div className="one col-span-4 row-span-5 bg-[#8ac249] flex items-center justify-center">
           <img className="w-4/5 h-4/5  object-contain " src={p1} alt="" />
+        </div>
+        <div className="one bg-[#8ac249]">
+          <SpecificationItem
+            title="Dimming"
+            items={["1-10 volt", "2.4G", "24V/6", "Dali", "Zigbee", "Mash"]}
+          />
+        </div>
+        <div className="one bg-[#8ac249]">
+          <SpecificationItem
+            title="Dimming"
+            items={["1-10 volt", "2.4G", "24V/6", "Dali", "Zigbee", "Mash"]}
+          />
         </div>
         <div className="one bg-[#8ac249]">
           <SpecificationItem
@@ -189,7 +201,7 @@ function ProductDetailNext() {
         </div>
       </div>
 
-      <div className="top row-span-3 bg-[#ffffff]">
+      {/* <div className="top row-span-3 bg-[#ffffff]">
         <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5">
           Remaining Specication
         </h2>
@@ -232,7 +244,7 @@ function ProductDetailNext() {
           <div className="one row-span-2 p-1 border ">415X45X50MM</div>
           <div className="one row-span-2 p-1 border ">405X35MM</div>
         </div>
-      </div>
+      </div> */}
       <div className="top row-span-4 ">
         <section className="h-full ">
           <h2 className="text-xs font-bold text-center uppercase mb-2 bg-[#F15B26] pl-3 text-white py-1.5">
