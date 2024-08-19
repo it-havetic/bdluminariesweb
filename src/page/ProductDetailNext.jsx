@@ -128,8 +128,12 @@ function ProductDetailNext() {
   return (
     <div className="bg-green-100 h-screen grid gap-y-1 ">
       <div className="top row-span-6 grid gap-1 grid-cols-5 grid-rows-6">
-        <div className="one col-span-4 row-span-5 bg-[#8ac249] flex items-center justify-center">
+        <div className="one col-span-4 row-span-5 bg-[#8ac249] flex items-center justify-center h-96 overflow-y-scroll">
           <img className="w-4/5 h-4/5  object-contain " src={p1} alt="" />
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus voluptatibus praesentium architecto quod asperiores magnam, saepe mollitia fugit! Sapiente cum unde officiis quae eius delectus, modi explicabo amet in dolorem voluptates expedita, a similique quam et, at fugit enim. Repudiandae nemo, accusamus eaque facere neque blanditiis, facilis placeat dolores doloremque architecto expedita eius, quia tenetur accusantium eveniet ipsam quae ad adipisci corporis repellendus commodi. Ducimus maxime rem quas eius consectetur accusantium expedita maiores nam non? Consectetur assumenda non placeat asperiores ea earum blanditiis officia nulla ipsa quidem dignissimos voluptate ratione, id delectus ut, eaque quia quisquam numquam explicabo laboriosam facere.
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus voluptatibus praesentium architecto quod asperiores magnam, saepe mollitia fugit! Sapiente cum unde officiis quae eius delectus, modi explicabo amet in dolorem voluptates expedita, a similique quam et, at fugit enim. Repudiandae nemo, accusamus eaque facere neque blanditiis, facilis placeat dolores doloremque architecto expedita eius, quia tenetur accusantium eveniet ipsam quae ad adipisci corporis repellendus commodi. Ducimus maxime rem quas eius consectetur accusantium expedita maiores nam non? Consectetur assumenda non placeat asperiores ea earum blanditiis officia nulla ipsa quidem dignissimos voluptate ratione, id delectus ut, eaque quia quisquam numquam explicabo laboriosam facere.
+          </p>
         </div>
         <div className="one bg-[#8ac249]">
           <SpecificationItem
@@ -201,51 +205,7 @@ function ProductDetailNext() {
         </div>
       </div>
 
-      {/* <div className="top row-span-3 bg-[#ffffff]">
-        <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5">
-          Remaining Specication
-        </h2>
-
-        <div className="main text-[6px] grid grid-cols-5 grid-rows-6">
-          <div className="one row-span-2 p-1 border font-bold">
-            Light Power :
-          </div>
-          <div className="one row-span-2 p-1 border font-bold">
-            Adjustable Neck
-          </div>
-          <div className="one row-span-2 p-1 border font-bold">
-            Optical Material
-          </div>
-          <div className="one row-span-2 p-1 border font-bold">
-            Product Dimension (L/W/H)
-          </div>
-          <div className="one row-span-2 p-1 border font-bold">
-            Product Dimension (Cut Off)
-          </div>
-          <div className="one row-span-2 p-1 border ">3W</div>
-          <div className="one  flex items-center row-span-10 p-1 border ">
-            Tilting
-          </div>
-          <div className="one  flex items-center row-span-10 p-1 border ">
-            Reflective Cup+Lens
-          </div>
-          <div className="one row-span-2 p-1 border ">70X45X50MM</div>
-          <div className="one row-span-2 p-1 border ">60X35MM</div>
-          <div className="one row-span-2 p-1 border ">7W</div>
-          <div className="one row-span-2 p-1 border ">280X45X50MM</div>
-          <div className="one row-span-2 p-1 border ">270X35MM</div>
-          <div className="one row-span-2 p-1 border ">9W</div>
-          <div className="one row-span-2 p-1 border ">280X45X50MM</div>
-          <div className="one row-span-2 p-1 border ">270X35MM</div>
-          <div className="one row-span-2 p-1 border ">10W</div>
-          <div className="one row-span-2 p-1 border ">280X45X50MM</div>
-          <div className="one row-span-2 p-1 border ">270X35MM</div>
-          <div className="one row-span-2 p-1 border ">15W</div>
-          <div className="one row-span-2 p-1 border ">415X45X50MM</div>
-          <div className="one row-span-2 p-1 border ">405X35MM</div>
-        </div>
-      </div> */}
-      <div className="top row-span-4 ">
+      <div className="bottom row-span-4 ">
         <section className="h-full ">
           <h2 className="text-xs font-bold text-center uppercase mb-2 bg-[#F15B26] pl-3 text-white py-1.5">
             Installation Guideline

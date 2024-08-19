@@ -244,6 +244,7 @@ const Banner = () => {
       autoIncrementTimer = setTimeout(() => {
         setActiveIndex((prev) => prev + 1);
       }, 100);
+      
     } else if (activeIndex === 17) {
       autoIncrementTimer = setTimeout(() => {
         setActiveIndex(0);
@@ -269,30 +270,17 @@ const Banner = () => {
   };
 
   let bannerImg = [b1, b10, b14];
-  let bannerImg2 = [
-    b7,
-    b8,
-    b11,
-    b12,
-    b13,
-    b15,
-    b16,
-    b17,
-    b18,
-    b19,
-    b20,
-    b21,
-    b22,
-    b23,
-    b24,
-    b25,
-  ];
+ 
   const [selectedImage, setSelectedImage] = useState(b7);
 
   const handleImageClick = (imageUrl) => {
     setSelectedImage(imageUrl);
     console.log(imageUrl);
   };
+  
+  useEffect(()=>{
+    
+  },[])
 
   return (
     <div className="h-[100vh] md:p-5">
@@ -337,21 +325,15 @@ const Banner = () => {
           </Marquee>
           <Link
             className="w-[8%] flex justify-center items-center text-[#F15B26]"
-            to="/product/detail/one"
+            to="menu"
           >
             <AiOutlineProduct />
           </Link>
         </div>
-        {/* {selectedImage && (
-          <img
-            className="h-full w-full object-cover"
-            onClick={() => navigate("/work")}
-            src={selectedImage}
-            alt=""
-          />
-        )} */}
+        
         <div
-          className={`h-[48%] bg-[url(${selectedImage})] bg-cover grid grid-cols-5 grid-rows-5 gap-1 relative`}
+        style={{background:`url(${selectedImage})`}}
+          className={`h-[48%] !bg-cover grid grid-cols-5 grid-rows-5 gap-1 relative`}
         >
           <div
             className={`one bg-red-400 ${

@@ -117,14 +117,13 @@ const Menu = () => {
 
       <div className="h-full bg-fuchsia-300">
         <div className="h-1/2 bg-fuchsia-600">
-          <div>
-            <img src={menu} alt="" />
-          </div>
+            <img className="h-full w-full object-contain" src={menu} alt="" />
         </div>
         <div className="h-1/2 bg-fuchsia-200">
-          <div
-            className={`h-full bg-[url(${selectedImage})] bg-cover grid grid-cols-5 grid-rows-5 gap-1 relative`}
-          >
+        <div
+        style={{background:`url(${selectedImage})`}}
+          className={`h-full !bg-cover grid grid-cols-5 grid-rows-5 gap-1 relative`}
+        >
             <div
               className={`one bg-red-400 ${
                 activeIndex >= 1 ? "opacity-100 visible" : "opacity-0 invisible"
