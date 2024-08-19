@@ -28,6 +28,11 @@ const SpecificationItem = ({ title, items, index, checked, sItemClass }) => {
 
 const Test = () => {
 
+  const photoVideo = [
+    { id: 1, image: "/assets/b3.png" },
+    { id: 2, image: "/assets/b17.png" },
+  ];
+
    const minimalistSeries = [
      {
        id: 1,
@@ -197,7 +202,27 @@ const Test = () => {
             />
           </div>
         </div>
-        <div className="h-[27%] bg-slate-200">done</div>
+        <div className="h-[27%] bg-slate-200 grid grid-cols-2 gap-4 p-3">
+          {photoVideo.map((item) => (
+            <div
+              key={item.id}
+              className="relatedProduct bg-transparent border p-2 h-[100%] shadow-md rounded"
+              onClick={() =>
+                setDisplayedProduct({
+                  image: item.image,
+                  name: "Photo & Video",
+                  price: "1550 Tk.",
+                })
+              }
+            >
+              <img
+                src={item.image}
+                alt="Photo"
+                className="w-full h-full object-contain"
+              />
+            </div>
+          ))}
+        </div>
       </div>
       <Footer />
     </div>
