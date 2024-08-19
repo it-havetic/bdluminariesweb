@@ -156,7 +156,7 @@ function ProductDetailOne() {
 
         <div className="w-[75%]">
           <div
-            onClick={() => navigate("/product/detail/next")}
+            onClick={() => navigate("/test")}
             className="flex justify-center items-center h-[40%] bg-[#8ac249] relative"
           >
             <img
