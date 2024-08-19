@@ -116,7 +116,7 @@ const Menu = () => {
       </div>
 
       <div className="h-full bg-fuchsia-300">
-        <div className="h-1/2 bg-fuchsia-600">
+        <div className="h-1/2 bg-black">
             <img className="h-full w-full object-contain" src={menu} alt="" />
         </div>
         <div className="h-1/2 bg-fuchsia-200">
