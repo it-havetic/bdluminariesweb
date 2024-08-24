@@ -211,6 +211,7 @@ import b10 from "/assets/mockup/m11.jpg";
 import b1 from "/assets/mockup/m2.jpg";
 import b14 from "/assets/mockup/m7.jpg";
 import slogan from "/assets/slogan.png";
+import clickGif from "/click.gif";
 
 import { AiOutlineProduct } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
@@ -330,9 +331,9 @@ const Banner = () => {
             <AiOutlineProduct />
           </Link>
         </div>
-        
+
         <div
-        style={{background:`url(${selectedImage})`}}
+          style={{ background: `url(${selectedImage})` }}
           className={`h-[48%] !bg-cover grid grid-cols-5 grid-rows-5 gap-1 relative`}
         >
           <div
@@ -541,10 +542,9 @@ const Banner = () => {
           {showButton && (
             <button
               onClick={handleButtonClick}
-              className="absolute top-2 left-2  text-white py-1 px-2 border "
+              className="absolute top-2 left-2  text-white p-1 border w-[10%]"
             >
-              Click
-              {/* <img className="w-full h-full" src={clickGif} alt="" /> */}
+              <img className="w-full" src={clickGif} alt="" />
             </button>
           )}
         </div>

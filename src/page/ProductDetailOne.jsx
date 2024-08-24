@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Marquee from "react-fast-marquee";
+import slogan from "/assets/slogan.png";
+import { AiOutlineProduct } from "react-icons/ai";
+import { IoEyeOff } from "react-icons/io5";
+
 
 function ProductDetailOne() {
   let navigate = useNavigate();
@@ -133,12 +139,45 @@ function ProductDetailOne() {
 
   return (
     <div className="bg-green-100 h-screen flex flex-col">
-      <header className="flex justify-center h-[65%]">
+      <div className="flex items-center justify-between absolute top-0 left-0  h-8 bg-[#000000] z-50 ">
+        <Link
+          className="flex items-center justify-center w-[20%] text-xs"
+          to="/"
+        >
+          <img
+            className="w-4/5 drop-shadow-custom"
+            src="/assets/bdl.png"
+            alt=""
+          />
+        </Link>
+        <Marquee
+          speed={20}
+          direction="left"
+          pauseOnHover={true}
+          reverse={true}
+          gradient={false}
+          gradientColor={["#6FA710"]}
+          className="h-8 "
+        >
+          <div className="flex h-full">
+            <img className=" h-8" src={slogan} alt="" />
+            <img className=" h-8" src={slogan} alt="" />
+            <img className=" h-8" src={slogan} alt="" />
+          </div>
+        </Marquee>
+        <Link
+          className="w-[20%] flex justify-center items-center text-[#F15B26]"
+          to="/product/detail/one"
+        >
+          <AiOutlineProduct />
+        </Link>
+      </div>
+      <header className="flex gap-1 h-[40%]  mt-9">
         <div className="w-[25%] flex flex-col gap-y-1">
-            <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5">
+          <h2 className="text-xs font-bold text-center uppercase bg-[#f15b26] text-white py-1.5">
             All Series
           </h2>
-          <div className="flex flex-col gap-1 p-1 no-scrollbar overflow-y-scroll h-[100%]">
+          <div className="flex flex-col gap-1 pl-1 no-scrollbar overflow-y-scroll h-[100%]">
             {ledSpotLightSeries.map((product) => (
               <div key={product.id} className="shadow-md rounded bg-[#8ac249]">
                 <img
@@ -157,23 +196,44 @@ function ProductDetailOne() {
         <div className="w-[75%]">
           <div
             onClick={() => navigate("/test")}
-            className="flex justify-center items-center h-[40%] bg-[#8ac249] relative"
+            className="flex justify-center items-top h-[40%] bg-[#8ac249] relative"
           >
             <img
-              className="displayProduct object-contain"
+              className="displayProduct h-3/4 object-contain"
               src={displayedProduct.image}
               alt="Icon"
             />
-            <div className="p-1 pl-4 bg-black bg-opacity-20 shadow-lg backdrop-blur-[blur(5px)] backdrop-filter border border-black/10 border-r-0 border-opacity-30 rounded-s-3xl absolute right-0 bottom-3 text-[10px] font-semibold text-white flex flex-col justify-center items-end text-right leading-3">
-              <p>{displayedProduct.name}</p>
-              <p>Price: {displayedProduct.price}</p>
+            <div className="p-1 bg-black bg-opacity-20 shadow-lg backdrop-blur-[blur(5px)] backdrop-filter border border-black/10 border-r-0 border-opacity-30 absolute left-0 bottom-0 w-full grid grid-cols-4 gap-1 text-[10px]">
+              <div className="">
+                <p className="bg-black h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
+                  Series
+                </p>
+                <p className="bg-white h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
+                  Minimalist
+                </p>
+              </div>
+              <div className="border col-span-2">
+                <p className=" text-gray-100 font-bold text-left px-0.5 leading-3 text-[8px]">
+                  Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit
+                  amet consectetur
+                </p>
+              </div>
+              <div className="">
+                <p className="bg-black h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
+                  MRP
+                </p>
+                <p onClick={()=> console.log("ok")
+                } className="bg-white h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
+                  <IoEyeOff />
+                </p>
+              </div>
             </div>
           </div>
-          <section className="h-[60%]">
-            <h2 className="text-xs font-semibold uppercase mb-4 text-left bg-[#F15B26] pl-3 text-white py-1.5">
+          <section className="h-[56%]">
+            <h2 className="text-xs font-semibold uppercase mb-1 text-left bg-[#F15B26] pl-3 text-white py-1.5">
               Minimalist Series
             </h2>
-            <div className="grid grid-cols-3 gap-4 px-3 no-scrollbar overflow-y-scroll h-[86%]">
+            <div className="grid grid-cols-4 gap-1 pr-1 no-scrollbar overflow-y-scroll h-[90%]">
               {minimalistSeries.map((product) => (
                 <div
                   key={product.id}
@@ -191,12 +251,18 @@ function ProductDetailOne() {
         </div>
       </header>
 
-      <main className="flex-1 mt-2 no-scrollbar overflow-x-scroll h-[35%]">
+      <main className="flex-1 mt-2 no-scrollbar overflow-x-scroll h-[60%]">
         <section className="h-full">
-          <h2 className="text-xs font-bold text-center uppercase mb-4 bg-[#F15B26] pl-3 text-white py-1.5">
+          <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5">
             Photo & Video
           </h2>
-          <div className="grid grid-cols-2 gap-4 px-3 h-[80%] pb-9">
+          <div className="grid grid-cols-5 grid-rows-3 h-full">
+            <div className="bg-slate-400 col-span-4 row-span-3">1</div>
+            <div className="bg-slate-400">1</div>
+            <div className="bg-slate-400">1</div>
+            <div className="bg-slate-400">1</div>
+          </div>
+          {/* <div className="grid grid-cols-2 gap-4 px-3 h-[80%] pb-9">
             {photoVideo.map((item) => (
               <div
                 key={item.id}
@@ -216,7 +282,7 @@ function ProductDetailOne() {
                 />
               </div>
             ))}
-          </div>
+          </div> */}
         </section>
       </main>
 
