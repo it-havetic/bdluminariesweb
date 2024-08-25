@@ -173,7 +173,7 @@ function ProductDetailOne() {
         </Link>
       </div>
       <header className="flex gap-1 h-[40%]  mt-9">
-        <div className="w-[25%] flex flex-col gap-y-1">
+        <div className="w-[20%] flex flex-col gap-y-1">
           <h2 className="text-xs font-bold text-center uppercase bg-[#f15b26] text-white py-1.5">
             All Series
           </h2>
@@ -182,7 +182,7 @@ function ProductDetailOne() {
               <div key={product.id} className="shadow-md rounded bg-[#8ac249]">
                 <img
                   src={product.image}
-                  className="w-full h-14 object-contain"
+                  className="w-full h-11 object-contain"
                 />
                 <div className="text-[8px] tracking-widest font-semibold text-center bg-[#1d1d1d] text-white uppercase py-1">
                   <h3>{product.name}</h3>
@@ -193,10 +193,10 @@ function ProductDetailOne() {
           </div>
         </div>
 
-        <div className="w-[75%]">
+        <div className="w-[80%]">
           <div
             onClick={() => navigate("/test")}
-            className="flex justify-center items-top h-[40%] bg-[#8ac249] relative"
+            className="flex justify-center items-top h-[50%] bg-[#8ac249] relative"
           >
             <img
               className="displayProduct h-3/4 object-contain"
@@ -229,11 +229,11 @@ function ProductDetailOne() {
               </div>
             </div>
           </div>
-          <section className="h-[56%]">
+          <section className="h-[42%]">
             <h2 className="text-xs font-semibold uppercase mb-1 text-left bg-[#F15B26] pl-3 text-white py-1.5">
               Minimalist Series
             </h2>
-            <div className="grid grid-cols-4 gap-1 pr-1 no-scrollbar overflow-y-scroll h-[90%]">
+            <div className="grid grid-cols-5 gap-1 pr-1 no-scrollbar overflow-y-scroll h-[90%]">
               {minimalistSeries.map((product) => (
                 <div
                   key={product.id}
@@ -242,7 +242,7 @@ function ProductDetailOne() {
                 >
                   <img
                     src={product.image}
-                    className="w-full h-14 object-contain"
+                    className="w-full h-11 object-contain"
                   />
                 </div>
               ))}
@@ -253,14 +253,33 @@ function ProductDetailOne() {
 
       <main className="flex-1 mt-2 no-scrollbar overflow-x-scroll h-[60%]">
         <section className="h-full">
-          <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5">
+          {/* <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5">
             Photo & Video
+          </h2> */}
+          <div className="h-[90%] flex flex-col gap-y-1">
+          <div className="grid grid-cols-5 grid-rows-3 gap-1 h-1/2">
+            <div className="bg-slate-400 col-span-4 row-span-3">
+            <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5">
+            Reffarance Photo
           </h2>
-          <div className="grid grid-cols-5 grid-rows-3 h-full">
-            <div className="bg-slate-400 col-span-4 row-span-3">1</div>
+
+            </div>
             <div className="bg-slate-400">1</div>
             <div className="bg-slate-400">1</div>
             <div className="bg-slate-400">1</div>
+          </div>
+          <div className="grid grid-cols-5 grid-rows-3 gap-1 h-1/2">
+            <div className="bg-slate-400">
+            1
+            </div>
+            <div className="bg-slate-400 col-span-4 row-span-3">
+            <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5">
+            Reffarance Video
+          </h2>
+            </div>
+            <div className="bg-slate-400">1</div>
+            <div className="bg-slate-400">1</div>
+          </div>
           </div>
           {/* <div className="grid grid-cols-2 gap-4 px-3 h-[80%] pb-9">
             {photoVideo.map((item) => (
