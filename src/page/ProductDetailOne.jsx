@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
-import slogan from "/assets/slogan.png";
 import { AiOutlineProduct } from "react-icons/ai";
 import { IoEyeOff } from "react-icons/io5";
-
+import { Link, useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
+import slogan from "/assets/slogan.png";
 
 function ProductDetailOne() {
   let navigate = useNavigate();
+  let managePrice = (e) => {
+    e.stopPropagation();
+    navigate("/contact");
+  };
+  //  const nayan = useRef(null)
+
+  //  console.log(nayan);
 
   // State to manage the displayed product
   const [displayedProduct, setDisplayedProduct] = useState({
@@ -194,11 +198,10 @@ function ProductDetailOne() {
         </div>
 
         <div className="w-[75%]">
-          <div
-            onClick={() => navigate("/test")}
-            className="flex justify-center items-top h-[40%] bg-[#8ac249] relative"
-          >
+          <div className="flex justify-center items-top h-[40%] bg-[#8ac249] relative">
             <img
+              // ref={nayan}
+              onClick={() => navigate("/test")}
               className="displayProduct h-3/4 object-contain"
               src={displayedProduct.image}
               alt="Icon"
@@ -222,8 +225,10 @@ function ProductDetailOne() {
                 <p className="bg-black h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
                   MRP
                 </p>
-                <p onClick={()=> console.log("ok")
-                } className="bg-white h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
+                <p
+                  onClick={managePrice}
+                  className="bg-white h-1/2 text-[#cc3903] font-bold flex justify-center items-center"
+                >
                   <IoEyeOff />
                 </p>
               </div>
