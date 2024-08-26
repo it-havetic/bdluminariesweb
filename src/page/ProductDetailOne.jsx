@@ -197,19 +197,18 @@ function ProductDetailOne() {
           </div>
         </div>
 
-        <div className="w-[75%]">
+        <div className="w-[80%]">
           <div
             onClick={() => navigate("/test")}
-            className="flex justify-center items-top h-[40%] bg-[#8ac249] relative"
+            className="flex justify-center items-top h-[52%] bg-[#8ac249] relative"
           >
             <img
-              // ref={nayan}
               onClick={() => navigate("/test")}
               className="displayProduct h-3/4 object-contain"
               src={displayedProduct.image}
               alt="Icon"
             />
-            <div className="p-1 bg-black bg-opacity-20 shadow-lg backdrop-blur-[blur(5px)] backdrop-filter border border-black/10 border-r-0 border-opacity-30 absolute left-0 bottom-0 w-full grid grid-cols-4 gap-1 text-[10px]">
+            <div className="p-0.5 bg-black bg-opacity-20 shadow-lg backdrop-blur-[blur(5px)] backdrop-filter border border-black/10 border-r-0 border-opacity-30 absolute left-0 bottom-0 w-full grid grid-cols-4 gap-0.5 text-[10px]">
               <div className="">
                 <p className="bg-black h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
                   Series
@@ -218,8 +217,8 @@ function ProductDetailOne() {
                   Minimalist
                 </p>
               </div>
-              <div className="border col-span-2">
-                <p className=" text-gray-100 font-bold text-left px-0.5 leading-3 text-[8px]">
+              <div className="bg-white col-span-2">
+                <p className=" text-gray-700 font-bold text-left px-0.5 leading-[8px] text-[8px]">
                   Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit
                   amet consectetur
                 </p>
