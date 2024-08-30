@@ -7,6 +7,7 @@ import p03 from '/assets/product/03.png'
 import p04 from '/assets/product/04.png'
 import p05 from '/assets/product/05.png'
 import { Link } from 'react-router-dom'
+import axios from '../axios'
 
 const AllProduct = () => {
 

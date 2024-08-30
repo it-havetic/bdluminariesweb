@@ -4,10 +4,22 @@ import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import { AiOutlineProduct } from "react-icons/ai";
 import slogan from "/assets/slogan.png";
+import axios from "../axios";
+
 
 const SpecificationItem = ({ title, items, index, checked, sItemClass }) => {
+  // const [data, setData] = useState([])
+  // const getGroup = async()=>{
+  //  const res = await axios.get('/group');
+  //  setData([...res.data.data])
+  // //  console.log(res.data.data.image)
+  // }
+  // getGroup();
   return (
     <div className={`text-white  ${sItemClass} bg-[#8ac249] border  `}>
+      {/* {
+        data.map(({image})=><img src={image}/>)
+      } */}
       <h2 className="px-1 py-0.5 text-[10px] bg-orange-600 mb-1">{title}</h2>
       <ul className="pl-3 text-black ">
         {items.map((item, index) => (

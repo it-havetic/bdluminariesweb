@@ -28,56 +28,84 @@ import b10 from "/assets/mockup/m11.jpg";
 import b1 from "/assets/mockup/m2.jpg";
 import b14 from "/assets/mockup/m7.jpg";
 import menu from "/menu.gif";
+import axios from "../axios";
+import { HiDotsHorizontal } from "react-icons/hi";
 
 
 
 const Menu = () => {
 
-    let navigate = useNavigate();
+  let navigate = useNavigate();
 
 
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [showButton, setShowButton] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [showButton, setShowButton] = useState(true);
+  const [groups, setGroups] = useState();
 
-    useEffect(() => {
-      let autoIncrementTimer;
-      let buttonVisibilityTimer;
+  const [isItemVisible, setIsItemVisible] = useState(false);
 
-      if (activeIndex > 0 && activeIndex <= 16) {
-        autoIncrementTimer = setTimeout(() => {
-          setActiveIndex((prev) => prev + 1);
-        }, 100);
-      } else if (activeIndex === 17) {
-        autoIncrementTimer = setTimeout(() => {
-          setActiveIndex(0);
-          setShowButton(true);
-        }, 10000);
-      }
+  const handleToggle = () => {
+    setIsItemVisible(!isItemVisible);
+  };
 
-      if (!showButton) {
-        buttonVisibilityTimer = setTimeout(() => {
-          setShowButton(true);
-        }, 10000);
-      }
+  const bdlGroup = async () => {
+    try {
+      let res = await axios.get('/group');
+      setGroups(res.data.data);
+      console.log(res.data.data);
+    } catch (error) {
+      console.error('Error fetching the group data:', error);
+    }
+  };
 
-      return () => {
-        clearTimeout(autoIncrementTimer);
-        clearTimeout(buttonVisibilityTimer);
-      };
-    }, [activeIndex, showButton]);
+  useEffect(() => {
+    bdlGroup()
+  }, [])
 
-    const handleButtonClick = () => {
-      setShowButton(false);
-      setActiveIndex((prev) => (prev < 16 ? prev + 1 : 17));
+
+  useEffect(() => {
+    let autoIncrementTimer;
+    let buttonVisibilityTimer;
+
+    if (activeIndex > 0 && activeIndex <= 16) {
+      autoIncrementTimer = setTimeout(() => {
+        setActiveIndex((prev) => prev + 1);
+      }, 100);
+    } else if (activeIndex === 17) {
+      autoIncrementTimer = setTimeout(() => {
+        setActiveIndex(0);
+        setShowButton(true);
+      }, 10000);
+    }
+
+    if (!showButton) {
+      buttonVisibilityTimer = setTimeout(() => {
+        setShowButton(true);
+      }, 10000);
+    }
+
+    return () => {
+      clearTimeout(autoIncrementTimer);
+      clearTimeout(buttonVisibilityTimer);
     };
+  }, [activeIndex, showButton]);
 
-   
-    const [selectedImage, setSelectedImage] = useState(b7);
+  const handleButtonClick = () => {
+    setShowButton(false);
+    setActiveIndex((prev) => (prev < 16 ? prev + 1 : 17));
+  };
 
-    const handleImageClick = (imageUrl) => {
-      setSelectedImage(imageUrl);
-      console.log(imageUrl);
-    };
+
+  const [selectedImage, setSelectedImage] = useState(b7);
+
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl);
+    console.log(imageUrl);
+  };
+
+  if (!groups) {
+    return <p>BDL</p>
+  }
 
   return (
     <div className="h-screen pb-9 pt-8 bg-gray-100">
@@ -107,27 +135,42 @@ const Menu = () => {
             <img className=" h-8" src={slogan} alt="" />
           </div>
         </Marquee>
-        <Link
-          className="w-[20%] flex justify-center items-center text-[#F15B26]"
-          to="/product/detail/one"
+        <div
+          className="navItem w-[20%] h-full flex justify-center items-center  text-[#F15B26] relative "
+          onClick={handleToggle}
         >
-          <AiOutlineProduct />
-        </Link>
+          <HiDotsHorizontal />
+          <div className={`item px-5 py-2 bg-slate-300 absolute right-0 top-full transition-all duration-300 ${isItemVisible?"top-full opacity-100 visible":"top-[140%] opacity-0 !invisible"}`}>
+              <ul className="text-right">
+                <li><Link className="text-[#F15B26] capitalize" to="/contact">appointment</Link></li>
+                <li><Link className="text-[#F15B26] capitalize" to="/profile">profile</Link></li>
+                <li><Link className="text-[#F15B26] capitalize" to="/blog">academy</Link></li>
+              </ul>
+            </div>
+        </div>
       </div>
 
       <div className="h-full bg-fuchsia-300">
-        <div className="h-1/2 bg-black">
-            <img className="h-full w-full object-contain" src={menu} alt="" />
+        <div className="h-1/2 bg-slate-200">
+          <ul>
+            {
+              groups.map((item, index) => (
+                <Link to={`/product/detail/one/${item._id}`}>
+                  <li key={index}>{item.Title}</li>
+                </Link>
+              ))
+            }
+          </ul>
+          {/* <img className="h-full w-full object-contain" src={menu} alt="" /> */}
         </div>
         <div className="h-1/2 bg-fuchsia-200">
-        <div
-        style={{background:`url(${selectedImage})`}}
-          className={`h-full !bg-cover grid grid-cols-5 grid-rows-5 gap-1 relative`}
-        >
+          <div
+            style={{ background: `url(${selectedImage})` }}
+            className={`h-full !bg-cover grid grid-cols-5 grid-rows-5 gap-1 relative`}
+          >
             <div
-              className={`one bg-red-400 ${
-                activeIndex >= 1 ? "opacity-100 visible" : "opacity-0 invisible"
-              } transition-opacity duration-500 relative`}
+              className={`one bg-red-400 ${activeIndex >= 1 ? "opacity-100 visible" : "opacity-0 invisible"
+                } transition-opacity duration-500 relative`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -140,11 +183,10 @@ const Menu = () => {
               </p>
             </div>
             <div
-              className={`sixteen bg-rose-400 ${
-                activeIndex >= 16
+              className={`sixteen bg-rose-400 ${activeIndex >= 16
                   ? "opacity-100 visible"
                   : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -154,11 +196,10 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`fifteen bg-fuchsia-400 ${
-                activeIndex >= 15
+              className={`fifteen bg-fuchsia-400 ${activeIndex >= 15
                   ? "opacity-100 visible"
                   : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -168,11 +209,10 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`fourteen bg-emerald-400 ${
-                activeIndex >= 14
+              className={`fourteen bg-emerald-400 ${activeIndex >= 14
                   ? "opacity-100 visible"
                   : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -182,11 +222,10 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`thirteen bg-amber-400 ${
-                activeIndex >= 13
+              className={`thirteen bg-amber-400 ${activeIndex >= 13
                   ? "opacity-100 visible"
                   : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -196,9 +235,8 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`two bg-blue-400 ${
-                activeIndex >= 2 ? "opacity-100 visible" : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+              className={`two bg-blue-400 ${activeIndex >= 2 ? "opacity-100 visible" : "opacity-0 invisible"
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -208,19 +246,17 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`seventeen bg-violet-400 col-span-3 row-span-3 ${
-                activeIndex === 17 ? "opacity-0" : "opacity-0"
-              } transition-opacity duration-500`}
+              className={`seventeen bg-violet-400 col-span-3 row-span-3 ${activeIndex === 17 ? "opacity-0" : "opacity-0"
+                } transition-opacity duration-500`}
               onClick={() => navigate("/work")}
             >
               <p>17</p>
             </div>
             <div
-              className={`twelve bg-lime-400 ${
-                activeIndex >= 12
+              className={`twelve bg-lime-400 ${activeIndex >= 12
                   ? "opacity-100 visible"
                   : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -230,9 +266,8 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`three bg-green-400 ${
-                activeIndex >= 3 ? "opacity-100 visible" : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+              className={`three bg-green-400 ${activeIndex >= 3 ? "opacity-100 visible" : "opacity-0 invisible"
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -242,11 +277,10 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`eleven bg-cyan-400 ${
-                activeIndex >= 11
+              className={`eleven bg-cyan-400 ${activeIndex >= 11
                   ? "opacity-100 visible"
                   : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -256,9 +290,8 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`four bg-yellow-400 ${
-                activeIndex >= 4 ? "opacity-100 visible" : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+              className={`four bg-yellow-400 ${activeIndex >= 4 ? "opacity-100 visible" : "opacity-0 invisible"
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -268,11 +301,10 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`ten bg-gray-400 ${
-                activeIndex >= 10
+              className={`ten bg-gray-400 ${activeIndex >= 10
                   ? "opacity-100 visible"
                   : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -282,9 +314,8 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`five bg-purple-400 ${
-                activeIndex >= 5 ? "opacity-100 visible" : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+              className={`five bg-purple-400 ${activeIndex >= 5 ? "opacity-100 visible" : "opacity-0 invisible"
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -294,9 +325,8 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`six bg-pink-400 ${
-                activeIndex >= 6 ? "opacity-100 visible" : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+              className={`six bg-pink-400 ${activeIndex >= 6 ? "opacity-100 visible" : "opacity-0 invisible"
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -306,9 +336,8 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`seven bg-teal-400 ${
-                activeIndex >= 7 ? "opacity-100 visible" : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+              className={`seven bg-teal-400 ${activeIndex >= 7 ? "opacity-100 visible" : "opacity-0 invisible"
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -318,9 +347,8 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`eight bg-indigo-400 ${
-                activeIndex >= 8 ? "opacity-100 visible" : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+              className={`eight bg-indigo-400 ${activeIndex >= 8 ? "opacity-100 visible" : "opacity-0 invisible"
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
@@ -330,9 +358,8 @@ const Menu = () => {
               />
             </div>
             <div
-              className={`nine bg-orange-400 ${
-                activeIndex >= 9 ? "opacity-100 visible" : "opacity-0 invisible"
-              } transition-opacity duration-500`}
+              className={`nine bg-orange-400 ${activeIndex >= 9 ? "opacity-100 visible" : "opacity-0 invisible"
+                } transition-opacity duration-500`}
             >
               <img
                 className="h-full w-full object-cover"
