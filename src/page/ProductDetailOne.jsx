@@ -1,38 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
-import slogan from "/assets/slogan.png";
 import { AiOutlineProduct } from "react-icons/ai";
 import { IoEyeOff } from "react-icons/io5";
-import axios from "../axios";
 
 
 function ProductDetailOne() {
   let navigate = useNavigate();
-  const [selectedSeries, setSelectedSeries] = useState(null);
-
-  const {id} = useParams();
-  console.log(id)
-
-  const bdlSeries = async () => {
-    try {
-      let res = await axios.get('/seris');
-      const seriesByGroupId = res.data.data?.filter((item)=>{
-        return item.groups._id === id
-      })
-      setSelectedSeries(seriesByGroupId)
-      console.log(selectedSeries);
-    } catch (error) {
-      console.error('Error fetching the group data:', error);
-    }
-  };
-
-  useEffect(() => {
-    bdlSeries()
-  }, [])
 
   // State to manage the displayed product
   const [displayedProduct, setDisplayedProduct] = useState({
@@ -223,14 +200,15 @@ if (!selectedSeries) {
         <div className="w-[80%]">
           <div
             onClick={() => navigate("/test")}
-            className="flex justify-center items-top h-[50%] bg-[#8ac249] relative"
+            className="flex justify-center items-top h-[52%] bg-[#8ac249] relative"
           >
             <img
+              onClick={() => navigate("/test")}
               className="displayProduct h-3/4 object-contain"
               src={displayedProduct.image}
               alt="Icon"
             />
-            <div className="p-1 bg-black bg-opacity-20 shadow-lg backdrop-blur-[blur(5px)] backdrop-filter border border-black/10 border-r-0 border-opacity-30 absolute left-0 bottom-0 w-full grid grid-cols-4 gap-1 text-[10px]">
+            <div className="p-0.5 bg-black bg-opacity-20 shadow-lg backdrop-blur-[blur(5px)] backdrop-filter border border-black/10 border-r-0 border-opacity-30 absolute left-0 bottom-0 w-full grid grid-cols-4 gap-0.5 text-[10px]">
               <div className="">
                 <p className="bg-black h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
                   Series
@@ -239,8 +217,8 @@ if (!selectedSeries) {
                   Minimalist
                 </p>
               </div>
-              <div className="border col-span-2">
-                <p className=" text-gray-100 font-bold text-left px-0.5 leading-3 text-[8px]">
+              <div className="bg-white col-span-2">
+                <p className=" text-gray-700 font-bold text-left px-0.5 leading-[8px] text-[8px]">
                   Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit
                   amet consectetur
                 </p>
@@ -249,7 +227,7 @@ if (!selectedSeries) {
                 <p className="bg-black h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
                   MRP
                 </p>
-                <p onClick={() => console.log("ok")
+                <p onClick={()=> console.log("ok")
                 } className="bg-white h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
                   <IoEyeOff />
                 </p>
