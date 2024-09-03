@@ -227,88 +227,105 @@ const RecentWork = () => {
     });
   };
   return (
-    <div className='h-screen pb-9 pt-8 bg-gray-100'>
-        <div className="flex items-center justify-between absolute top-0 left-0  h-8 bg-[#000000] ">
-          <Link
-            className="flex items-center justify-center w-[20%] text-xs"
-            to="/"
-          >
-            <img
-              className="w-4/5 drop-shadow-custom"
-              src="/assets/bdl.png"
-              alt=""
-            />
-          </Link>
-          <Marquee
-            speed={20}
-            direction="left"
-            pauseOnHover={true}
-            reverse={true}
-            gradient={false}
-            gradientColor={["#6FA710"]}
-            className="h-8 "
-          >
-            <div className="flex h-full">
-              <img className=" h-8" src={slogan} alt="" />
-              <img className=" h-8" src={slogan} alt="" />
-              <img className=" h-8" src={slogan} alt="" />
-            </div>
-          </Marquee>
-          <Link
-            className="w-[20%] flex justify-center items-center text-[#F15B26]"
-            to="/product/detail/one"
-          >
-            <AiOutlineProduct />
-          </Link>
-        </div>
-      <div className='h-full  grid grid-rows-2 grid-cols-1'>
-        <div className='bg-green-200'>
-            <img
+    <div className="h-screen pb-9 pt-8 bg-gray-100">
+      <div className="flex items-center justify-between absolute top-0 left-0  h-8 bg-[#000000] ">
+        <Link
+          className="flex items-center justify-center w-[20%] text-xs"
+          to="/"
+        >
+          <img
+            className="w-4/5 drop-shadow-custom"
+            src="/assets/bdl.png"
+            alt=""
+          />
+        </Link>
+        <Marquee
+          speed={20}
+          direction="left"
+          pauseOnHover={true}
+          reverse={true}
+          gradient={false}
+          gradientColor={["#6FA710"]}
+          className="h-8 "
+        >
+          <div className="flex h-full">
+            <img className=" h-8" src={slogan} alt="" />
+            <img className=" h-8" src={slogan} alt="" />
+            <img className=" h-8" src={slogan} alt="" />
+          </div>
+        </Marquee>
+        <Link
+          className="w-[20%] flex justify-center items-center text-[#F15B26]"
+          to="/product/detail/one"
+        >
+          <AiOutlineProduct />
+        </Link>
+      </div>
+      <div className="h-full  grid grid-rows-2 grid-cols-1">
+        <div className="bg-green-200">
+          <img
               className="displayProduct object-cover h-full w-full"
               src={displayedProduct.image}
               alt="Icon"
             />
+
+          {/* <iframe
+            src="https://www.youtube.com/embed/jh66Pjtqr4k?list=RDjh66Pjtqr4k&autoplay=1&controls=0&modestbranding=1&showinfo=0&fs=0&rel=0&loop=1"
+            title="LUDO: Aabaad Barbaad (Full Video)"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            autoplay="1"
+            loop="1"
+            rel="0"
+            fs="0"
+            showinfo="0"
+            modestbranding="1"
+            controls="0"
+          ></iframe> */}
         </div>
-        <div className=' grid grid-cols-4  gap-4  p-2'>
-              <div className='col-span-1 grid grid-cols-1 gap-2 h-full overflow-y-scroll no-scrollbar relative'>
-                  <h3 className="text-xs bg-[#F15B26] sticky top-0 left-0 py-1.5 text-center text-white font-bold w-full  shadow-md rounded">
-                  Mockup
-                  </h3>
-                  {mockup.map((mockup) => (
-                    <div
-                      key={mockup.id}
-                      className=" shadow-md rounded"
-                      onClick={() => handleProductClick(mockup)}
-                    >
-                      <img
-                        src={mockup.image}
-                        className="w-full h-14 object-cover rounded"
-                      />
-                    </div>
-                  ))}
+        <div className=" grid grid-cols-4  gap-4  p-2">
+          
+          <div className="col-span-3 grid grid-cols-3 gap-2 h-full overflow-y-scroll no-scrollbar relative  ">
+            <h3 className="text-xs col-span-3 bg-[#F15B26] sticky top-0 left-0 py-1.5 text-center text-white font-bold w-full shadow-md rounded">
+              Recent work
+            </h3>
+            {recent.map((recent) => (
+              <div
+                key={recent.id}
+                className=" shadow-md rounded"
+                onClick={() => handleProductClick(recent)}
+              >
+                <img
+                  src={recent.image}
+                  className="w-full h-14 object-cover rounded"
+                />
               </div>
-              <div className='col-span-3 grid grid-cols-3 gap-2 h-full overflow-y-scroll no-scrollbar relative  '>
-                <h3 className="text-xs col-span-3 bg-[#F15B26] sticky top-0 left-0 py-1.5 text-center text-white font-bold w-full shadow-md rounded">
-                  Recent work
-                </h3>
-                  {recent.map((recent) => (
-                    <div
-                      key={recent.id}
-                      className=" shadow-md rounded"
-                      onClick={() => handleProductClick(recent)}
-                    >
-                      <img
-                        src={recent.image}
-                        className="w-full h-14 object-cover rounded"
-                      />
-                    </div>
-                  ))}
+            ))}
+          </div>
+          <div className="col-span-1 grid grid-cols-1 gap-2 h-full overflow-y-scroll no-scrollbar relative">
+            <h3 className="text-xs bg-[#F15B26] sticky top-0 left-0 py-1.5 text-center text-white font-bold w-full  shadow-md rounded">
+              Mockup
+            </h3>
+            {mockup.map((mockup) => (
+              <div
+                key={mockup.id}
+                className=" shadow-md rounded"
+                onClick={() => handleProductClick(mockup)}
+              >
+                <img
+                  src={mockup.image}
+                  className="w-full h-14 object-cover rounded"
+                />
               </div>
+            ))}
+          </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
-  )
+  );
 }
 
 export default RecentWork
