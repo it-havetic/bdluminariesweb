@@ -6,6 +6,9 @@ export default {
       dropShadow: {
         custom: "0px 0px 11px #000000",
       },
+      textShadow: {
+        custom: "0px 0px 3px rgba(255,255,255,0.74)",
+      },
     },
   },
   plugins: [
@@ -20,5 +23,6 @@ export default {
         },
       });
     },
+    require("tailwindcss-textshadow"),
   ],
 };

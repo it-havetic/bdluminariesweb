@@ -8,9 +8,9 @@ import slogan from'/assets/slogan.png'
 
 
 const RecentWork = () => {
-  const [displayedProduct, setDisplayedProduct] = useState({
-    image: "/assets/recent/r1.png",
-  });
+  // const [displayedProduct, setDisplayedProduct] = useState({
+  //   image: "/assets/recent/r1.png",
+  // });
   const recent = [
     {
       id: 1,
@@ -142,6 +142,18 @@ const RecentWork = () => {
     }
     
   ];
+  const recentVideo = [
+    {
+      id: 1,
+      video: "videos/01.mp4",
+      thumbnail: "/assets/mockup/m1.png",
+    },
+    {
+      id: 2,
+      video: "videos/02.mp4",
+      thumbnail: "/assets/mockup/m1.jpg",
+    },
+  ];
   const mockup = [
     {
       id: 1,
@@ -221,11 +233,21 @@ const RecentWork = () => {
     },
     
   ];
-  const handleProductClick = (recent) => {
-    setDisplayedProduct({
-      image: recent.image,
-    });
-  };
+  // const handleProductClick = (recent) => {
+  //   setDisplayedProduct({
+  //     image: recent.image,
+  //   });
+  // };
+
+  // for display
+   const [selectedContent, setSelectedContent] = useState({
+     type: "",
+     src: "",
+   });
+
+   const displayContent = (type, source) => {
+     setSelectedContent({ type, src: source });
+   };
   return (
     <div className="h-screen pb-9 pt-8 bg-gray-100">
       <div className="flex items-center justify-between absolute top-0 left-0  h-8 bg-[#000000] ">
@@ -262,12 +284,12 @@ const RecentWork = () => {
         </Link>
       </div>
       <div className="h-full  grid grid-rows-2 grid-cols-1">
-        <div className="bg-green-200">
-          <img
+        <div className="bg-green-800">
+          {/* <img
               className="displayProduct object-cover h-full w-full"
               src={displayedProduct.image}
               alt="Icon"
-            />
+            /> */}
 
           {/* <iframe
             src="https://www.youtube.com/embed/jh66Pjtqr4k?list=RDjh66Pjtqr4k&autoplay=1&controls=0&modestbranding=1&showinfo=0&fs=0&rel=0&loop=1"
@@ -284,9 +306,29 @@ const RecentWork = () => {
             modestbranding="1"
             controls="0"
           ></iframe> */}
+
+          {selectedContent.type === "video" && (
+            <video
+              className="w-full h-full object-cover"
+              controls
+              autoPlay
+              src={selectedContent.src}
+            />
+          )}
+          {selectedContent.type === "image" && (
+            <img
+              className="w-full h-full object-cover"
+              src={selectedContent.src}
+              alt="Selected"
+            />
+          )}
+          {!selectedContent.src && (
+            <div className="text-gray-500">
+              Select a video or image to display
+            </div>
+          )}
         </div>
         <div className=" grid grid-cols-4  gap-4  p-2">
-          
           <div className="col-span-3 grid grid-cols-3 gap-2 h-full overflow-y-scroll no-scrollbar relative  ">
             <h3 className="text-xs col-span-3 bg-[#F15B26] sticky top-0 left-0 py-1.5 text-center text-white font-bold w-full shadow-md rounded">
               Recent work
@@ -295,10 +337,24 @@ const RecentWork = () => {
               <div
                 key={recent.id}
                 className=" shadow-md rounded"
-                onClick={() => handleProductClick(recent)}
+                onClick={() => displayContent("image", recent.image)}
               >
                 <img
                   src={recent.image}
+                  className="w-full h-14 object-cover rounded"
+                />
+              </div>
+            ))}
+
+            {recentVideo.map((recentVideo) => (
+              <div
+                key={recentVideo.id}
+                className=" shadow-md rounded"
+                onClick={() => displayContent("video", recentVideo.video)}
+              >
+                
+                <img
+                  src={recentVideo.thumbnail}
                   className="w-full h-14 object-cover rounded"
                 />
               </div>
