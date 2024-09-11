@@ -138,7 +138,7 @@ const Test = () => {
         <div className="h-[73%] ">
           <div className="h-[82%]  flex">
             <div className="w-4/5 h-full   ">
-              <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 font-semibold">
+              <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 font-semibold mr-2 rounded-r">
                 Minimalist Series
               </h2>
               <div className="h-[90%] grid grid-cols-3 gap-2  overflow-y-scroll p-2">
@@ -215,25 +215,19 @@ const Test = () => {
           </div>
         </div>
         <div className="h-[27%] bg-slate-200 grid grid-cols-2 gap-4 p-3">
-          {photoVideo.map((item) => (
-            <div
-              key={item.id}
-              className="relatedProduct bg-transparent border p-2 h-[100%] shadow-md rounded"
-              onClick={() =>
-                setDisplayedProduct({
-                  image: item.image,
-                  name: "Photo & Video",
-                  price: "1550 Tk.",
-                })
-              }
-            >
-              <img
-                src={item.image}
-                alt="Photo"
-                className="w-full h-full object-contain"
-              />
-            </div>
-          ))}
+          <img
+            className="w-full h-full object-cover rounded"
+            src="/diagram/2.jpg"
+            alt=""
+          />
+          <video
+            className="w-full h-full object-cover rounded"
+            controls
+            autoPlay
+            loop
+            muted
+            src="/diagram/2.mp4"
+          />
         </div>
       </div>
       <Footer />

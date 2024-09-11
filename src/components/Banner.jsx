@@ -112,11 +112,30 @@ const Banner = () => {
     b25,
   ];
 
+  let banner = [
+    {
+      id: 1,
+      image: "/assets/mockup/m1.png",
+    },
+    {
+      id: 2,
+      image: "/assets/mockup/m1.jpg",
+    },
+    {
+      id: 3,
+      image: "/assets/mockup/m2.jpg",
+    },
+    {
+      id: 4,
+      image: "/assets/mockup/m3.png",
+    },
+  ];
+
   return (
     <div className="h-[100vh] md:p-5">
       <div className="h-[100%] relative flex flex-col justify-between">
         <Slider className="md:h-[100%] h-[49%]" {...settings}>
-          {bannerImg2.map((item, i) => (
+          {banner.map((item, i) => (
             <div
               key={i}
               onClick={() => handleImageClick(item.image)}
@@ -124,7 +143,7 @@ const Banner = () => {
             >
               <img
                 className="image h-full w-full object-cover"
-                src={item}
+                src={item.image}
                 alt=""
               />
             </div>
@@ -263,7 +282,7 @@ const Banner = () => {
             className={`seventeen bg-violet-400 col-span-3 row-span-3 ${
               activeIndex === 17 ? "opacity-0" : "opacity-0"
             } transition-opacity duration-500`}
-            onClick={() => navigate('/work')}
+            onClick={() => navigate("/work")}
           ></div>
           <div
             className={`twelve bg-lime-400 relative ${
@@ -411,9 +430,9 @@ const Banner = () => {
               alt=""
               onClick={() => handleRecentImageClick(b25)}
             />
-          <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-            P-11
-          </p>
+            <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
+              P-11
+            </p>
           </div>
           {showButton && (
             <button

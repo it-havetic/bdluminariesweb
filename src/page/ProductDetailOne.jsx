@@ -81,7 +81,7 @@ function ProductDetailOne() {
         <h2 className="text-xs font-semibold uppercase mb-1 text-left bg-[#F15B26] pl-3 text-white py-1.5">
           {selectedSeries[0].name} Series
         </h2>
-        <div className="grid grid-cols-5 bg-orange-400 items-start w-full gap-1 pr-1 no-scrollbar overflow-y-scroll h-full">
+        <div className="grid grid-cols-5 items-start w-full gap-1 pr-1 no-scrollbar overflow-y-scroll h-full">
 
             {productsToShow.map((product, i) => (
               <div
@@ -208,24 +208,78 @@ function ProductDetailOne() {
         <section className="h-full">
           <div className="h-[91%] flex flex-col gap-y-1">
             <div className="grid grid-cols-5 grid-rows-3 gap-1 h-1/2">
-              <div className="bg-slate-400 col-span-4 row-span-3">
-                <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5">
+              <div className="bg-slate-500 col-span-4 row-span-3 relative">
+                <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5 absolute w-full left-0 top-0">
                   Reference Photo
                 </h2>
+                <img
+                  className="w-full h-full object-cover"
+                  src="/assets/recent/r1.png"
+                  alt=""
+                />
               </div>
-              <div className="bg-slate-400">1</div>
-              <div className="bg-slate-400">1</div>
-              <div className="bg-slate-400">1</div>
+              <div className="bg-slate-400">
+                <img
+                  className="w-full h-full object-cover"
+                  src="/assets/recent/r2.png"
+                  alt=""
+                />
+              </div>
+              <div className="bg-slate-400">
+                <img
+                  className="w-full h-full object-cover"
+                  src="/assets/recent/r3.png"
+                  alt=""
+                />
+              </div>
+              <div className="bg-slate-400">
+                <img
+                  className="w-full h-full object-cover"
+                  src="/assets/recent/r4.png"
+                  alt=""
+                />
+              </div>
             </div>
             <div className="grid grid-cols-5 grid-rows-3 gap-1 h-1/2">
-              <div className="bg-slate-400">1</div>
-              <div className="bg-slate-400 col-span-4 row-span-3">
-                <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5">
+              <div className="bg-slate-400">
+                <video
+                  className="w-full h-full object-cover"
+                  controls
+                  autoPlay
+                  muted
+                  src="/recentVideo/4.mp4"
+                />
+              </div>
+              <div className="bg-slate-500 col-span-4 row-span-3 relative">
+                <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5 absolute w-full left-0 top-0">
                   Reference Video
                 </h2>
+                <video
+                  className="w-full h-full object-cover"
+                  controls
+                  autoPlay
+                  muted
+                  src="/recentVideo/1.mp4"
+                />
               </div>
-              <div className="bg-slate-400">1</div>
-              <div className="bg-slate-400">1</div>
+              <div className="bg-slate-400">
+                <video
+                  className="w-full h-full object-cover"
+                  controls
+                  autoPlay
+                  muted
+                  src="/recentVideo/3.mp4"
+                />
+              </div>
+              <div className="bg-slate-400">
+                <video
+                  className="w-full h-full object-cover"
+                  controls
+                  autoPlay
+                  muted
+                  src="/recentVideo/2.mp4"
+                />
+              </div>
             </div>
           </div>
         </section>
