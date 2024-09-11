@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Marquee from 'react-fast-marquee'
 import { Link, useNavigate } from 'react-router-dom'
 import slogan from '/assets/slogan.png'
@@ -9,11 +9,16 @@ import Slider from 'react-slick'
 import b1 from "/assets/mockup/m2.jpg"; 
 import b10 from "/assets/mockup/m11.jpg"; 
 import b14 from "/assets/mockup/m7.jpg";
+import { HiDotsHorizontal } from 'react-icons/hi'
 
 
 const Profile = () => {
     let navigate = useNavigate();
+    const [isItemVisible, setIsItemVisible] = useState(false);
 
+    const handleToggle = () => {
+      setIsItemVisible(!isItemVisible);
+    };
     let settings = {
         dots: false,
         arrows: false,
@@ -55,12 +60,37 @@ const Profile = () => {
               <img className=" h-8" src={slogan} alt="" />
             </div>
           </Marquee>
-          <Link
-            className="w-[20%] flex justify-center items-center text-[#F15B26]"
-            to="/product/detail/one"
+          <div
+          className="navItem w-[20%] z-10 h-full flex justify-center items-center  text-[#F15B26] relative "
+          onClick={handleToggle}
+        >
+          <HiDotsHorizontal />
+          <div
+            className={`item px-5 py-2 bg-slate-300 absolute right-0 top-full transition-all duration-300 ${
+              isItemVisible
+                ? "top-full !opacity-100 !visible"
+                : "top-[140%] opacity-0 invisible"
+            }`}
           >
-            <AiOutlineProduct />
-          </Link>
+            <ul className="text-right">
+              <li>
+                <Link className="text-[#F15B26] capitalize" to="/contact">
+                  appointment
+                </Link>
+              </li>
+              <li>
+                <Link className="text-[#F15B26] capitalize" to="/profile">
+                  profile
+                </Link>
+              </li>
+              <li>
+                <Link className="text-[#F15B26] capitalize" to="/blog">
+                  academy
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
         </div>
 
         <div className="row-span-3 bg-slate-400 relative">
@@ -98,7 +128,13 @@ const Profile = () => {
             src="/profileMid.mp4"
           />
         </div>
-        <div className="row-span-1 bg-slate-400 ">1</div>
+        <div className="row-span-1 bg-slate-700 px-4 py-2 text-justify text-white">
+          <h2 className='font-bold'>BD Luminaries</h2>
+  <p className="text-sm">
+    Welcome to our company profile! Explore our journey, projects, and services. We strive to deliver the highest quality products and innovations, continuously pushing the boundaries of excellence.
+  </p>
+</div>
+
 
         <Footer />
       </div>

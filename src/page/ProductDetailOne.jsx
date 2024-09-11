@@ -8,8 +8,14 @@ import slogan from "/assets/slogan.png";
 import { AiOutlineProduct } from "react-icons/ai";
 import { IoEyeOff } from "react-icons/io5";
 import axios from "../axios";
+import { HiDotsHorizontal } from "react-icons/hi";
 
 function ProductDetailOne() {
+  const [isItemVisible, setIsItemVisible] = useState(false);
+
+  const handleToggle = () => {
+    setIsItemVisible(!isItemVisible);
+  };
   let navigate = useNavigate();
   const [selectedSeries, setSelectedSeries] = useState(null);
   const [productsToShow, setProductsToShow] = useState([]);
@@ -107,7 +113,7 @@ function ProductDetailOne() {
 
   return (
     <div className="bg-green-100 h-screen flex flex-col">
-      <div className="h-[3.7%] overflow-hidden flex items-center justify-between absolute top-0 left-0 bg-[#000000] z-50 ">
+      <div className="h-[3.7%]  flex items-center justify-between absolute top-0 left-0 bg-[#000000] z-50 ">
         <Link
           className="flex items-center justify-center w-[20%] text-xs"
           to="/"
@@ -134,12 +140,37 @@ function ProductDetailOne() {
             <img className=" h-9 object-contain" src={slogan} alt="" />
           </div>
         </Marquee>
-        <Link
-          className="w-[20%] flex justify-center items-center text-[#F15B26]"
-          to="/product/detail/one"
+        <div
+          className="navItem w-[20%] z-10 h-full flex justify-center items-center  text-[#F15B26] relative "
+          onClick={handleToggle}
         >
-          <AiOutlineProduct />
-        </Link>
+          <HiDotsHorizontal />
+          <div
+            className={`item px-5 py-2 bg-slate-300 absolute right-0 top-full transition-all duration-300 ${
+              isItemVisible
+                ? "top-full !opacity-100 !visible"
+                : "top-[140%] opacity-0 invisible"
+            }`}
+          >
+            <ul className="text-right">
+              <li>
+                <Link className="text-[#F15B26] capitalize" to="/contact">
+                  appointment
+                </Link>
+              </li>
+              <li>
+                <Link className="text-[#F15B26] capitalize" to="/profile">
+                  profile
+                </Link>
+              </li>
+              <li>
+                <Link className="text-[#F15B26] capitalize" to="/blog">
+                  academy
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       <header className="flex gap-1 h-[48%] mt-9">
         <div className="w-[20%] flex flex-col gap-y-1">

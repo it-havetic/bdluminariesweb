@@ -138,8 +138,8 @@ const Menu = () => {
       </div>
 
       <div className="h-full bg-fuchsia-300">
-        <div className="h-1/2 bg-slate-200">
-          <ul className="grid grid-cols-2 grid-rows-5 gap-1 p-1 pb-2">
+        <div className="h-1/2 bg-slate-200 overflow-y-scroll">
+          <ul className="grid grid-cols-2 grid-rows-5 gap-1 p-1 pb-2 h-full">
             {groups.map((item, index) => (
               <Link
                 key={index}
