@@ -97,7 +97,7 @@ const Mockup = () => {
           <img
             className="object-cover h-full w-full"
             src={displayedProduct.image}
-            alt="Displayed Product"
+            alt="Please check your network"
           />
         </div>
 
