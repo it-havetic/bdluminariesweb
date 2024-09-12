@@ -84,9 +84,9 @@ function ProductDetailOne() {
     // }
     return (
       <section className="h-[42%]">
-        <h2 className="text-xs font-semibold uppercase mb-1 text-left bg-[#F15B26] pl-3 text-white py-1.5">
+        {/* <h2 className="text-xs font-semibold uppercase mb-1 text-left bg-[#F15B26] pl-3 text-white py-1.5">
           {selectedSeries[0].name} Series
-        </h2>
+        </h2> */}
         <div className="grid grid-cols-5 items-start w-full gap-1 pr-1 no-scrollbar overflow-y-scroll h-full">
 
             {productsToShow.map((product, i) => (

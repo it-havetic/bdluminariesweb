@@ -77,7 +77,7 @@ const ContactForm = () => {
       <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4 pb-12 mt-9">
         <p className="text-2xl mb-6 text-center relative">
           Make an appoitment <span className='Contactwith absolute -left-2.5 top-7 -rotate-45 text-[#F15B26]'>with</span> <br />
-          <span className="font-bold text-[#8AC249]">BD Luminaries</span>
+          <span className="font-bold text-[#8AC249]">bdLUMINARIES</span>
         </p>
         <form>
           <input

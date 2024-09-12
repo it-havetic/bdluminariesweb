@@ -176,7 +176,7 @@ const Mockup = () => {
           )}
           {selectedContent.type === "image" && (
             <img
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
               src={selectedContent.src}
               alt="Selected"
             />
