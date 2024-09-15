@@ -5,6 +5,7 @@ import Marquee from "react-fast-marquee";
 import { AiOutlineProduct } from "react-icons/ai";
 import slogan from "/assets/slogan.png";
 import axios from "../axios";
+import { HiDotsHorizontal } from "react-icons/hi";
 
 
 const SpecificationItem = ({ title, items, index, checked, sItemClass }) => {
@@ -39,7 +40,11 @@ const SpecificationItem = ({ title, items, index, checked, sItemClass }) => {
 };
 
 const Test = () => {
+  const [isItemVisible, setIsItemVisible] = useState(false);
 
+  const handleToggle = () => {
+    setIsItemVisible(!isItemVisible);
+  };
   const photoVideo = [
     { id: 1, image: "/assets/b3.png" },
     { id: 2, image: "/assets/b17.png" },
@@ -127,12 +132,37 @@ const Test = () => {
             <img className=" h-8" src={slogan} alt="" />
           </div>
         </Marquee>
-        <Link
-          className="w-[20%] flex justify-center items-center text-[#F15B26]"
-          to="/product/detail/one"
+        <div
+          className="navItem w-[20%] z-10 h-full flex justify-center items-center  text-[#F15B26] relative "
+          onClick={handleToggle}
         >
-          <AiOutlineProduct />
-        </Link>
+          <HiDotsHorizontal />
+          <div
+            className={`item px-5 py-2 bg-slate-300 absolute right-0 top-full transition-all duration-300 ${
+              isItemVisible
+                ? "top-full !opacity-100 !visible"
+                : "top-[140%] opacity-0 invisible"
+            }`}
+          >
+            <ul className="text-right">
+              <li>
+                <Link className="text-[#F15B26] capitalize" to="/contact">
+                  appointment
+                </Link>
+              </li>
+              <li>
+                <Link className="text-[#F15B26] capitalize" to="/profile">
+                  profile
+                </Link>
+              </li>
+              <li>
+                <Link className="text-[#F15B26] capitalize" to="/blog">
+                  academy
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div className=" h-full">
         <div className="h-[73%] ">
@@ -141,7 +171,7 @@ const Test = () => {
               <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 font-semibold mr-2 rounded-r">
                 Minimalist Series
               </h2>
-              <div className="h-[90%] grid grid-cols-3 gap-2  overflow-y-scroll p-2">
+              <div className="h-[90%] grid grid-cols-3 gap-2  overflow-y-scroll no-scrollbar p-2">
                 {minimalistSeries.map((product) => (
                   <div
                     key={product.id}

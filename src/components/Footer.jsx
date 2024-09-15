@@ -1,5 +1,5 @@
 import React from 'react'
-import {  FaFacebookSquare, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube, } from 'react-icons/fa'
+import {  FaFacebookSquare, FaInstagram, FaLinkedinIn, FaTiktok, FaTwitter, FaYoutube, } from 'react-icons/fa'
 import {  FaMapLocationDot } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ const Footer = ({ className }) => {
       className={`bg-black fixed w-full bottom-0 py-2 px-3 flex justify-between items-center ${className}`}
     >
       <p className="text-white/70 text-[12px]">
-        <Link to='/blog'>Copyright</Link> © {year} •{" "}
+        ©  {year} •{" "}
         <Link to='/' className="text-green-700 font-bold">BD Luminaries</Link>
       </p>
       <div className="icon flex gap-x-2">
@@ -19,18 +19,21 @@ const Footer = ({ className }) => {
           {/* <FaLocationDot /> */}
           <FaMapLocationDot />
         </Link>
-        <Link to="/" className="text-[12px] text-[#1877F2]">
-          <FaFacebookSquare />
-        </Link>
         <Link to="/" className="text-[12px] text-[#f90000]">
           <FaYoutube />
+        </Link>
+        <Link to="/blog" className="text-[12px] text-[#1DA1F2]">
+        <FaTiktok />
+        </Link>
+        <Link to="/" className="text-[12px] text-[#1877F2]">
+          <FaFacebookSquare />
         </Link>
         <Link to="/" className="text-[12px] text-[#ffc273]">
           <FaInstagram />
         </Link>
-        <Link to="/blog" className="text-[12px] text-[#1DA1F2]">
+        {/* <Link to="/blog" className="text-[12px] text-[#1DA1F2]">
           <FaTwitter />
-        </Link>
+        </Link> */}
         <Link to="/blog" className="text-[12px] text-[#0077B5]">
           <FaLinkedinIn />
         </Link>
