@@ -159,7 +159,7 @@ const Menu = () => {
           </div> */}
           </div>
         </div>
-        <div className="h-[47%] ">
+        <div className="h-[47%]">
           <video
             autoplay
             loop
@@ -171,7 +171,6 @@ const Menu = () => {
           />
         </div>
       </div>
-
       <Footer />
     </div>
   );
