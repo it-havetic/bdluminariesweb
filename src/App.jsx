@@ -86,6 +86,7 @@ import UserReviewForm from "./components/UserReviewForm";
 import ReviewDisplay from "./components/ReviewDisplay";
 import BDLSCAN from "../public/BDLWEB.png";
 import Menu from "./page/Menu";
+import MenuIcon from "./components/MenuIcon";
 
 
 const App = () => {
@@ -120,6 +121,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/Menu" element={<Menu />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/menuicon" element={<MenuIcon />} />
         <Route
           path="/review/:mockID"
           element={<UserReviewForm setReview={setReview} />}
