@@ -202,7 +202,7 @@ const Profile = () => {
 
         <p className="text-xs">Chairman & CEO</p>
         
-        <img className='h-[110%] absolute bottom-0 right-2 opacity-5' src="/taufik.png" alt="" />
+        <img className='h-[110%] absolute bottom-0 right-2 opacity-10' src="/taufik.png" alt="" />
       </div>
 
 
