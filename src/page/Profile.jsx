@@ -105,11 +105,11 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="row-span-3 grid grid-cols-3 grid-rows-2 px-7 pt-9 pb-3  gap-1 bg-[#33420a]">
+      <div className="row-span-3 grid grid-cols-3 grid-rows-2 px-2 pt-9 pb-3  gap-1 bg-[#33420a]">
         {/* Complete Project */}
         <div className='flex flex-col justify-evenly items-center'>
-          <h2 className="textShadow text-sm companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
-            Complete <br /> Projects
+          <h2 className="textShadow text-xs companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
+            Completed Projects
           </h2>
           <div
             className="radial-progress bg-[#8ac24900] text-[#f15c2688] font-bold text-xl border-0 flex flex-col items-center justify-center shadow-lg"
@@ -122,8 +122,8 @@ const Profile = () => {
 
         {/* Satisfied Clients */}
         <div className='flex flex-col justify-evenly items-center'>
-          <h2 className="textShadow text-sm companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
-            Satisfied <br /> Clients
+          <h2 className="textShadow text-xs companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
+            Satisfied Clients
           </h2>
           <div
             className="radial-progress bg-[#8ac24900] text-[#f15c2688] font-bold text-xl border-0 flex flex-col items-center justify-center shadow-lg"
@@ -136,8 +136,8 @@ const Profile = () => {
 
         {/* Under Construction */}
         <div className='flex flex-col justify-evenly items-center'>
-          <h2 className="textShadow text-sm companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
-            Under <br /> Construction
+          <h2 className="textShadow text-xs companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
+            Under Construction
           </h2>
           <div
             className="radial-progress bg-[#8ac24900] text-[#f15c2688] font-bold text-xl border-0 flex flex-col items-center justify-center shadow-lg"
@@ -150,8 +150,8 @@ const Profile = () => {
 
         {/* Ongoing Projects */}
         <div className='flex flex-col justify-evenly items-center'>
-          <h2 className="textShadow text-sm companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
-            Ongoing <br /> Projects
+          <h2 className="textShadow text-xs companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
+            Ongoing Projects
           </h2>
           <div
             className="radial-progress bg-[#8ac24900] text-[#f15c2688] font-bold text-xl border-0 flex flex-col items-center justify-center shadow-lg"
@@ -164,8 +164,8 @@ const Profile = () => {
 
         {/* Team Members */}
         <div className='flex flex-col justify-evenly items-center'>
-          <h2 className="textShadow text-sm companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
-            Team <br /> Members
+          <h2 className="textShadow text-xs companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
+            Team Members
           </h2>
           <div
             className="radial-progress bg-[#8ac24900] text-[#f15c2688] font-bold text-xl border-0 flex flex-col items-center justify-center shadow-lg"
@@ -178,8 +178,8 @@ const Profile = () => {
 
         {/* Awards Won */}
         <div className='flex flex-col justify-evenly items-center'>
-          <h2 className="textShadow text-sm companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
-            Awards <br /> Won
+          <h2 className="textShadow text-xs companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
+            Awards Won
           </h2>
           <div
             className="radial-progress bg-[#8ac24900] text-[#f15c2688] font-bold text-xl border-0 flex flex-col items-center justify-center shadow-lg"
