@@ -105,7 +105,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="row-span-3 grid grid-cols-3 px-7 pt-9 pb-3  gap-1 bg-[#33420a]">
+      <div className="row-span-3 grid grid-cols-3 grid-rows-2 px-7 pt-9 pb-3  gap-1 bg-[#33420a]">
         {/* Complete Project */}
         <div className='flex flex-col justify-evenly items-center'>
           <h2 className="textShadow text-sm companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
@@ -191,7 +191,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="row-span-3 bg-[#33420a] px-4  text-justify text-[#eeeeee] overflow-hidden relative">
+      <div className="row-span-3 bg-[#33420a] px-4  text-justify text-[#eeeeee] overflow-scroll relative">
         <p className="text-sm ">
            <br /> our journey, projects, and services. We <br /> strive to deliver the highest quality <br /> products and innovations, continuously <br /> pushing the boundaries of excellence. <br />
           Lorem ipsum dolor sit amet consectetur <br /> adipisicing elit. Porro perspiciatis <br /> animi aut nemo id magnam <br /> magni dolor quis fuga sed <br /> ducimus, eos eligendi aliquam <br /> obcaecati inventore, officiis <br /> commodi ex error.
