@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import { AiOutlineProduct } from "react-icons/ai";
 import slogan from "/assets/slogan.png";
@@ -17,19 +17,19 @@ const SpecificationItem = ({ title, items, index, checked, sItemClass }) => {
   // }
   // getGroup();
   return (
-    <div className={`text-white  ${sItemClass} bg-[#8ac249] border  `}>
+    <div className={` ${sItemClass} bg-[#d6cbb4] border  `}>
       {/* {
         data.map(({image})=><img src={image}/>)
       } */}
-      <h2 className="px-1 py-0.5 text-[10px] bg-orange-600 mb-1">{title}</h2>
+      <h2 className="px-1 text-[9px] bg-[#282828] mb-0.5 text-center uppercase font-bold text-[#e3e3e3] py-0.5 ">{title}</h2>
       <ul className="pl-3 text-black ">
         {items.map((item, index) => (
           <p key={index} className="flex items-center gap-1">
             <input
               type="radio"
-              className=" h-1 w-1 border text-blue-500 transition duration-150 ease-in-out"
+              className="h-2 w-2 border bg-transparent appearance-none checked:bg-[#F15B26] rounded-full border-[#000000] checked:border-[#F15B26]"
             />
-            <li className="text-[6px]" key={index}>
+            <li className="text-[10px] leading-3" key={index}>
               {item}
             </li>
           </p>
@@ -42,6 +42,7 @@ const SpecificationItem = ({ title, items, index, checked, sItemClass }) => {
 const Test = () => {
   const [isItemVisible, setIsItemVisible] = useState(false);
 
+  let navigate = useNavigate();
   const handleToggle = () => {
     setIsItemVisible(!isItemVisible);
   };
@@ -134,42 +135,17 @@ const Test = () => {
         </Marquee>
         <div
           className="navItem w-[20%] z-10 h-full flex justify-center items-center  text-[#F15B26] relative "
-          onClick={handleToggle}
+          onClick={()=> navigate("/menu")}
         >
           <HiDotsHorizontal />
-          <div
-            className={`item px-5 py-2 bg-slate-300 absolute right-0 top-full transition-all duration-300 ${
-              isItemVisible
-                ? "top-full !opacity-100 !visible"
-                : "top-[140%] opacity-0 invisible"
-            }`}
-          >
-            <ul className="text-right">
-              <li>
-                <Link className="text-[#F15B26] capitalize" to="/contact">
-                  appointment
-                </Link>
-              </li>
-              <li>
-                <Link className="text-[#F15B26] capitalize" to="/profile">
-                  profile
-                </Link>
-              </li>
-              <li>
-                <Link className="text-[#F15B26] capitalize" to="/blog">
-                  academy
-                </Link>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
       <div className=" h-full">
         <div className="h-[73%] ">
           <div className="h-[82%]  flex">
             <div className="w-4/5 h-full   ">
-              <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 font-semibold mr-2 rounded-r">
-                Minimalist Series
+              <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 mr-2 rounded-r text-center text-sm font-bold">
+                Technical Perameter
               </h2>
               <div className="h-[90%] grid grid-cols-3 gap-2  overflow-y-scroll no-scrollbar p-2">
                 {minimalistSeries.map((product) => (
@@ -244,8 +220,18 @@ const Test = () => {
             />
           </div>
         </div>
-        <div className="h-[27%] bg-slate-200 grid grid-cols-2 gap-4 p-3">
-          <img
+        <div className="h-[27%] bg-slate-200 p-3">
+          <div  className="w-full h-[30%] ">
+          <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 rounded text-center text-sm font-bold">
+                Installation Guideline
+              </h2>
+          <h2 className="flex justify-around items-center p-1 border-l border-t uppercase text-black rounded text-center text-sm font-bold">
+                <span>Image</span>
+                <span>Vedio</span>
+              </h2>
+          </div>
+         <div className="w-full h-[70%] flex gap-2">
+         <img
             className="w-full h-full object-cover rounded"
             src="/diagram/2.jpg"
             alt=""
@@ -258,6 +244,7 @@ const Test = () => {
             muted
             src="/diagram/2.mp4"
           />
+         </div>
         </div>
       </div>
       <Footer />
