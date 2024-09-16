@@ -192,7 +192,7 @@ const Profile = () => {
       </div>
 
       <div className="row-span-3 bg-[#33420a] px-4  text-justify text-[#eeeeee] overflow-scroll relative">
-        <p className="text-sm ">
+        <p className="text-xs ">
            <br /> our journey, projects, and services. We <br /> strive to deliver the highest quality <br /> products and innovations, continuously <br /> pushing the boundaries of excellence. <br />
           Lorem ipsum dolor sit amet consectetur <br /> adipisicing elit. Porro perspiciatis <br /> animi aut nemo id magnam <br /> magni dolor quis fuga sed <br /> ducimus, eos eligendi aliquam <br /> obcaecati inventore, officiis <br /> commodi ex error.
           Welcome <br /> to our company pro the.
