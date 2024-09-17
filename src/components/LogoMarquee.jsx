@@ -25,7 +25,7 @@ const LogoMarquee = () => {
             key={index}
             src={logo.src}
             alt={logo.alt}
-            className="m-0 mx-3 h-16"
+            className="m-0 mx-3 h-8"
           />
         ))}
       </Marquee>

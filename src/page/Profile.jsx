@@ -101,10 +101,10 @@ const Profile = () => {
       </div>
       <div className="row-span-3 bg-[#33420a] px-4 pt-5  text-justify text-[#eeeeee] overflow-scroll relative">
         <div className="absolute top-4 left-4 z-10">
-          <h2 className="textShadow -mb-5 ml-[28px] text-xs companyText text-[#F15B26] font-bold opacity-100 ">
+          <h2 className="textShadow -mb-5 ml-[28px] text-xs companyText text-[#f15c26d0] font-bold opacity-100 ">
             Company
           </h2>
-          <h2 className="textShadow text-5xl text-[#8ac249] font-bold opacity-100">
+          <h2 className="textShadow text-5xl text-[#8ac2495d] font-bold opacity-100">
             Profile
           </h2>
         </div>
@@ -128,7 +128,7 @@ const Profile = () => {
           alt=""
         />
       </div>
-      <div className="row-span-3 grid grid-cols-3 grid-rows-2 px-2 pt-4 pb-0  gap-1 bg-[#33420a]">
+      <div className="row-span-4 grid grid-cols-3 grid-rows-2 px-2 pt-4 pb-0  gap-1 bg-[#33420a]">
         {/* Complete Project */}
         <div className="flex flex-col justify-evenly items-center">
           <h2 className="textShadow text-xs companyText text-[#ffffff] font-bold opacity-100 text-center leading-5">
@@ -218,10 +218,10 @@ const Profile = () => {
             <p className="text-[#8ac249]">16</p>
           </div>
         </div>
-      </div>
 
-      <div className="row-span-1 bg-[#33420a] flex items-center">
-        <LogoMarquee />
+        <div className="col-span-3 bg-[#33420a] flex items-center py-5">
+          <LogoMarquee />
+        </div>
       </div>
 
       <Footer />
