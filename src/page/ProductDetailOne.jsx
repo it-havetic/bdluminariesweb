@@ -9,7 +9,7 @@ import { AiOutlineProduct } from "react-icons/ai";
 import { IoEyeOff } from "react-icons/io5";
 import axios from "../axios";
 import { HiDotsHorizontal } from "react-icons/hi";
-
+import Preloader from '../components/Preloader.jsx'
 function ProductDetailOne() {
   const [isItemVisible, setIsItemVisible] = useState(false);
 
@@ -107,7 +107,7 @@ function ProductDetailOne() {
   };
 
   if (!selectedSeries) {
-    return <p>Loading...</p>;
+    return <Preloader/>;
   }
 
   return (
@@ -149,7 +149,7 @@ function ProductDetailOne() {
       <header className="flex gap-1 h-[48%] mt-9">
         <div className="w-[20%] flex flex-col gap-y-1">
           <h2 className="text-xs font-bold text-center uppercase bg-[#f15b26] text-white py-0.5 rounded-r">
-            All Series
+            Series
           </h2>
           <div className="flex flex-col gap-1 pl-1 no-scrollbar overflow-y-scroll h-[100%]">
             {selectedSeries.map((item) => (

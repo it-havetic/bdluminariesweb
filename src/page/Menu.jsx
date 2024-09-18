@@ -9,6 +9,8 @@ import axios from "../axios";
 import b7 from "/assets/b7.png";
 import MenuIcon from "../components/MenuIcon";
 
+import Preloader from '../components/Preloader'
+
 const Menu = () => {
   let navigate = useNavigate();
 
@@ -74,7 +76,7 @@ const Menu = () => {
   };
 
   if (!groups) {
-    return <p>BDL</p>;
+    return <Preloader/>;
   }
 
   return (

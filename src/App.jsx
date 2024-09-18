@@ -86,6 +86,7 @@ import UserReviewForm from "./components/UserReviewForm";
 import ReviewDisplay from "./components/ReviewDisplay";
 import BDLSCAN from "../public/BDLWEB.png";
 import Menu from "./page/Menu";
+import Preloader from "./components/Preloader";
 
 
 const App = () => {
