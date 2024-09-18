@@ -83,10 +83,9 @@ function ProductDetailOne() {
     //   return <p>No products available for this series</p>;
     // }
     return (
-      <section className="h-[42%]">
-        {/* <h2 className="text-xs font-semibold uppercase mb-1 text-left bg-[#F15B26] pl-3 text-white py-1.5">
-          {selectedSeries[0].name} Series
-        </h2> */}
+      <section className="h-[40%]">
+         
+        
         <div className="grid grid-cols-5 items-start w-full gap-1 pr-1 no-scrollbar overflow-y-scroll h-full">
 
             {productsToShow.map((product, i) => (
@@ -142,39 +141,14 @@ function ProductDetailOne() {
         </Marquee>
         <div
           className="navItem w-[20%] z-10 h-full flex justify-center items-center  text-[#F15B26] relative "
-          onClick={handleToggle}
+          // onClick={navigate("/menu")}
         >
           <HiDotsHorizontal />
-          <div
-            className={`item px-5 py-2 bg-slate-300 absolute right-0 top-full transition-all duration-300 ${
-              isItemVisible
-                ? "top-full !opacity-100 !visible"
-                : "top-[140%] opacity-0 invisible"
-            }`}
-          >
-            <ul className="text-right">
-              <li>
-                <Link className="text-[#F15B26] capitalize" to="/contact">
-                  appointment
-                </Link>
-              </li>
-              <li>
-                <Link className="text-[#F15B26] capitalize" to="/profile">
-                  profile
-                </Link>
-              </li>
-              <li>
-                <Link className="text-[#F15B26] capitalize" to="/blog">
-                  academy
-                </Link>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
       <header className="flex gap-1 h-[48%] mt-9">
         <div className="w-[20%] flex flex-col gap-y-1">
-          <h2 className="text-xs font-bold text-center uppercase bg-[#f15b26] text-white py-1.5">
+          <h2 className="text-xs font-bold text-center uppercase bg-[#f15b26] text-white py-0.5 rounded-r">
             All Series
           </h2>
           <div className="flex flex-col gap-1 pl-1 no-scrollbar overflow-y-scroll h-[100%]">
@@ -197,27 +171,34 @@ function ProductDetailOne() {
           </div>
         </div>
 
-        <div className="w-[80%]">
+        <div className="w-[80%] flex flex-col gap-1">
           <div
             onClick={() => navigate("/test")}
-            className="flex justify-center items-top h-[50%] bg-[#8ac249] relative"
+            className=" h-[60%] bg-[#8bc24a] relative grid grid-rows-6 grid-cols-8"
           >
             <img
-              className="displayProduct h-3/4 object-contain"
+              className="displayProduct h-full object-contain col-span-7 row-span-5"
               src={displayedProduct.image}
               alt="Icon"
             />
-            <div className="p-1 bg-black bg-opacity-20 shadow-lg backdrop-blur-[blur(5px)] backdrop-filter border border-black/10 border-r-0 border-opacity-30 absolute left-0 bottom-0 w-full grid grid-cols-4 gap-1 text-[10px]">
+            <div
+              style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
+              className="border col-span-1 row-span-5 m-0.5 flex flex-col items-center justify-center"
+            >
+              <h2 className="text-white font-semibold text-sm">Minimalist</h2>
+              <p className="text-white font-normal text-sm">*************</p>
+            </div>
+            <div className="p-0.5 hadow-lg  backdrop-filter border border-black/10 border-r-0 border-opacity-30 col-span-8 grid grid-cols-4 gap-0.5 text-[10px]">
               <div>
                 <p className="bg-black h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
-                  Series
+                  ART#
                 </p>
                 <p className="bg-white h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
-                  Minimalist
+                  S0BDL0001
                 </p>
               </div>
-              <div className="border col-span-2">
-                <p className="text-gray-100 font-bold text-left px-0.5 leading-3 text-[8px]">
+              <div className="bg-white col-span-2 overflow-y-scroll no-scrollbar">
+                <p className="text-gray-800 font-bold text-left px-0.5 leading-3 text-[8px]">
                   Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit
                   amet consectetur
                 </p>
@@ -239,8 +220,8 @@ function ProductDetailOne() {
         <section className="h-full">
           <div className="h-[91%] flex flex-col gap-y-1">
             <div className="grid grid-cols-5 grid-rows-3 gap-1 h-1/2">
-              <div className="bg-slate-500 col-span-4 row-span-3 relative">
-                <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5 absolute w-full left-0 top-0">
+              <div className="bg-slate-500 col-span-4 row-span-3 relative rounded-r-lg overflow-hidden">
+                <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-0.5 absolute w-full left-0 top-0">
                   Reference Photo
                 </h2>
                 <img
@@ -249,21 +230,21 @@ function ProductDetailOne() {
                   alt=""
                 />
               </div>
-              <div className="bg-slate-400">
+              <div className="bg-slate-400 rounded-l-md overflow-hidden">
                 <img
                   className="w-full h-full object-cover"
                   src="/assets/recent/r2.png"
                   alt=""
                 />
               </div>
-              <div className="bg-slate-400">
+              <div className="bg-slate-400 rounded-l-md overflow-hidden">
                 <img
                   className="w-full h-full object-cover"
                   src="/assets/recent/r3.png"
                   alt=""
                 />
               </div>
-              <div className="bg-slate-400">
+              <div className="bg-slate-400 rounded-l-md overflow-hidden">
                 <img
                   className="w-full h-full object-cover"
                   src="/assets/recent/r4.png"
@@ -272,17 +253,22 @@ function ProductDetailOne() {
               </div>
             </div>
             <div className="grid grid-cols-5 grid-rows-3 gap-1 h-1/2">
-              <div className="bg-slate-400">
-                <video
+              <div className="bg-slate-400 rounded-r-md overflow-hidden">
+                {/* <video
                   className="w-full h-full object-cover"
                   controls
                   autoPlay
                   muted
                   src="/recentVideo/4.mp4"
+                /> */}
+                <img
+                  className="w-full h-full object-cover"
+                  src="/recentVideo/thumnail/3.jpg"
+                  alt=""
                 />
               </div>
-              <div className="bg-slate-500 col-span-4 row-span-3 relative">
-                <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-1.5 absolute w-full left-0 top-0">
+              <div className="bg-slate-500 col-span-4 row-span-3 relative rounded-l-lg overflow-hidden">
+                <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-0.5 absolute w-full left-0 top-0">
                   Reference Video
                 </h2>
                 <video
@@ -293,22 +279,32 @@ function ProductDetailOne() {
                   src="/recentVideo/1.mp4"
                 />
               </div>
-              <div className="bg-slate-400">
-                <video
+              <div className="bg-slate-400 rounded-r-md overflow-hidden">
+                {/* <video
                   className="w-full h-full object-cover"
                   controls
                   autoPlay
                   muted
                   src="/recentVideo/3.mp4"
+                /> */}
+                <img
+                  className="w-full h-full object-cover"
+                  src="/recentVideo/thumnail/2.jpg"
+                  alt=""
                 />
               </div>
-              <div className="bg-slate-400">
-                <video
+              <div className="bg-slate-400 rounded-r-md overflow-hidden">
+                {/* <video
                   className="w-full h-full object-cover"
                   controls
                   autoPlay
                   muted
                   src="/recentVideo/2.mp4"
+                /> */}
+                <img
+                  className="w-full h-full object-cover"
+                  src="/recentVideo/thumnail/1.jpg"
+                  alt=""
                 />
               </div>
             </div>

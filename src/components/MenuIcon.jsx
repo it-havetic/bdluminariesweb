@@ -114,8 +114,8 @@ const MenuIcon = ({ className }) => {
       </audio>
 
       <audio id="hoverSound">
-        <source src="/public/audio/beep.mp3" type="audio/mpeg" />
-        <source src="/public/audio/beep.mp3" type="audio/ogg" />
+        <source src="/audio/beep.mp3" type="audio/mpeg" />
+        <source src="/audio/beep.mp3" type="audio/ogg" />
       </audio>
     </div>
   );
