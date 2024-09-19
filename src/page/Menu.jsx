@@ -11,6 +11,8 @@ import MenuIcon from "../components/MenuIcon";
 
 import Preloader from '../components/Preloader'
 
+import './Menu.css'
+
 const Menu = () => {
   let navigate = useNavigate();
 
@@ -28,6 +30,7 @@ const Menu = () => {
     try {
       let res = await axios.get("/group");
       setGroups(res.data.data);
+      
     } catch (error) {
       console.error("Error fetching the group data:", error);
     }
@@ -80,11 +83,12 @@ const Menu = () => {
   }
 
   return (
-    <div className="h-screen pb-9  bg-gray-100">
+    <div className="h-screen pb-9  bg-black">
       <div className="h-full  flex flex-col justify-between">
-        <div className="h-[49%] bg-slate-200 relative">
-          <ul className="grid grid-cols-2 grid-rows-5 gap-1 p-1 pb-2 h-full">
-            {groups.map((item, index) => (
+        <div className="h-[49%] bg-[#000000] relative flex justify-center items-center">
+          <img className="w-96 h-96" src="/menu.gif" alt="" />
+          <ul className="menuDesignUl h-96 w-96 absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-[#e56a6a50]">
+            {/* {groups.map((item, index) => (
               <Link
                 key={index}
                 className="bg-orange-600 rounded"
@@ -97,7 +101,16 @@ const Menu = () => {
                   {item.Title}
                 </button>
               </Link>
-            ))}
+            ))} */}
+
+            <Link
+              className="inline-block bg-orange-600 h-11 w-10 absolute -rotate-[125deg] left-[111px] top-[86px]"
+              to={`/product/detail/one/${groups[0]._id}`}
+            >
+              <button className=" rounded text-white">
+                {groups[0].Title}
+              </button>
+            </Link>
           </ul>
           <MenuIcon className={`${show ? "flex" : "hidden"}`} />
           {/* <img className="h-full w-full object-contain" src={menu} alt="" /> */}
