@@ -104,11 +104,83 @@ const Menu = () => {
             ))} */}
 
             <Link
-              className="inline-block bg-orange-600 h-11 w-10 absolute -rotate-[125deg] left-[111px] top-[86px]"
+              className="inline-block bg-orange-600 h-14 w-10 absolute -rotate-[126deg] left-[110px] top-[79px]"
               to={`/product/detail/one/${groups[0]._id}`}
             >
               <button className=" rounded text-white">
                 {groups[0].Title}
+              </button>
+            </Link>
+            <Link
+              className="inline-block bg-orange-600 h-14 w-10 absolute -rotate-[51deg] left-[248px] top-[79px]"
+              to={`/product/detail/one/${groups[0]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[2].Title}
+              </button>
+            </Link>
+            <Link
+              className="inline-block bg-orange-600 h-14 w-10 absolute -rotate-[17deg] left-[285px] top-[135px]"
+              to={`/product/detail/one/${groups[0]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[7].Title}
+              </button>
+            </Link>
+            <Link
+              className="inline-block bg-orange-600 h-14 w-10 absolute rotate-[19deg] left-[284px] top-[205px]"
+              to={`/product/detail/one/${groups[0]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[4].Title}
+              </button>
+            </Link>
+            <Link
+              className="inline-block bg-orange-600 h-14 w-10 absolute rotate-[54deg] left-[244px] top-[260px]"
+              to={`/product/detail/one/${groups[0]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[5].Title}
+              </button>
+            </Link>
+            <Link
+              className="inline-block bg-orange-600 h-14 w-10 absolute rotate-[90deg] left-[177px] top-[281px]"
+              to={`/product/detail/one/${groups[0]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[6].Title}
+              </button>
+            </Link>
+            <Link
+              className="inline-block bg-orange-600 h-14 w-10 absolute rotate-[126deg] left-[112px] top-[261px]"
+              to={`/product/detail/one/${groups[0]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[8].Title}
+              </button>
+            </Link>
+            <Link
+              className="inline-block bg-orange-600 h-14 w-10 absolute rotate-[157deg] left-[71px] top-[207px]"
+              to={`/product/detail/one/${groups[0]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[9].Title}
+              </button>
+            </Link>
+            <Link
+              className="inline-block bg-orange-700 h-14 w-10 absolute rotate-[195deg] left-[69px] top-[136px]"
+              to={`/product/detail/one/${groups[0]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[1].Title}
+              </button>
+            </Link>
+            <Link
+              className="inline-block bg-orange-600 h-14 w-10 absolute -rotate-[90deg] left-[177px] top-[57px]"
+              to={`/product/detail/one/${groups[0]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[3].Title}
               </button>
             </Link>
           </ul>
