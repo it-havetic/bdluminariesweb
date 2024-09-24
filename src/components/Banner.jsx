@@ -186,8 +186,31 @@ const Banner = () => {
 
         <div
           style={{ background: `url(${selectedRecentImage})` }}
-          className={`h-[48%] !bg-cover grid grid-cols-5 grid-rows-5 gap-1 relative`}
+          className={`h-[48%] !bg-cover grid grid-cols-5 grid-rows-5 gap-1 relative z-[1]`}
         >
+
+
+          <div className="absolute top-0 left-0 w-full h-full bg-red-700 z-[-1]">
+
+          <Slider className="h-full w-full" {...settings}>
+          {banner.map((item, i) => (
+            <div
+              key={i}
+              onClick={() => handleImageClick(item.image)}
+              className="h-full"
+            >
+              <img
+                className="image h-full w-full object-cover"
+                src={item.image}
+                alt=""
+              />
+            </div>
+          ))}
+        </Slider>
+
+          </div>
+
+
           <div
             className={`one bg-red-400 relative ${
               activeIndex >= 1 ? "opacity-100 visible" : "opacity-0 invisible"
