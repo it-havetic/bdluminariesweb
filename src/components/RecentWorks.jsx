@@ -100,7 +100,7 @@ const RecentWorks = () => {
   return (
     <div
       style={{ background: `url(${selectedRecentImage})` }}
-      className={`h-[48%] !bg-cover grid grid-cols-5 grid-rows-5 gap-1 relative z-[1]`}
+      className={`h-[48.5%] !bg-cover grid grid-cols-5 grid-rows-5 gap-1 relative z-[1]`}
     >
       <div className="absolute top-0 left-0 w-full h-full bg-red-700 z-[-1]">
         <Slider className="h-full w-full" {...settings}>

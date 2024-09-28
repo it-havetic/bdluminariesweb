@@ -28,8 +28,10 @@ const Menu = () => {
 
   const bdlGroup = async () => {
     try {
-      let res = await axios.get("/group");
-      setGroups(res.data.data);
+      let res = await axios.get("/groups");
+      setGroups(res.data);
+      console.log(res.data);
+      
       
     } catch (error) {
       console.error("Error fetching the group data:", error);
@@ -104,83 +106,83 @@ const Menu = () => {
             ))} */}
 
             <Link
-              className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute -rotate-[126deg] left-[110px] top-[79px]"
+              className="opacity-1 inline-block bg-orange-600 h-14 w-10 absolute -rotate-[126deg] left-[110px] top-[79px]"
               to={`/product/detail/one/${groups[0]._id}`}
             >
-              <button className=" rounded text-white">
-                {groups[0].Title}
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[0].name	}
               </button>
             </Link>
             <Link
-              className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute -rotate-[51deg] left-[248px] top-[79px]"
+              className="opacity-01inline-block bg-orange-600 h-14 w-10 absolute -rotate-[51deg] left-[248px] top-[79px]"
               to={`/product/detail/one/${groups[9]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[9].Title}
+                {groups[9].name	}
               </button>
             </Link>
             <Link
-              className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute -rotate-[17deg] left-[285px] top-[135px]"
+              className="opacity-1 inline-block bg-orange-600 h-14 w-10 absolute -rotate-[17deg] left-[285px] top-[135px]"
               to={`/product/detail/one/${groups[7]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[7].Title}
+                {groups[7].name	}
               </button>
             </Link>
             <Link
-              className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute rotate-[19deg] left-[284px] top-[205px]"
+              className="opacity-1 inline-block bg-orange-600 h-14 w-10 absolute rotate-[19deg] left-[284px] top-[205px]"
               to={`/product/detail/one/${groups[4]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[4].Title}
+                {groups[4].name	}
               </button>
             </Link>
             <Link
-              className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute rotate-[54deg] left-[244px] top-[260px]"
+              className="opacity-1 inline-block bg-orange-600 h-14 w-10 absolute rotate-[54deg] left-[244px] top-[260px]"
               to={`/product/detail/one/${groups[5]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[5].Title}
+                {groups[5].name	}
               </button>
             </Link>
             <Link
-              className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute rotate-[90deg] left-[177px] top-[281px]"
+              className="opacity-1 inline-block bg-orange-600 h-14 w-10 absolute rotate-[90deg] left-[177px] top-[281px]"
               to={`/product/detail/one/${groups[6]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[6].Title}
+                {groups[6].name	}
               </button>
             </Link>
             <Link
-              className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute rotate-[126deg] left-[112px] top-[261px]"
+              className="opacity-1 inline-block bg-orange-600 h-14 w-10 absolute rotate-[126deg] left-[112px] top-[261px]"
               to={`/product/detail/one/${groups[8]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[8].Title}
+                {groups[8].name	}
               </button>
-            </Link>
+            </Link> 
             <Link
-              className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute rotate-[157deg] left-[71px] top-[207px]"
+              className="opacity-1 inline-block bg-orange-600 h-14 w-10 absolute rotate-[157deg] left-[71px] top-[207px]"
               to={`/product/detail/one/${groups[2]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[2].Title}
+                {groups[2].name	}
               </button>
             </Link>
             <Link
-              className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute rotate-[195deg] left-[69px] top-[136px]"
+              className="opacity-1 inline-block bg-orange-600 h-14 w-10 absolute rotate-[195deg] left-[69px] top-[136px]"
               to={`/product/detail/one/${groups[1]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[1].Title}
+                {groups[1].name	}
               </button>
             </Link>
             <Link
-              className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute -rotate-[90deg] left-[177px] top-[57px]"
+              className="opacity-1 inline-block bg-orange-600 h-14 w-10 absolute -rotate-[90deg] left-[177px] top-[57px]"
               to={`/product/detail/one/${groups[3]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[3].Title}
+                {groups[3].name	}
               </button>
             </Link>
           </ul>
@@ -218,42 +220,14 @@ const Menu = () => {
             onClick={handleToggle}
           >
             <HiDotsHorizontal />
-            {/* <HiDotsHorizontal />
-          <div
-            className={`item px-5 py-2 bg-slate-300 absolute right-0 top-full transition-all duration-300 ${
-              isItemVisible
-                ? "top-full opacity-100 visible"
-                : "top-[140%] opacity-0 !invisible"
-            }`}
-          >
-            <ul className="text-right">
-              <li>
-                <Link className="text-[#F15B26] capitalize" to="/contact">
-                  appointment
-                </Link>
-              </li>
-              <li>
-                <Link className="text-[#F15B26] capitalize" to="/profile">
-                  profile
-                </Link>
-              </li>
-              <li>
-                <Link className="text-[#F15B26] capitalize" to="/blog">
-                  academy
-                </Link>
-              </li>
-            </ul>
-          </div> */}
           </div>
         </div>
-        <div className="h-[47%]">
+        <div className="h-[47%] p-4">
           <video
-            autoplay
             loop
             muted
-            className="w-full h-full object-cover"
-            controls="false"
-            autoPlay
+            className="w-full h-full object-cover rounded-md shadow-sm"
+            controls
             src="/consultancy.mp4"
           />
         </div>

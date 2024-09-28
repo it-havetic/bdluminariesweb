@@ -1,96 +1,45 @@
-// import React, { useState } from "react";
-// import "./Navbar.css"; 
-
-// const Navbar = () => {
-//   let [navShow, setNavShow] = useState(false);
-//   return (
-//     <div
-//       className={`navMain w-full h-full bg-black text-white relative z-30 text-center font-bold ${
-//         navShow ? "electric-fire-animation" : ""
-//       }`}
-//       onClick={() => setNavShow(!navShow)}
-//     >
-//       <div
-//         className={`w-full h-full bg-slate-700 absolute left-0 transition-all duration-500  ${
-//           navShow ? "top-full" : "top-0"
-//         }`}
-//       ></div>
-//       <div
-//         className={`w-full h-full bg-slate-200 absolute left-0 transition-all duration-500  ${
-//           navShow ? "top-[200%]" : "top-0"
-//         }`}
-//       ></div>
-//       <div
-//         className={`w-full h-full bg-slate-400 absolute left-0 transition-all duration-500  ${
-//           navShow ? "top-[300%]" : "top-0"
-//         }`}
-//       ></div>
-//       <div
-//         className={`w-full h-full bg-slate-900 absolute left-0 transition-all duration-500  ${
-//           navShow ? "top-[400%]" : "top-0"
-//         }`}
-//       ></div>
-//       <div
-//         className={`w-full h-full bg-slate-300 absolute left-0 transition-all duration-500  ${
-//           navShow ? "top-[500%]" : "top-0"
-//         }`}
-//       ></div>
-//     </div>
-//   );
-// };
-
-// export default Navbar;
-
-import React, { useState, useEffect, useRef } from "react";
-import "./Navbar.css";
+import React from 'react'
+import Marquee from 'react-fast-marquee'
+import { AiOutlineProduct } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
+import slogan from "/assets/slogan.png";
 
 const Navbar = () => {
-  const [navShow, setNavShow] = useState(false);
-  const navRef = useRef();
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (navRef.current && !navRef.current.contains(event.target)) {
-        setNavShow(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [navRef]);
-
   return (
-    <div
-      ref={navRef}
-      className={`navMain w-full h-full bg-black text-white relative z-30 text-center font-bold ${
-        navShow ? "show-nav" : ""
-      }`}
-      onClick={() => setNavShow(!navShow)}
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className={`w-full h-1/2  bg-slate-700 opacity-100 invisible absolute  left-0 transition-all duration-500 ease-linear ${
-          navShow ? "top-full opacity-100 !visible" : "top-full"
-        }`}
-      >
-      </div>
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className={`w-full h-1/2  bg-slate-600 opacity-100 invisible absolute  left-0 transition-all duration-500 ease-linear group ${
-          navShow ? "top-[150%] !opacity-100 !visible" : "top-full"
-        }`}
-      >
-        <ul className="absolute bg-black transition-all duration-300 left-0 top-0 opacity-0 invisible group-hover:visible group-hover:left-full group-hover:opacity-100 ">
-          <li>home</li>
-          <li>home</li>
-          <li>home</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
+    <div className="flex items-center justify-between h-[3%]  bg-[#000000] md:rounded-b-2xl relative z-30">
+          <Link
+            className="flex items-center justify-center w-[15%] text-xs"
+            to="/"
+          >
+            <img
+              className="w-4/5 drop-shadow-custom"
+              src="/assets/bdl.png"
+              alt=""
+            />
+          </Link>
+          <Marquee
+            speed={20}
+            direction="left"
+            pauseOnHover={true}
+            reverse={true}
+            gradient={false}
+            gradientColor={["#6FA710"]}
+            className="h-full"
+          >
+            <div className="flex items-center">
+              <img className="h-7" src={slogan} alt="" />
+              <img className="h-7" src={slogan} alt="" />
+              <img className="h-7" src={slogan} alt="" />
+            </div>
+          </Marquee>
+          <Link
+            className="w-[15%] flex justify-center items-center text-[#F15B26]"
+            to="/menu"
+          >
+            <AiOutlineProduct />
+          </Link>
+        </div>
+  )
+}
 
-export default Navbar;
-
-
+export default Navbar
