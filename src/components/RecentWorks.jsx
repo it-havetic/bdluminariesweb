@@ -1,6 +1,8 @@
 
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
+import axios from "../axios";
+import { useNavigate } from "react-router-dom";
 
 import clickGif from "/click.gif";
 import b1 from "/assets/mockup/m2.jpg";
@@ -37,14 +39,16 @@ const RecentWorks = () => {
     autoplaySpeed: 4000,
   };
 
+  let navigate = useNavigate();
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [showButton, setShowButton] = useState(true);
 //   const [mock, setMock] = useState([]);
 
-  const [selectedRecentImage, setSelectedRecentImage] = useState(b7);
+  const [selectedRecentImage, setSelectedRecentImage] = useState('');
 
-  const handleRecentImageClick = (imageUrl) => {
-    setSelectedRecentImage(imageUrl);
+  const handleRecentImageClick = (image) => {
+    navigate("/mockup", { state: { selectedImage: image } });
   };
 
   useEffect(() => {
@@ -97,26 +101,48 @@ const RecentWorks = () => {
     b24,
     b25,
   ];
+
+
+const [works, setWorks] = useState([]);
+
+useEffect(() => {
+  const fetchRecentWorks = async () => {
+    try {
+      let res = await axios.get("/recent-works");
+      setWorks(res.data);
+      if (res.data.length > 0) {
+        setSelectedRecentImage(res.data[0].images[0]); // Set the first image as selected
+      }
+    } catch (error) {
+      console.error("Error fetching recent works:", error);
+    }
+  };
+
+  fetchRecentWorks();
+}, []);
+
   return (
     <div
       style={{ background: `url(${selectedRecentImage})` }}
       className={`h-[48.5%] !bg-cover grid grid-cols-5 grid-rows-5 gap-1 relative z-[1]`}
     >
-      <div className="absolute top-0 left-0 w-full h-full bg-red-700 z-[-1]">
+      <div className="absolute top-0 left-0 w-full h-full z-[-1]">
         <Slider className="h-full w-full" {...settings}>
-          {bannerImg2.map((item, i) => (
-            <div
-              key={i}
-              onClick={() => handleImageClick(item)}
-              className="h-full"
-            >
-              <img
-                className="image h-full w-full object-cover"
-                src={item}
-                alt=""
-              />
-            </div>
-          ))}
+          {works.map((work) =>
+            work.images.filter((image, index) => index < 4 ).map((image, index) => (
+              <div
+                key={`${work._id}-${index}`}
+                onClick={() => handleRecentImageClick(image)}
+                className="h-full"
+              >
+                <img
+                  className="image h-full w-full object-cover"
+                  src={`https://code.bdluminaries.com/${image}`}
+                  alt=""
+                />
+              </div>
+            ))
+          )}
         </Slider>
       </div>
 

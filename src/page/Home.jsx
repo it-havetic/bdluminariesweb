@@ -1,5 +1,4 @@
 import React from 'react'
-import Banner from '../components/Banner'
 import MockupZones from '../components/MockupZones'
 import RecentWorks from '../components/RecentWorks'
 import Navbar from '../components/Navbar'
@@ -10,7 +9,6 @@ const Home = () => {
       <MockupZones />
       <Navbar/>
       <RecentWorks />
-      {/* <Banner/> */}
     </div>
   );
 }
