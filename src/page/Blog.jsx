@@ -34,14 +34,13 @@ const Blog = () => {
   // Handle social media share
   const handleShare = (platform, blog) => {
     const shareUrl = encodeURIComponent(
-      `https://yourwebsite.com/blog/${blog._id}`
+      `https://bdluminariesweb.vercel.app/blog${blog._id}`
     );
     const title = encodeURIComponent(blog.title);
 
     if (platform === "facebook") {
       window.open(
         `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
-        "_blank"
       );
     } else if (platform === "twitter") {
       window.open(
@@ -134,7 +133,7 @@ const Blog = () => {
                   className="rounded-lg mb-4"
                 />
                 <h2 className="text-xl font-bold mb-2">{blog.title}</h2>
-                <p className="text-gray-700 mb-4">{blog.description}</p>
+                <div className="text-gray-700 mb-4">{blog.description}</div>
                 <div className="flex items-baseline justify-between">
                   {/* Heart counter */}
                   <div className="flex items-center">
