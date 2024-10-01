@@ -11,6 +11,7 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import Marquee from "react-fast-marquee";
 import { Link, useNavigate } from "react-router-dom";
 import slogan from "/assets/slogan.png";
+import Navbar from "../components/Navbar";
 
 const Blog = () => {
   let navigate = useNavigate();
@@ -30,7 +31,7 @@ const Blog = () => {
       .then((data) => {
         const filteredData = data
           .filter((blog) => blog.status === "active")
-          .sort((a, b) => a.priority - b.priority);
+          .sort((a, b) => a.prioroty - b.prioroty);
         setBlogs(filteredData);
       })
       .catch((error) => console.error("Error fetching blogs:", error));
@@ -77,66 +78,9 @@ const Blog = () => {
   return (
     <>
       <div className="flex flex-col h-screen">
-        <div className="flex items-center justify-between absolute top-0 left-0 h-8 bg-[#000000]">
-          <Link
-            className="flex items-center justify-center w-[20%] text-xs"
-            to="/"
-          >
-            <img
-              className="w-4/5 drop-shadow-custom"
-              src="/assets/bdl.png"
-              alt=""
-            />
-          </Link>
-          <Marquee
-            speed={20}
-            direction="left"
-            pauseOnHover={true}
-            reverse={true}
-            gradient={false}
-            gradientColor={["#6FA710"]}
-            className="h-8 "
-          >
-            <div className="flex h-full">
-              <img className="h-8" src={slogan} alt="slogan" />
-              <img className="h-8" src={slogan} alt="slogan" />
-              <img className="h-8" src={slogan} alt="slogan" />
-            </div>
-          </Marquee>
-          <div
-            className="navItem w-[20%] h-full flex justify-center items-center text-[#F15B26] relative"
-            onClick={handleToggle}
-          >
-            <HiDotsHorizontal />
-            <div
-              className={`item px-5 py-2 bg-slate-300 absolute right-0 top-full transition-all duration-300 ${
-                isItemVisible
-                  ? "top-full opacity-100 visible"
-                  : "top-[140%] opacity-0 !invisible"
-              }`}
-            >
-              <ul className="text-right">
-                <li>
-                  <Link className="text-[#F15B26] capitalize" to="/contact">
-                    appointment
-                  </Link>
-                </li>
-                <li>
-                  <Link className="text-[#F15B26] capitalize" to="/profile">
-                    profile
-                  </Link>
-                </li>
-                <li>
-                  <Link className="text-[#F15B26] capitalize" to="/blog">
-                    academy
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <Navbar/>
 
-        <div className="bg-gray-100 flex flex-col items-center p-4 pb-12 overflow-y-scroll pt-12">
+        <div className="bg-gray-100 flex flex-col items-center p-4 pb-12 overflow-y-scroll pt-4">
           {blogs.length > 0 ? (
             blogs.map((blog) => {
               const truncatedDescription = blog.description

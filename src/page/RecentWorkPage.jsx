@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import slogan from "/assets/slogan.png";
 import axios from "../axios";
+import Navbar from "../components/Navbar";
 const RecentWork = () => {
   const [shuffledContent, setShuffledContent] = useState([]);
 
@@ -18,7 +19,7 @@ const RecentWork = () => {
         const response = await axios.get("/mockup-zones");
         const data = await response.data;
 
-        // সব mockup zone এর ইমেজগুলোকে একসাথে মাপ করা
+        // সব mockup zone এর ইমেজগুলোকে একসাথে মেপ করা 
         const images = data.flatMap((zone) =>
           zone.images.map((image) => ({
             id: zone._id,
@@ -124,40 +125,11 @@ const RecentWork = () => {
    };
 
   return (
-    <div className="h-screen pb-9 pt-8 bg-gray-100">
-      <div className="flex items-center justify-between absolute top-0 left-0 h-8 bg-[#000000]">
-        <Link
-          className="flex items-center justify-center w-[20%] text-xs"
-          to="/"
-        >
-          <img
-            className="w-4/5 drop-shadow-custom"
-            src="/assets/bdl.png"
-            alt="BDL Logo"
-          />
-        </Link>
-        <Marquee
-          speed={20}
-          direction="left"
-          pauseOnHover={true}
-          gradient={false}
-          className="h-8"
-        >
-          <div className="flex h-full">
-            <img className="h-8" src={slogan} alt="Slogan" />
-            <img className="h-8" src={slogan} alt="Slogan" />
-            <img className="h-8" src={slogan} alt="Slogan" />
-          </div>
-        </Marquee>
-        <Link
-          className="w-[20%] flex justify-center items-center text-[#F15B26]"
-          to="/menu"
-        >
-          <AiOutlineProduct />
-        </Link>
-      </div>
+    <div className="h-screen pb-9  bg-gray-100">
+      
+      <Navbar />
 
-      <div className="h-full grid grid-rows-2 grid-cols-1">
+      <div className="h-[97%] grid grid-rows-2 grid-cols-1">
         <div>
           {selectedContent.type === "video" && (
             <video

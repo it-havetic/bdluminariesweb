@@ -4,6 +4,7 @@ import Marquee from "react-fast-marquee";
 import Footer from "../components/Footer";
 import slogan from "/assets/slogan.png";
 import { AiOutlineProduct } from "react-icons/ai";
+import Navbar from "../components/Navbar";
 
 const Mockup = () => {
   const location = useLocation();
@@ -80,30 +81,10 @@ const Mockup = () => {
   };
 
   return (
-    <div className="h-screen pb-9 pt-8 bg-gray-100">
-      <div className="flex items-center justify-between absolute top-0 left-0 h-8 bg-black">
-        <Link
-          className="flex items-center justify-center w-[20%] text-xs"
-          to="/"
-        >
-          <img
-            className="w-4/5 drop-shadow-custom"
-            src="/assets/bdl.png"
-            alt="BDL Logo"
-          />
-        </Link>
-        <Marquee speed={20} pauseOnHover gradient={false} className="h-8">
-          <img className="h-8" src={slogan} alt="Slogan" />
-        </Marquee>
-        <Link
-          className="w-[20%] flex justify-center items-center text-[#F15B26]"
-          to="/menu"
-        >
-          <AiOutlineProduct />
-        </Link>
-      </div>
+    <div className="h-screen pb-9  bg-gray-100">
+      <Navbar />
 
-      <div className="h-full grid grid-rows-2 grid-cols-1">
+      <div className="h-[97%] grid grid-rows-2 grid-cols-1">
         {/* Main Display Section */}
         <div className="">
           {selectedContent.type === "video" && (

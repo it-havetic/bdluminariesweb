@@ -71,12 +71,12 @@ const MenuIcon = ({ className }) => {
           </Link>
         </li>
         <li style={{ "--i": 2, "--clr": "#04fc43" }}>
-          <Link to="#" onMouseEnter={handleHover} className="group innerA">
+          <Link to="academy" onMouseEnter={handleHover} className="group innerA">
             <IoBookOutline className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>
         <li style={{ "--i": 3, "--clr": "#fe00f1" }}>
-          <Link to="#" onMouseEnter={handleHover} className="group innerA">
+          <Link to="/contact" onMouseEnter={handleHover} className="group innerA">
             <MdOutlineContactPhone className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>

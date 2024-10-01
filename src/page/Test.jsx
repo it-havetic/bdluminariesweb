@@ -6,6 +6,7 @@ import { AiOutlineProduct } from "react-icons/ai";
 import slogan from "/assets/slogan.png";
 import axios from "../axios";
 import { HiDotsHorizontal } from "react-icons/hi";
+import Navbar from "../components/Navbar";
 
 
 const SpecificationItem = ({ title, items, index, checked, sItemClass }) => {
@@ -106,48 +107,16 @@ const Test = () => {
    ];
 
   return (
-    <div className="h-screen pb-9 pt-8 bg-gray-100">
-      <div className="flex items-center justify-between absolute top-0 left-0  h-8 bg-[#000000] ">
-        <Link
-          className="flex items-center justify-center w-[20%] text-xs"
-          to="/"
-        >
-          <img
-            className="w-4/5 drop-shadow-custom"
-            src="/assets/bdl.png"
-            alt=""
-          />
-        </Link>
-        <Marquee
-          speed={20}
-          direction="left"
-          pauseOnHover={true}
-          reverse={true}
-          gradient={false}
-          gradientColor={["#6FA710"]}
-          className="h-8 "
-        >
-          <div className="flex h-full">
-            <img className=" h-8" src={slogan} alt="" />
-            <img className=" h-8" src={slogan} alt="" />
-            <img className=" h-8" src={slogan} alt="" />
-          </div>
-        </Marquee>
-        <div
-          className="navItem w-[20%] z-10 h-full flex justify-center items-center  text-[#F15B26] relative "
-          onClick={()=> navigate("/menu")}
-        >
-          <HiDotsHorizontal />
-        </div>
-      </div>
-      <div className=" h-full">
+    <div className="h-screen pb-9 pt-0 bg-gray-100">
+      <Navbar/>
+      <div className=" h-[97%]">
         <div className="h-[73%] ">
           <div className="h-[82%]  flex">
             <div className="w-4/5 h-full   ">
               <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 mr-2 rounded-r text-center text-sm font-bold">
                 Technical Perameter
               </h2>
-              <div className="h-[90%] grid grid-cols-3 gap-2  overflow-y-scroll no-scrollbar p-2">
+              <div className="h-[93%] grid grid-cols-3 gap-2  overflow-y-scroll no-scrollbar p-2">
                 {minimalistSeries.map((product) => (
                   <div
                     key={product.id}
@@ -199,7 +168,7 @@ const Test = () => {
               items={["8°", "16°", "24°", "36°", "48°"]}
             />
             <SpecificationItem
-              title="Reflector Color"
+              title="R Color"
               items={["White", "Black", "Chrome", "Rose Gold", "Violet"]}
             />
             <SpecificationItem

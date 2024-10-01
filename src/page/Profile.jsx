@@ -18,6 +18,7 @@ import b10 from "/assets/mockup/m11.jpg";
 import b1 from "/assets/mockup/m2.jpg";
 import b14 from "/assets/mockup/m7.jpg";
 import Progress from "../components/Progress";
+import Navbar from "../components/Navbar";
 
 const Profile = () => {
   let navigate = useNavigate();
@@ -40,41 +41,10 @@ const Profile = () => {
   };
   let bannerImg = [b10, b1, b14];
   return (
-    <div className="h-screen pb-8 pt-8 bg-gray-100 grid grid-cols-1 grid-rows-9 gap-0">
-      <div className="flex items-center justify-between absolute top-0 left-0  h-8 bg-[#000000] ">
-        <Link
-          className="flex items-center justify-center w-[20%] text-xs"
-          to="/"
-        >
-          <img
-            className="w-4/5 drop-shadow-custom"
-            src="/assets/bdl.png"
-            alt=""
-          />
-        </Link>
-        <Marquee
-          speed={20}
-          direction="left"
-          pauseOnHover={true}
-          reverse={true}
-          gradient={false}
-          gradientColor={["#6FA710"]}
-          className="h-8 "
-        >
-          <div className="flex h-full">
-            <img className=" h-8" src={slogan} alt="" />
-            <img className=" h-8" src={slogan} alt="" />
-            <img className=" h-8" src={slogan} alt="" />
-          </div>
-        </Marquee>
-        <div
-          className="navItem w-[20%] z-10 h-full flex justify-center items-center  text-[#F15B26] relative"
-          onClick={() => navigate("/menu")}
-        >
-          <HiDotsHorizontal />
-        </div>
-      </div>
+    <div className="h-screen pb-8 pt-0 bg-gray-100 ">
+      <Navbar/>
 
+      <div className="h-[97%] grid grid-cols-1 grid-rows-9 gap-0">
       <div className="row-span-2 bg-slate-400">
         {/* <Slider className="md:h-full h-full " {...settings}>
             {bannerImg.map((item, i) => (
@@ -181,6 +151,7 @@ const Profile = () => {
         <LogoMarquee />
       </div>
     </div>
+      </div>
 
       <Footer />
     </div>

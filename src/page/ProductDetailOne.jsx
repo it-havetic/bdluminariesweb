@@ -373,17 +373,13 @@ function ProductDetailOne() {
   const [productsToShow, setProductsToShow] = useState([]);
   const [seriseID, setSeriseID] = useState();
 
-  const [displayedProduct, setDisplayedProduct] = useState({
-    name: "Minimalist 8 Watt Led spot light",
-    image: "/assets/product/01.png",
-    price: "1550 Tk.",
-  });
+  const [displayedProduct, setDisplayedProduct] = useState({});
 
   // Fetch series based on group ID and set the first series's products to productsToShow
   const bdlSeries = async () => {
     try {
-      let res = await axios.get("/series");
-      const seriesByGroupId = res.data?.filter((item) => item.group._id === id);
+      let res = await axios.get(`/series/group/${id}`);
+      const seriesByGroupId = res.data
       setSelectedSeries(seriesByGroupId);
 
       if (seriesByGroupId.length > 0) {
@@ -407,10 +403,14 @@ function ProductDetailOne() {
       // Automatically set the first product as the displayed product if available
       if (products.length > 0) {
         setDisplayedProduct({
-          name: products[0].name,
+          series: products[0].series.name,
+          itemCode: products[0].itemCode,
           image: `https://code.bdluminaries.com/${products[0].image}`,
-          price: products[0].price || "1550 Tk.",
+          price: products[0].price,
+          description: products[0].description || "No description available.",
         });
+        console.log(displayedProduct, "displayedProduct");
+        
       } else {
         setDisplayedProduct(null);
       }
@@ -432,9 +432,11 @@ function ProductDetailOne() {
 
   const handleProductClick = (product) => {
     setDisplayedProduct({
-      name: product.name,
+      series: product.series.name,
+      itemCode: product.itemCode,
       image: `https://code.bdluminaries.com/${product.image}`,
-      price: product.price || "1550 Tk.",
+      price: product.price,
+      description: product.description || "No description available.",
     });
   };
 
@@ -451,7 +453,7 @@ function ProductDetailOne() {
               <img
                 src={`https://code.bdluminaries.com/${product.image}`}
                 className="w-full h-11 object-contain"
-                alt={product?.name || "Product image"}
+                alt={product?.itemCode || "Product image missing"}
               />
             </div>
           )) : <p className="text-[#777777] text-sm font-semibold col-span-5 h-full flex items-center justify-center">This series product is not available</p>
@@ -467,38 +469,11 @@ function ProductDetailOne() {
 
   return (
     <div className="bg-green-100 h-screen flex flex-col">
-      <div className="h-[3.7%] flex items-center justify-between absolute top-0 left-0 bg-[#000000] z-50 ">
-        <Link
-          className="flex items-center justify-center w-[20%] text-xs"
-          to="/"
-        >
-          <img className="w-4/5 drop-shadow-custom" src="/assets/bdl.png" alt="" />
-        </Link>
-        <Marquee
-          speed={20}
-          direction="left"
-          pauseOnHover={true}
-          reverse={true}
-          gradient={false}
-          gradientColor={["#6FA710"]}
-          className="h-full "
-        >
-          <div className="flex h-full">
-            <img className="h-9 object-contain" src={slogan} alt="" />
-            <img className="h-9 object-contain" src={slogan} alt="" />
-            <img className="h-9 object-contain" src={slogan} alt="" />
-            <img className="h-9 object-contain" src={slogan} alt="" />
-          </div>
-        </Marquee>
-        <div className="navItem w-[20%] z-10 h-full flex justify-center items-center text-[#F15B26] relative ">
-          <HiDotsHorizontal />
-        </div>
-      </div>
-
-      <header className="flex gap-1 h-[48%] mt-9">
+      <Navbar />
+      <header className="flex gap-1 h-[48%] mt-1">
         <div className="w-[20%] flex flex-col gap-y-1">
           <h2 className="text-xs font-bold text-center uppercase bg-[#f15b26] text-white py-0.5 rounded-r">
-            Series
+            {selectedSeries[0]?.group?.name}
           </h2>
           <div className="flex flex-col gap-1 pl-1 no-scrollbar overflow-y-scroll h-[100%]">
             {selectedSeries.map((item) => (
@@ -530,7 +505,7 @@ function ProductDetailOne() {
                 <img
                   className="h-full w-full object-contain"
                   src={displayedProduct.image}
-                  alt={displayedProduct.name}
+                  alt={displayedProduct.itemCode}
                 />
               ) : (
                 <p className="text-[yellow] text-sm font-semibold">This series product is not available</p>
@@ -540,7 +515,7 @@ function ProductDetailOne() {
               style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
               className="border col-span-1 row-span-5 m-0.5 flex flex-col items-center justify-center"
             >
-              <h2 className="text-white font-semibold text-sm">Minimalist</h2>
+              <h2 className="text-white font-semibold text-sm">{displayedProduct?.series}</h2>
               <p className="text-white font-normal text-sm">*************</p>
             </div>
             <div className="p-0.5 shadow-lg backdrop-filter border border-black/10 border-r-0 border-opacity-30 col-span-8 grid grid-cols-4 gap-0.5 text-[10px]">
@@ -548,22 +523,22 @@ function ProductDetailOne() {
                 <p className="bg-black h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
                   ART#
                 </p>
-                <p className="bg-white h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
-                  S0BDL0001
+                <p className="bg-white h-1/2 text-[#cc3903] text-[8px] font-bold flex justify-center items-center">
+                  {displayedProduct?.itemCode}
                 </p>
               </div>
               <div className="bg-white col-span-2 overflow-y-scroll no-scrollbar">
                 <p className="text-gray-800 font-bold text-left px-0.5 leading-3 text-[8px]">
-                  Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit
-                  amet consectetur
+                  {displayedProduct?.description}
                 </p>
               </div>
               <div>
                 <p className="bg-black h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
                   MRP
                 </p>
-                <p className="bg-white h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
-                  <IoEyeOff />
+                <p className="bg-white h-1/2 text-[#cc3903] font-bold flex gap-1 justify-center items-center">
+                  {/* <IoEyeOff /> */}
+                  <span className="text-sm -mt-0.5">৳</span> {displayedProduct?.price}
                 </p>
               </div>
             </div>
