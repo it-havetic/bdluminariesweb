@@ -38,7 +38,7 @@ const Navbar = () => {
             greetings.map((greeting) => (
               <img
                 key={greeting._id}
-                className="h-7 mx-2"
+                className="h-7"
                 src={`https://code.bdluminaries.com/${greeting.image}`}
                 alt={greeting.title}
               />
