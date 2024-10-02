@@ -5,98 +5,48 @@ import { HiDotsHorizontal } from 'react-icons/hi';
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import slogan from "/assets/slogan.png";
+import Navbar from './Navbar';
+import { Form } from 'antd';
 
 
 const ContactForm = () => {
   const [isItemVisible, setIsItemVisible] = useState(false);
+  const [form] = Form.useForm();
+  const [visitingCard, setVisitingCard] = useState([]);
 
   const handleToggle = () => {
     setIsItemVisible(!isItemVisible);
   };
   return (
     <>
-      <div className="h-[3.7%]  flex items-center justify-between fixed top-0 left-0 bg-[#000000] z-50 ">
-        <Link
-          className="flex items-center justify-center w-[20%] text-xs"
-          to="/"
-        >
-          <img
-            className="w-4/5 drop-shadow-custom"
-            src="/assets/bdl.png"
-            alt=""
-          />
-        </Link>
-        <Marquee
-          speed={20}
-          direction="left"
-          pauseOnHover={true}
-          reverse={true}
-          gradient={false}
-          gradientColor={["#6FA710"]}
-          className="h-full "
-        >
-          <div className="flex h-full">
-            <img className=" h-9 object-contain" src={slogan} alt="" />
-            <img className=" h-9 object-contain" src={slogan} alt="" />
-            <img className=" h-9 object-contain" src={slogan} alt="" />
-            <img className=" h-9 object-contain" src={slogan} alt="" />
-          </div>
-        </Marquee>
-        <div
-          className="navItem w-[20%] z-10 h-full flex justify-center items-center  text-[#F15B26] relative "
-          onClick={handleToggle}
-        >
-          <HiDotsHorizontal />
-          <div
-            className={`item px-5 py-2 bg-slate-300 absolute right-0 top-full transition-all duration-300 ${
-              isItemVisible
-                ? "top-full !opacity-100 !visible"
-                : "top-[140%] opacity-0 invisible"
-            }`}
-          >
-            <ul className="text-right">
-              <li>
-                <Link className="text-[#F15B26] capitalize" to="/contact">
-                  appointment
-                </Link>
-              </li>
-              <li>
-                <Link className="text-[#F15B26] capitalize" to="/profile">
-                  profile
-                </Link>
-              </li>
-              <li>
-                <Link className="text-[#F15B26] capitalize" to="/blog">
-                  academy
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4 pb-12 mt-9">
+      <Navbar/>
+      <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4 pb-12 mt-0">
         <p className="text-2xl mb-6 text-center relative">
           Make an appoitment <span className='Contactwith absolute -left-2.5 top-7 -rotate-45 text-[#F15B26]'>with</span> <br />
           <span className="font-bold text-[#8AC249]">bdLUMINARIES</span>
         </p>
-        <form>
+        {/* <form>
           <input
             type="text"
+            name='name'
             placeholder="Your name *"
             className="w-full p-2 mb-4 border rounded"
           />
           <input
             type="email"
+            name='email'
             placeholder="Email address *"
             className="w-full p-2 mb-4 border rounded"
           />
           <input
             type="tel"
+            name='phoneNumber'
             placeholder="Phone number *"
             className="w-full p-2 mb-4 border rounded"
           />
           <input
             type="url"
+            url
             placeholder="Website url"
             className="w-full p-2 mb-4 border rounded"
           />
@@ -119,7 +69,17 @@ const ContactForm = () => {
           >
             Send
           </button>
-        </form>
+        </form> */}
+        <Form
+          form={form}
+          name="contact"
+          onFinish={(values) => {
+            console.log('Success:', values);
+          }}
+
+        >
+
+        </Form>
         <div className="w-full my-3">
           <iframe
             className="w-full"

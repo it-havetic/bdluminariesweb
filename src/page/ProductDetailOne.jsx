@@ -585,13 +585,7 @@ function ProductDetailOne() {
             </div>
             <div className="grid grid-cols-5 grid-rows-3 gap-1 h-1/2">
               <div className="bg-slate-400 rounded-r-md overflow-hidden">
-                {/* <video
-                  className="w-full h-full object-cover"
-                  controls
-                  autoPlay
-                  muted
-                  src="/recentVideo/4.mp4"
-                /> */}
+                
                 <img
                   className="w-full h-full object-cover"
                   src="/recentVideo/thumnail/3.jpg"
@@ -605,7 +599,6 @@ function ProductDetailOne() {
                 <video
                   className="w-full h-full object-cover"
                   controls
-                  autoPlay
                   muted
                   src="/recentVideo/1.mp4"
                 />

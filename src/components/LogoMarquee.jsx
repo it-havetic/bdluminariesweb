@@ -1,25 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Marquee from "react-marquee-slider";
-
-const logos = [
-  { src: "/client/BSRM.png", alt: "BSRM" },
-  { src: "/client/Bengal.png", alt: "Bengal" },
-  { src: "/client/Citygroup.png", alt: "Citygroup" },
-  { src: "/client/Gazi Group.png", alt: "Gazi Group" },
-  { src: "/client/Partex Star Group.png", alt: "Partex Star Group" },
-  { src: "/client/Pran-RFL Group.avif", alt: "Pran-RFL Group" },
-  { src: "/client/Salma Group.webp", alt: "Salma Group" },
-  { src: "/client/Westin.png", alt: "Westin.png" },
-  { src: "/client/epic.png", alt: "epic.png" },
-  // Add more logos here
-];
+import axios from "../axios";
 
 const LogoMarquee = () => {
+  const [logos, setLogos] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await axios.get("/profiles");
+        
+        if (res.data && res.data.length > 0) {
+          const logoData = res.data[0].portfolio.map((image) => ({
+            src: `https://code.bdluminaries.com/${image}`,
+            alt: "Portfolio Logo",
+          }));
+          setLogos(logoData);
+        } else {
+          console.error("No portfolio data found");
+        }
+      } catch (error) {
+        console.error("Error fetching the group data:", error);
+      }
+    };
+  
+    getData();
+  }, [logos]);  // Adding logos as a dependency
+  
+
+
   return (
     <div className="marquee-container">
-      <Marquee
-        velocity={10}
-      >
+      <Marquee key={logos.length} velocity={20}>
         {logos.map((logo, index) => (
           <img
             key={index}
@@ -29,6 +41,7 @@ const LogoMarquee = () => {
           />
         ))}
       </Marquee>
+
     </div>
   );
 };

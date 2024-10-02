@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import Marquee from "react-fast-marquee";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-import slogan from "/assets/slogan.png";
 
 import {
   FaBriefcase,
@@ -11,146 +9,143 @@ import {
   FaUsers,
   FaUserTie,
 } from "react-icons/fa";
-import { HiDotsHorizontal } from "react-icons/hi";
 import { MdOutlineConstruction } from "react-icons/md";
 import LogoMarquee from "../components/LogoMarquee";
-import b10 from "/assets/mockup/m11.jpg";
-import b1 from "/assets/mockup/m2.jpg";
-import b14 from "/assets/mockup/m7.jpg";
 import Progress from "../components/Progress";
 import Navbar from "../components/Navbar";
+import axios from "../axios";
 
 const Profile = () => {
   let navigate = useNavigate();
   const [isItemVisible, setIsItemVisible] = useState(false);
+  const [profileData, setProfileData] = useState([]);
 
   const handleToggle = () => {
     setIsItemVisible(!isItemVisible);
   };
-  let settings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    speed: 2000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    fade: true,
-    cssEase: "linear",
-    autoplay: true,
-    autoplaySpeed: 4000,
-  };
-  let bannerImg = [b10, b1, b14];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const getData = async () => {
+      try {
+        let res = await axios.get("/profiles");
+        setProfileData(res.data);
+      } catch (error) {
+        console.error("Error fetching the group data:", error);
+      }
+    }
+    getData();
+  }, []);
+
   return (
     <div className="h-screen pb-8 pt-0 bg-gray-100 ">
-      <Navbar/>
+      <Navbar />
 
       <div className="h-[97%] grid grid-cols-1 grid-rows-9 gap-0">
-      <div className="row-span-2 bg-slate-400">
-        {/* <Slider className="md:h-full h-full " {...settings}>
-            {bannerImg.map((item, i) => (
-              <div
-                key={i}
-                onClick={() => navigate("/mockup")}
-                className=" h-full"
-              >
-                <img
-                  className="image h-full w-full object-cover"
-                  src={item}
-                  alt=""
-                />
-              </div>
-            ))}
-          </Slider> */}
-        <video
-          className="w-full h-full object-cover"
-          controls
-          autoPlay
-          loop
-          muted
-          src="/profileMid.mp4"
-        />
-      </div>
-      <div className="row-span-3 bg-[#33420a] px-4 pt-5  text-justify text-[#eeeeee] overflow-scroll  grid grid-cols-5 ">
-        <div className="col-span-3 flex flex-col justify-center">
-        <div className="">
-          <h2 className="textShadow uppercase -mb-[18px] ml-[33px] text-[10px] companyText text-[#f15c26d0] font-bold opacity-100 ">
-            Company
-          </h2>
-          <h2 className="textShadow text-5xl text-[#8ac2495d] font-bold opacity-100">
-            Profile
-          </h2>
+        <div className="row-span-2 bg-slate-400">
+
+          {
+            profileData.map((item) => (
+              <video
+                key={item.id}
+                className="w-full h-full object-cover"
+                controls
+                autoPlay
+                loop
+                src={`https://code.bdluminaries.com/${item.video}`}
+              />
+            ))
+          }
+
         </div>
-        <p className="text-xs">
-          <br /> products and innovations, continuously <br />{" "}
-          pushing the boundaries of excellence. <br />
-          Lorem ipsum dolor sit amet consectetur 
-        </p>
+        <div className="row-span-3 bg-[#33420a] px-4 pt-5  text-justify text-[#eeeeee] overflow-scroll  grid grid-cols-6 gap-2 ">
+          <div className="col-span-3 flex flex-col justify-around">
+            <div className="">
+              <h2 className="textShadow uppercase -mb-[18px] ml-[33px] text-[10px] companyText text-[#f15c26d0] font-bold opacity-100 ">
+                Company
+              </h2>
+              <h2 className="textShadow text-5xl text-[#8ac2495d] font-bold opacity-100">
+                Profile
+              </h2>
+            </div>
+            <div>
+              <p className="text-xs mb-3">
+                {profileData.map((item) => (
+                  item.article
+                ))}
+              </p>
 
-        <p className="text-lg font-sign">Javed A. Bhuiya</p>
+              <p className="text-lg font-sign">Javed A. Bhuiya</p>
 
-        <p className="text-xs">Chairman & CEO</p>
+              <p className="text-xs">Chairman & CEO</p>
+            </div>
+          </div>
+
+          {
+            profileData.map((item) => (
+              <img
+                className="h-[100%] object-cover rounded-b-2xl col-span-3"
+                src={`https://code.bdluminaries.com/${item.image}`}
+                alt=""
+              />
+            ))
+          }
+        </div>
+        <div className="row-span-4 grid grid-cols-3 grid-rows-2 px-2 pt-4 pb-0 gap-1 bg-[#33420a]">
+          {/* Completed Projects */}
+          <Progress
+            progressName="Completed Projects"
+            progressValue={profileData.length > 0 ? profileData[0].completedProjects : 0}
+            progressRate={profileData.length > 0 ? profileData[0].completedProjects : "N/A"}
+            icon={FaBriefcase}
+          />
+
+          {/* Satisfied Clients */}
+          <Progress
+            progressName="Satisfied Clients"
+            progressValue={profileData.length > 0 ? profileData[0].satisfiedclients : 0}
+            progressRate={profileData.length > 0 ? profileData[0].satisfiedclients : "N/A"}
+            icon={FaUserTie}
+          />
+
+          {/* Under Construction */}
+          <Progress
+            progressName="Under Construction"
+            progressValue={profileData.length > 0 ? profileData[0].underConstruction : 0}
+            progressRate={profileData.length > 0 ? profileData[0].underConstruction : "N/A"}
+            icon={MdOutlineConstruction}
+          />
+
+          {/* Ongoing Projects */}
+          <Progress
+            progressName="Ongoing Projects"
+            progressValue={profileData.length > 0 ? profileData[0].ongoingProjects : 0}
+            progressRate={profileData.length > 0 ? profileData[0].ongoingProjects : "N/A"}
+            icon={FaHammer}
+          />
+
+          {/* Team Members */}
+          <Progress
+            progressName="Team Members"
+            progressValue={profileData.length > 0 ? profileData[0].teamMembers : 0}
+            progressRate={profileData.length > 0 ? profileData[0].teamMembers : "N/A"}
+            icon={FaUsers}
+          />
+
+          {/* Awards Won */}
+          <Progress
+            progressName="Awards Won"
+            progressValue={profileData.length > 0 ? profileData[0].awards : 0}
+            progressRate={profileData.length > 0 ? profileData[0].awards : "N/A"}
+            icon={FaTrophy}
+          />
+
+          {/* Marquee Section */}
+          <div className="col-span-3 bg-[#33420a] flex items-center py-5">
+            <LogoMarquee />
+          </div>
         </div>
 
-        <img
-          className="h-[100%] rounded-b-2xl col-span-2"
-          src="/taufik.png"
-          alt=""
-        />
-      </div>
-      <div className="row-span-4 grid grid-cols-3 grid-rows-2 px-2 pt-4 pb-0 gap-1 bg-[#33420a]">
-      {/* Completed Projects */}
-      <Progress
-        progressName="Completed Projects"
-        progressValue={100}
-        progressRate="156"
-        icon={FaBriefcase}
-      />
-
-      {/* Satisfied Clients */}
-      <Progress
-        progressName="Satisfied Clients"
-        progressValue={100}
-        progressRate="156"
-        icon={FaUserTie}
-      />
-
-      {/* Under Construction */}
-      <Progress
-        progressName="Under Construction"
-        progressValue={70}
-        progressRate="6"
-        icon={MdOutlineConstruction}
-      />
-
-      {/* Ongoing Projects */}
-      <Progress
-        progressName="Ongoing Projects"
-        progressValue={75}
-        progressRate="50"
-        icon={FaHammer}
-      />
-
-      {/* Team Members */}
-      <Progress
-        progressName="Team Members"
-        progressValue={70}
-        progressRate="70"
-        icon={FaUsers}
-      />
-
-      {/* Awards Won */}
-      <Progress
-        progressName="Awards Won"
-        progressValue={80}
-        progressRate="16"
-        icon={FaTrophy}
-      />
-
-      {/* Marquee Section */}
-      <div className="col-span-3 bg-[#33420a] flex items-center py-5">
-        <LogoMarquee />
-      </div>
-    </div>
       </div>
 
       <Footer />

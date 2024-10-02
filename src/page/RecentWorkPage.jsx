@@ -1,25 +1,57 @@
 import React, { useEffect, useState } from "react";
-import Marquee from "react-fast-marquee";
-import { AiOutlineProduct } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-import slogan from "/assets/slogan.png";
-import axios from "../axios";
 import Navbar from "../components/Navbar";
+import axios from "../axios";
+
 const RecentWork = () => {
   const [shuffledContent, setShuffledContent] = useState([]);
-
   const [mockupImages, setMockupImages] = useState([]);
+  const [recentWork, setRecentWork] = useState([]); // New state for recent works
   let navigate = useNavigate();
+  const location = useLocation();
 
-  // API থেকে ডাটা ফেচ করা
+  // API to fetch recent works
+  useEffect(() => {
+    const fetchRecentWork = async () => {
+      try {
+        const response = await axios.get("https://code.bdluminaries.com/api/v1/recent-works");
+        const data = await response.data;
+
+        // Formatting recent works data
+        const formattedContent = data.flatMap((work) => {
+          const images = work.images.map((image) => ({
+            id: work._id,
+            image: `https://code.bdluminaries.com/${image}`, // Assuming a base URL for images
+            type: "image",
+          }));
+
+          const videos = work.videos.map((video) => ({
+            id: video._id,
+            video: `https://code.bdluminaries.com/${video.video}`, // Assuming a base URL for videos
+            thumbnail: `https://code.bdluminaries.com/${video.thumbnail}`,
+            type: "video",
+          }));
+
+          return [...images, ...videos];
+        });
+
+        setRecentWork(formattedContent);
+      } catch (error) {
+        console.error("Error fetching recent works:", error);
+      }
+    };
+
+    fetchRecentWork();
+  }, []);
+
+  // Mockup images fetching (unchanged)
   useEffect(() => {
     const fetchMockupData = async () => {
       try {
         const response = await axios.get("/mockup-zones");
         const data = await response.data;
 
-        // সব mockup zone এর ইমেজগুলোকে একসাথে মেপ করা 
         const images = data.flatMap((zone) =>
           zone.images.map((image) => ({
             id: zone._id,
@@ -36,81 +68,21 @@ const RecentWork = () => {
     fetchMockupData();
   }, []);
 
-  const recent = [
-    { id: 1, image: "/assets/recent/r1.png" },
-    { id: 2, image: "/assets/recent/r2.png" },
-    { id: 3, image: "/assets/recent/r3.png" },
-    { id: 4, image: "/assets/recent/r4.png" },
-    { id: 5, image: "/assets/recent/r5.png" },
-    { id: 6, image: "/assets/recent/r6.png" },
-    { id: 7, image: "/assets/recent/r7.png" },
-    { id: 8, image: "/assets/recent/r8.png" },
-    { id: 9, image: "/assets/recent/r9.png" },
-    { id: 10, image: "/assets/recent/r10.png" },
-    { id: 11, image: "/assets/recent/r11.png" },
-    { id: 12, image: "/assets/recent/r12.png" },
-    { id: 13, image: "/assets/recent/r13.png" },
-    { id: 14, image: "/assets/recent/r14.png" },
-    { id: 15, image: "/assets/recent/r15.png" },
-    { id: 16, image: "/assets/recent/r16.png" },
-  ];
-
-  const recentVideo = [
-    {
-      id: 1,
-      video: "/recentVideo/1.mp4",
-      thumbnail: "/recentVideo/thumnail/1.jpg",
-    },
-    {
-      id: 2,
-      video: "/recentVideo/2.mp4",
-      thumbnail: "/recentVideo/thumnail/2.jpg",
-    },
-    {
-      id: 3,
-      video: "/recentVideo/3.mp4",
-      thumbnail: "/recentVideo/thumnail/3.jpg",
-    },
-    {
-      id: 4,
-      video: "/recentVideo/4.mp4",
-      thumbnail: "/recentVideo/thumnail/4.jpg",
-    },
-    {
-      id: 5,
-      video: "/recentVideo/5.mp4",
-      thumbnail: "/recentVideo/thumnail/5.jpg",
-    },
-    {
-      id: 6,
-      video: "/recentVideo/6.mp4",
-      thumbnail: "/recentVideo/thumnail/6.jpg",
-    },
-    {
-      id: 7,
-      video: "/recentVideo/7.mp4",
-      thumbnail: "/recentVideo/thumnail/7.jpg",
-    },
-    {
-      id: 8,
-      video: "/recentVideo/8.mp4",
-      thumbnail: "/recentVideo/thumnail/8.jpg",
-    },
-  ];
-
+  // Shuffle and combine recent work content
   useEffect(() => {
-    // Combine videos and images into one array
-    const combinedContent = [
-      ...recentVideo.map((item) => ({ ...item, type: "video" })),
-      ...recent.map((item) => ({ ...item, type: "image" })),
-    ];
+    if (recentWork.length > 0) {
+      const shuffled = recentWork.sort(() => Math.random() - 0.5);
+      setShuffledContent(shuffled);
+    }
 
-    // Shuffle the combined array
-    const shuffled = combinedContent.sort(() => Math.random() - 0.5);
-    setShuffledContent(shuffled);
-  }, []);
+    if (location.state?.selectedImage) {
+      setSelectedContent({
+        type: "image",
+        src: `https://code.bdluminaries.com/${location.state.selectedImage}`,
+      });
+    }
+  }, [recentWork, location.state]);
 
-  // For display
   const [selectedContent, setSelectedContent] = useState({
     type: "",
     src: "",
@@ -120,15 +92,13 @@ const RecentWork = () => {
     setSelectedContent({ type, src: source });
   };
 
-   const handleImageClick = (mockupItem) => {
-     navigate("/mockup", { state: { selectedImage: mockupItem.image } });
-   };
+  const handleImageClick = (mockupItem) => {
+    navigate("/mockup", { state: { selectedImage: mockupItem.image } });
+  };
 
   return (
-    <div className="h-screen pb-9  bg-gray-100">
-      
+    <div className="h-screen pb-9 bg-gray-100">
       <Navbar />
-
       <div className="h-[97%] grid grid-rows-2 grid-cols-1">
         <div>
           {selectedContent.type === "video" && (
@@ -155,7 +125,6 @@ const RecentWork = () => {
             />
           )}
         </div>
-
         <div className="grid grid-cols-4 gap-4 p-2">
           {/* Recent work section */}
           <div className="col-span-3 grid grid-cols-3 gap-2 h-full overflow-y-scroll no-scrollbar relative rounded-b">
@@ -166,12 +135,7 @@ const RecentWork = () => {
               <div
                 key={item.id}
                 className="shadow-md rounded"
-                onClick={() =>
-                  displayContent(
-                    item.type,
-                    item.type === "video" ? item.video : item.image
-                  )
-                }
+                onClick={() => displayContent(item.type, item.type === "video" ? item.video : item.image)}
               >
                 <img
                   src={item.type === "video" ? item.thumbnail : item.image}

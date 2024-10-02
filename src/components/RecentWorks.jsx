@@ -83,26 +83,7 @@ const RecentWorks = () => {
     setActiveIndex((prev) => (prev < 16 ? prev + 1 : 17));
   };
 
-  let bannerImg2 = [
-    b7,
-    b8,
-    b11,
-    b12,
-    b13,
-    b15,
-    b16,
-    b17,
-    b18,
-    b19,
-    b20,
-    b21,
-    b22,
-    b23,
-    b24,
-    b25,
-  ];
-
-
+  
 const [works, setWorks] = useState([]);
 
 useEffect(() => {
@@ -121,6 +102,10 @@ useEffect(() => {
   fetchRecentWorks();
 }, []);
 
+const handleImageClick = (image) => {
+  navigate("/work", { state: { selectedImage: image } });
+};
+
   return (
     <div
       style={{ background: `url(${selectedRecentImage})` }}
@@ -132,7 +117,8 @@ useEffect(() => {
             work.images.filter((image, index) => index < 4 ).map((image, index) => (
               <div
                 key={`${work._id}-${index}`}
-                onClick={() => handleRecentImageClick(image)}
+                // onClick={() => handleRecentImageClick(image)}
+                onClick={() => handleImageClick(image)}
                 className="h-full"
               >
                 <img
