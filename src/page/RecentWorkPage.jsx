@@ -7,28 +7,32 @@ import axios from "../axios";
 const RecentWork = () => {
   const [shuffledContent, setShuffledContent] = useState([]);
   const [mockupImages, setMockupImages] = useState([]);
-  const [recentWork, setRecentWork] = useState([]); // New state for recent works
-  let navigate = useNavigate();
-  const location = useLocation();
+  const [recentWork, setRecentWork] = useState([]);
+  const [selectedContent, setSelectedContent] = useState({
+    type: "",
+    src: "",
+  });
 
-  // API to fetch recent works
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Fetch recent works from API
   useEffect(() => {
     const fetchRecentWork = async () => {
       try {
         const response = await axios.get("https://code.bdluminaries.com/api/v1/recent-works");
-        const data = await response.data;
+        const data = response.data;
 
-        // Formatting recent works data
         const formattedContent = data.flatMap((work) => {
           const images = work.images.map((image) => ({
             id: work._id,
-            image: `https://code.bdluminaries.com/${image}`, // Assuming a base URL for images
+            image: `https://code.bdluminaries.com/${image}`,
             type: "image",
           }));
 
           const videos = work.videos.map((video) => ({
             id: video._id,
-            video: `https://code.bdluminaries.com/${video.video}`, // Assuming a base URL for videos
+            video: `https://code.bdluminaries.com/${video.video}`,
             thumbnail: `https://code.bdluminaries.com/${video.thumbnail}`,
             type: "video",
           }));
@@ -45,12 +49,12 @@ const RecentWork = () => {
     fetchRecentWork();
   }, []);
 
-  // Mockup images fetching (unchanged)
+  // Fetch mockup images
   useEffect(() => {
     const fetchMockupData = async () => {
       try {
         const response = await axios.get("/mockup-zones");
-        const data = await response.data;
+        const data = response.data;
 
         const images = data.flatMap((zone) =>
           zone.images.map((image) => ({
@@ -68,7 +72,7 @@ const RecentWork = () => {
     fetchMockupData();
   }, []);
 
-  // Shuffle and combine recent work content
+  // Set the content to display based on clicked image or video
   useEffect(() => {
     if (recentWork.length > 0) {
       const shuffled = recentWork.sort(() => Math.random() - 0.5);
@@ -83,23 +87,19 @@ const RecentWork = () => {
     }
   }, [recentWork, location.state]);
 
-  const [selectedContent, setSelectedContent] = useState({
-    type: "",
-    src: "",
-  });
+  const handleImageClick = (mockupItem) => {
+    navigate("/mockup", { state: { selectedImage: mockupItem.image } });
+  };
 
   const displayContent = (type, source) => {
     setSelectedContent({ type, src: source });
-  };
-
-  const handleImageClick = (mockupItem) => {
-    navigate("/mockup", { state: { selectedImage: mockupItem.image } });
   };
 
   return (
     <div className="h-screen pb-9 bg-gray-100">
       <Navbar />
       <div className="h-[97%] grid grid-rows-2 grid-cols-1">
+        {/* Main display section */}
         <div>
           {selectedContent.type === "video" && (
             <video
@@ -125,11 +125,13 @@ const RecentWork = () => {
             />
           )}
         </div>
+
+        {/* Recent works and mockup sections */}
         <div className="grid grid-cols-4 gap-4 p-2">
-          {/* Recent work section */}
+          {/* Recent Work section */}
           <div className="col-span-3 grid grid-cols-3 gap-2 h-full overflow-y-scroll no-scrollbar relative rounded-b">
             <h3 className="text-xs col-span-3 bg-[#F15B26] sticky top-0 left-0 h-7 flex items-center justify-center text-center text-white font-bold w-full shadow-md rounded-b">
-              Recent work
+              Recent Work
             </h3>
             {shuffledContent.map((item) => (
               <div
@@ -153,8 +155,8 @@ const RecentWork = () => {
             </h3>
             {mockupImages.map((mockupItem) => (
               <div
-                onClick={() => handleImageClick(mockupItem)}
                 key={mockupItem.id}
+                onClick={() => handleImageClick(mockupItem)}
                 className="shadow-md rounded cursor-pointer"
               >
                 <img
