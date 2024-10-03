@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
@@ -15,6 +15,7 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,19 +46,26 @@ const ContactForm = () => {
     data.append("visitingCard", formData.visitingCard);
     data.append("message", formData.message);
 
+    for (const [key, value] of data.entries()) {
+      console.log(key, value);
+    }
+
     try {
+      const config = {
+        onUploadProgress: (progressEvent) => {
+          const { loaded, total } = progressEvent;
+          const percent = Math.floor((loaded * 100) / total);
+          setUploadProgress(percent);
+        },
+      };
       // Sending the POST request to the API
       const response = await axios.post(
         "https://code.bdluminaries.com/api/v1/contacts",
         data,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        config
       );
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         setSuccess(true);
         setFormData({
           name: "",
@@ -104,14 +112,13 @@ const ContactForm = () => {
           encType="multipart/form-data"
           className=" shadow-lg rounded-lg p-4 max-w-lg w-full mx-auto text-[#272727]"
         >
-
           <input
             type="text"
             name="name"
             placeholder="Your Name *"
             value={formData.name}
             onChange={handleChange}
-            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-shadow"
+            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-shadow dark:bg-white"
             required
           />
 
@@ -121,7 +128,7 @@ const ContactForm = () => {
             placeholder="Email Address *"
             value={formData.email}
             onChange={handleChange}
-            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-shadow"
+            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-shadow dark:bg-white"
             required
           />
 
@@ -131,17 +138,17 @@ const ContactForm = () => {
             placeholder="Phone Number *"
             value={formData.phoneNumber}
             onChange={handleChange}
-            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-shadow"
+            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-shadow dark:bg-white"
             required
           />
 
           <input
-            type="url"
+            type="text"
             name="url"
             placeholder="Website URL (Optional)"
             value={formData.url}
             onChange={handleChange}
-            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-shadow"
+            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-shadow dark:bg-white"
           />
 
           <label
@@ -152,7 +159,7 @@ const ContactForm = () => {
               type="file"
               id="file"
               name="visitingCard"
-              className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
+              className="opacity-0 absolute inset-0 w-full h-full cursor-pointer dark:bg-white"
               onChange={handleFileChange}
               required
             />
@@ -166,7 +173,7 @@ const ContactForm = () => {
             placeholder="Your Message *"
             value={formData.message}
             onChange={handleChange}
-            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-shadow"
+            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-shadow dark:bg-white"
             rows="4"
             required
           ></textarea>
@@ -178,7 +185,7 @@ const ContactForm = () => {
             }`}
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Sending..." : "Send"}
+            {isSubmitting ? `${uploadProgress}% Sending...` : "Send"}
           </button>
         </form>
 
