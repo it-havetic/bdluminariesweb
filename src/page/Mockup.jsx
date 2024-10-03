@@ -14,25 +14,32 @@ const Mockup = () => {
     src: "",
   });
   const [shuffledContent, setShuffledContent] = useState([]);
+  const [recentWorks, setRecentWorks] = useState([]); // State for recent works
 
-  const recent = [
-    { id: 1, image: "/assets/recent/r1.png" },
-    { id: 2, image: "/assets/recent/r2.png" },
-    { id: 3, image: "/assets/recent/r3.png" },
-    { id: 4, image: "/assets/recent/r4.png" },
-    { id: 5, image: "/assets/recent/r5.png" },
-    { id: 6, image: "/assets/recent/r6.png" },
-    { id: 7, image: "/assets/recent/r7.png" },
-    { id: 8, image: "/assets/recent/r8.png" },
-    { id: 9, image: "/assets/recent/r9.png" },
-    { id: 10, image: "/assets/recent/r10.png" },
-    { id: 11, image: "/assets/recent/r11.png" },
-    { id: 12, image: "/assets/recent/r12.png" },
-    { id: 13, image: "/assets/recent/r13.png" },
-    { id: 14, image: "/assets/recent/r14.png" },
-    { id: 15, image: "/assets/recent/r15.png" },
-    { id: 16, image: "/assets/recent/r16.png" },
-  ];
+  // Fetch data for recent works from the API
+  useEffect(() => {
+    const fetchRecentWorks = async () => {
+      try {
+        const response = await fetch(
+          "https://code.bdluminaries.com/api/v1/recent-works"
+        );
+        const data = await response.json();
+
+        // Process the data to extract only image data
+        const imageWorks = data.flatMap((item) =>
+          item.images.map((image) => ({
+            src: image,
+            id: item._id,
+          }))
+        );
+        setRecentWorks(imageWorks); // Set recent works with only images
+      } catch (error) {
+        console.error("Error fetching recent works:", error);
+      }
+    };
+
+    fetchRecentWorks();
+  }, []);
 
   useEffect(() => {
     // Function to fetch mockup data from the API
@@ -80,6 +87,10 @@ const Mockup = () => {
     setSelectedContent({ type, src: source });
   };
 
+  const handleImageClick = (image) => {
+    navigate("/work", { state: { selectedImage: image } });
+  };
+
   return (
     <div className="h-screen pb-9  bg-gray-100">
       <Navbar />
@@ -111,14 +122,14 @@ const Mockup = () => {
             <h3 className="text-xs bg-[#F15B26] sticky top-0 left-0 py-1.5 text-center text-white font-bold w-full shadow-md rounded-b">
               Recent work
             </h3>
-            {recent.map((mockupItem) => (
+            {recentWorks.map((image) => (
               <div
-                key={mockupItem.id}
-                onClick={() => navigate("/work")}
+                key={image.id}
+                onClick={() => handleImageClick(image.src)}
                 className="shadow-md rounded"
               >
                 <img
-                  src={mockupItem.image}
+                  src={`https://code.bdluminaries.com/${image.src}`}
                   className="w-full h-14 object-cover rounded"
                   alt="Recent work"
                 />

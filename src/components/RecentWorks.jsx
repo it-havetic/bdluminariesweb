@@ -5,22 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 // for button
 import clickGif from "/click.gif";
-import b7 from "/assets/recent/r1.png";
-import b8 from "/assets/b8.png";
-import b11 from "/assets/b11.png";
-import b12 from "/assets/b12.png";
-import b13 from "/assets/b13.png";
-import b15 from "/assets/b15.png";
-import b16 from "/assets/b16.png";
-import b17 from "/assets/b17.png";
-import b18 from "/assets/b18.png";
-import b19 from "/assets/b19.png";
-import b20 from "/assets/b20.png";
-import b21 from "/assets/b21.png";
-import b22 from "/assets/b22.png";
-import b23 from "/assets/b23.png";
-import b24 from "/assets/b24.png";
-import b25 from "/assets/b25.png";
 const RecentWorks = () => {
   let settings = {
     dots: false,
@@ -120,11 +104,9 @@ const RecentWorks = () => {
         </Slider>
       </div>
       <div
-      
-      onClick={() => handleImageClick(works[0]?.images[0])}
-        className={`one bg-red-400 relative cursor-pointer ${
-          activeIndex >= 1 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500 `}
+        onClick={() => handleImageClick(works[0]?.images[0])}
+        className={`one bg-red-400 relative cursor-pointer ${activeIndex >= 1 ? "opacity-100 visible" : "opacity-0 invisible"
+          } transition-opacity duration-500 `}
       >
         <img
           className="h-full w-full object-cover"
@@ -137,237 +119,225 @@ const RecentWorks = () => {
         </p>
       </div>
       <div
-      onClick={() => handleImageClick(works[1]?.images[0])}
-        className={`sixteen bg-rose-400 relative ${
-          activeIndex >= 16 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
+        onClick={() => handleImageClick(works[1]?.images[0])}
+        className={`sixteen bg-rose-400 relative ${activeIndex >= 16 ? "opacity-100 visible" : "opacity-0 invisible"
+          } transition-opacity duration-500`}
       >
         <img
           className="h-full w-full object-cover"
           src={`https://code.bdluminaries.com/${works[1]?.images[0]}`}
           alt=""
-          onClick={() => handleRecentImageClick(b8)}
         />
         <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
           {works[1]?.title}
         </p>
       </div>
       <div
-        className={`fifteen bg-fuchsia-400 relative ${
-          activeIndex >= 15 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
+      
+      onClick={() => handleImageClick(works[2]?.images[0])}
+        className={`fifteen bg-fuchsia-400 relative ${activeIndex >= 15 ? "opacity-100 visible" : "opacity-0 invisible"
+          } transition-opacity duration-500`}
       >
         <img
           className="h-full w-full object-cover"
-          src={b11}
+          src={`https://code.bdluminaries.com/${works[2]?.images[0]}`}
           alt=""
-          onClick={() => handleRecentImageClick(b11)}
         />
         <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-56
+        {works[2]?.title}
         </p>
       </div>
       <div
-        className={`fourteen bg-emerald-400 relative ${
-          activeIndex >= 14 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b12}
-          alt=""
-          onClick={() => handleRecentImageClick(b12)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-27
-        </p>
-      </div>
+  onClick={() => handleImageClick(works[3]?.images[0])}
+  className={`fourteen bg-emerald-400 relative cursor-pointer ${activeIndex >= 14 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[3]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[3]?.title}
+  </p>
+</div>
+<div
+  onClick={() => handleImageClick(works[4]?.images[0])}
+  className={`thirteen bg-amber-400 relative cursor-pointer ${activeIndex >= 13 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[4]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[4]?.title}
+  </p>
+</div>
+<div
+  onClick={() => handleImageClick(works[5]?.images[0])}
+  className={`two bg-blue-400 relative cursor-pointer ${activeIndex >= 2 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[5]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[5]?.title}
+  </p>
+</div>
       <div
-        className={`thirteen bg-amber-400 relative ${
-          activeIndex >= 13 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b13}
-          alt=""
-          onClick={() => handleRecentImageClick(b13)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-69
-        </p>
-      </div>
-      <div
-        className={`two bg-blue-400 relative ${
-          activeIndex >= 2 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b15}
-          alt=""
-          onClick={() => handleRecentImageClick(b15)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-45
-        </p>
-      </div>
-      <div
-        className={`seventeen bg-violet-400 col-span-3 row-span-3 ${
-          activeIndex === 17 ? "opacity-0" : "opacity-0"
-        } transition-opacity duration-500`}
+        className={`seventeen bg-violet-400 col-span-3 row-span-3 ${activeIndex === 17 ? "opacity-0" : "opacity-0"
+          } transition-opacity duration-500`}
         onClick={() => navigate("/work")}
       ></div>
       <div
-        className={`twelve bg-lime-400 relative ${
-          activeIndex >= 12 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b16}
-          alt=""
-          onClick={() => handleRecentImageClick(b16)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-75
-        </p>
-      </div>
-      <div
-        className={`three bg-green-400 relative ${
-          activeIndex >= 3 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b17}
-          alt=""
-          onClick={() => handleRecentImageClick(b17)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-35
-        </p>
-      </div>
-      <div
-        className={`eleven bg-cyan-400 relative ${
-          activeIndex >= 11 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b18}
-          alt=""
-          onClick={() => handleRecentImageClick(b18)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-84
-        </p>
-      </div>
-      <div
-        className={`four bg-yellow-400 relative ${
-          activeIndex >= 4 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b19}
-          alt=""
-          onClick={() => handleRecentImageClick(b19)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-134
-        </p>
-      </div>
-      <div
-        className={`ten bg-gray-400 relative ${
-          activeIndex >= 10 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b20}
-          alt=""
-          onClick={() => handleRecentImageClick(b20)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-36
-        </p>
-      </div>
-      <div
-        className={`five bg-purple-400 relative ${
-          activeIndex >= 5 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b21}
-          alt=""
-          onClick={() => handleRecentImageClick(b21)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-152
-        </p>
-      </div>
-      <div
-        className={`six bg-pink-400 relative ${
-          activeIndex >= 6 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b22}
-          alt=""
-          onClick={() => handleRecentImageClick(b22)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-56
-        </p>
-      </div>
-      <div
-        className={`seven bg-teal-400 relative ${
-          activeIndex >= 7 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b23}
-          alt=""
-          onClick={() => handleRecentImageClick(b23)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-82
-        </p>
-      </div>
-      <div
-        className={`eight bg-indigo-400 relative ${
-          activeIndex >= 8 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b24}
-          alt=""
-          onClick={() => handleRecentImageClick(b24)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-29
-        </p>
-      </div>
-      <div
-        className={`nine bg-orange-400 relative ${
-          activeIndex >= 9 ? "opacity-100 visible" : "opacity-0 invisible"
-        } transition-opacity duration-500`}
-      >
-        <img
-          className="h-full w-full object-cover"
-          src={b25}
-          alt=""
-          onClick={() => handleRecentImageClick(b25)}
-        />
-        <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2  rounded-t ">
-          P-11
-        </p>
-      </div>
+  onClick={() => handleImageClick(works[6]?.images[0])}
+  className={`twelve bg-lime-400 relative cursor-pointer ${activeIndex >= 12 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[6]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[6]?.title}
+  </p>
+</div>
+<div
+  onClick={() => handleImageClick(works[7]?.images[0])}
+  className={`three bg-green-400 relative cursor-pointer ${activeIndex >= 3 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[7]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[7]?.title}
+  </p>
+</div>
+
+<div
+  onClick={() => handleImageClick(works[8]?.images[0])}
+  className={`eleven bg-cyan-400 relative cursor-pointer ${activeIndex >= 11 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[8]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[8]?.title}
+  </p>
+</div>
+
+<div
+  onClick={() => handleImageClick(works[9]?.images[0])}
+  className={`four bg-yellow-400 relative cursor-pointer ${activeIndex >= 4 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[9]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[9]?.title}
+  </p>
+</div>
+
+<div
+  onClick={() => handleImageClick(works[10]?.images[0])}
+  className={`ten bg-gray-400 relative cursor-pointer ${activeIndex >= 10 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[10]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[10]?.title}
+  </p>
+</div>
+<div
+  onClick={() => handleImageClick(works[11]?.images[0])}
+  className={`five bg-purple-400 relative cursor-pointer ${activeIndex >= 5 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[11]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[11]?.title}
+  </p>
+</div>
+
+<div
+  onClick={() => handleImageClick(works[12]?.images[0])}
+  className={`six bg-pink-400 relative cursor-pointer ${activeIndex >= 6 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[12]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[12]?.title}
+  </p>
+</div>
+<div
+  onClick={() => handleImageClick(works[13]?.images[0])}
+  className={`seven bg-indigo-400 relative cursor-pointer ${activeIndex >= 7 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[13]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[13]?.title}
+  </p>
+</div>
+<div
+  onClick={() => handleImageClick(works[14]?.images[0])}
+  className={`eight bg-violet-400 relative cursor-pointer ${activeIndex >= 8 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[14]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[14]?.title}
+  </p>
+</div>
+<div
+  onClick={() => handleImageClick(works[15]?.images[0])}
+  className={`nine bg-orange-400 relative cursor-pointer ${activeIndex >= 9 ? "opacity-100 visible" : "opacity-0 invisible"
+    } transition-opacity duration-500`}
+>
+  <img
+    className="h-full w-full object-cover"
+    src={`https://code.bdluminaries.com/${works[15]?.images[0]}`}
+    alt=""
+  />
+  <p className="absolute textShadow-custom bg-white/30 left-1/2 -translate-x-1/2 bottom-0 textShadow text-xs text-white font-bold px-2 rounded-t">
+    {works[15]?.title}
+  </p>
+</div>
       {showButton && (
         <button
           onClick={handleButtonClick}
@@ -375,7 +345,7 @@ const RecentWorks = () => {
         >
           <img className="w-full" src={clickGif} alt="" />
         </button>
-      )} 
+      )}
     </div>
   );
 };
