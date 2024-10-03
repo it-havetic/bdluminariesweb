@@ -1,13 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-import { Link, useNavigate } from "react-router-dom";
-import Marquee from "react-fast-marquee";
-import { AiOutlineProduct } from "react-icons/ai";
-import slogan from "/assets/slogan.png";
-import axios from "../axios";
-import { HiDotsHorizontal } from "react-icons/hi";
 import Navbar from "../components/Navbar";
-
 
 const SpecificationItem = ({ title, items, index, checked, sItemClass }) => {
   // const [data, setData] = useState([])
@@ -22,12 +16,15 @@ const SpecificationItem = ({ title, items, index, checked, sItemClass }) => {
       {/* {
         data.map(({image})=><img src={image}/>)
       } */}
-      <h2 className="px-1 text-[9px] bg-[#282828] mb-0.5 text-center uppercase font-bold text-[#e3e3e3] py-0.5 ">{title}</h2>
+      <h2 className="px-1 text-[9px] bg-[#282828] mb-0.5 text-center uppercase font-bold text-[#e3e3e3] py-0.5 ">
+        {title}
+      </h2>
       <ul className="pl-3 text-black ">
         {items.map((item, index) => (
           <p key={index} className="flex items-center gap-1">
             <input
               type="radio"
+              checked={item}
               className="h-2 w-2 border bg-transparent appearance-none checked:bg-[#F15B26] rounded-full border-[#000000] checked:border-[#F15B26]"
             />
             <li className="text-[10px] leading-3" key={index}>
@@ -52,63 +49,63 @@ const Test = () => {
     { id: 2, image: "/assets/b17.png" },
   ];
 
-   const minimalistSeries = [
-     {
-       id: 1,
-       name: "Minimalist 8 Watt Led spot light",
-       image: "/assets/product/01.png",
-     },
-     { id: 2, name: "Minimalist Series B", image: "/assets/product/02.png" },
-     { id: 3, name: "Minimalist Series C", image: "/assets/product/03.png" },
-     { id: 4, name: "Minimalist Series D", image: "/assets/product/04.png" },
-     { id: 5, name: "Minimalist Series E", image: "/assets/product/05.png" },
-     {
-       id: 6,
-       name: "Minimalist 8 Watt Led spot light",
-       image: "/assets/product/06.png",
-     },
-     { id: 7, name: "Minimalist Series B", image: "/assets/product/07.png" },
-     { id: 8, name: "Minimalist Series C", image: "/assets/product/08.png" },
-     { id: 9, name: "Minimalist Series D", image: "/assets/product/09.png" },
-     { id: 10, name: "Minimalist Series E", image: "/assets/product/10.png" },
-     {
-       id: 11,
-       name: "Minimalist 8 Watt Led spot light",
-       image: "/assets/product/11.png",
-     },
-     { id: 12, name: "Minimalist Series B", image: "/assets/product/12.png" },
-     { id: 13, name: "Minimalist Series C", image: "/assets/product/13.png" },
-     { id: 14, name: "Minimalist Series D", image: "/assets/product/14.png" },
-     { id: 15, name: "Minimalist Series E", image: "/assets/product/15.png" },
-     {
-       id: 16,
-       name: "Minimalist 8 Watt Led spot light",
-       image: "/assets/product/16.png",
-     },
-     { id: 17, name: "Minimalist Series B", image: "/assets/product/17.png" },
-     { id: 18, name: "Minimalist Series C", image: "/assets/product/18.png" },
-     { id: 19, name: "Minimalist Series D", image: "/assets/product/19.png" },
-     { id: 20, name: "Minimalist Series E", image: "/assets/product/20.png" },
-     {
-       id: 21,
-       name: "Minimalist 8 Watt Led spot light",
-       image: "/assets/product/21.png",
-     },
-     { id: 22, name: "Minimalist Series B", image: "/assets/product/22.png" },
-     { id: 23, name: "Minimalist Series C", image: "/assets/product/23.png" },
-     { id: 24, name: "Minimalist Series D", image: "/assets/product/02.png" },
-     { id: 25, name: "Minimalist Series E", image: "/assets/product/01.png" },
-     {
-       id: 26,
-       name: "Minimalist 8 Watt Led spot light",
-       image: "/assets/product/26.png",
-     },
-     { id: 27, name: "Minimalist Series B", image: "/assets/product/27.png" },
-   ];
+  const minimalistSeries = [
+    {
+      id: 1,
+      name: "Minimalist 8 Watt Led spot light",
+      image: "/assets/product/01.png",
+    },
+    { id: 2, name: "Minimalist Series B", image: "/assets/product/02.png" },
+    { id: 3, name: "Minimalist Series C", image: "/assets/product/03.png" },
+    { id: 4, name: "Minimalist Series D", image: "/assets/product/04.png" },
+    { id: 5, name: "Minimalist Series E", image: "/assets/product/05.png" },
+    {
+      id: 6,
+      name: "Minimalist 8 Watt Led spot light",
+      image: "/assets/product/06.png",
+    },
+    { id: 7, name: "Minimalist Series B", image: "/assets/product/07.png" },
+    { id: 8, name: "Minimalist Series C", image: "/assets/product/08.png" },
+    { id: 9, name: "Minimalist Series D", image: "/assets/product/09.png" },
+    { id: 10, name: "Minimalist Series E", image: "/assets/product/10.png" },
+    {
+      id: 11,
+      name: "Minimalist 8 Watt Led spot light",
+      image: "/assets/product/11.png",
+    },
+    { id: 12, name: "Minimalist Series B", image: "/assets/product/12.png" },
+    { id: 13, name: "Minimalist Series C", image: "/assets/product/13.png" },
+    { id: 14, name: "Minimalist Series D", image: "/assets/product/14.png" },
+    { id: 15, name: "Minimalist Series E", image: "/assets/product/15.png" },
+    {
+      id: 16,
+      name: "Minimalist 8 Watt Led spot light",
+      image: "/assets/product/16.png",
+    },
+    { id: 17, name: "Minimalist Series B", image: "/assets/product/17.png" },
+    { id: 18, name: "Minimalist Series C", image: "/assets/product/18.png" },
+    { id: 19, name: "Minimalist Series D", image: "/assets/product/19.png" },
+    { id: 20, name: "Minimalist Series E", image: "/assets/product/20.png" },
+    {
+      id: 21,
+      name: "Minimalist 8 Watt Led spot light",
+      image: "/assets/product/21.png",
+    },
+    { id: 22, name: "Minimalist Series B", image: "/assets/product/22.png" },
+    { id: 23, name: "Minimalist Series C", image: "/assets/product/23.png" },
+    { id: 24, name: "Minimalist Series D", image: "/assets/product/02.png" },
+    { id: 25, name: "Minimalist Series E", image: "/assets/product/01.png" },
+    {
+      id: 26,
+      name: "Minimalist 8 Watt Led spot light",
+      image: "/assets/product/26.png",
+    },
+    { id: 27, name: "Minimalist Series B", image: "/assets/product/27.png" },
+  ];
 
   return (
     <div className="h-screen pb-9 pt-0 bg-gray-100">
-      <Navbar/>
+      <Navbar />
       <div className=" h-[97%]">
         <div className="h-[73%] ">
           <div className="h-[82%]  flex">
@@ -190,30 +187,30 @@ const Test = () => {
           </div>
         </div>
         <div className="h-[27%] bg-slate-200 p-3">
-          <div  className="w-full h-[30%] ">
-          <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 rounded text-center text-sm font-bold">
-                Installation Guideline
-              </h2>
-          <h2 className="flex justify-around items-center p-1 border-l border-t uppercase text-black rounded text-center text-sm font-bold">
-                <span>Image</span>
-                <span>Vedio</span>
-              </h2>
+          <div className="w-full h-[30%] ">
+            <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 rounded text-center text-sm font-bold">
+              Installation Guideline
+            </h2>
+            <h2 className="flex justify-around items-center p-1 border-l border-t uppercase text-black rounded text-center text-sm font-bold">
+              <span>Image</span>
+              <span>Vedio</span>
+            </h2>
           </div>
-         <div className="w-full h-[70%] flex gap-2">
-         <img
-            className="w-full h-full object-cover rounded"
-            src="/diagram/2.jpg"
-            alt=""
-          />
-          <video
-            className="w-full h-full object-cover rounded"
-            controls
-            autoPlay
-            loop
-            muted
-            src="/diagram/2.mp4"
-          />
-         </div>
+          <div className="w-full h-[70%] flex gap-2">
+            <img
+              className="w-full h-full object-cover rounded"
+              src="/diagram/2.jpg"
+              alt=""
+            />
+            <video
+              className="w-full h-full object-cover rounded"
+              controls
+              autoPlay
+              loop
+              muted
+              src="/diagram/2.mp4"
+            />
+          </div>
         </div>
       </div>
       <Footer />

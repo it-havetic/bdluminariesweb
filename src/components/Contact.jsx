@@ -1,3 +1,4 @@
+import { Image } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
 import Footer from "./Footer";
@@ -135,7 +136,7 @@ const ContactForm = () => {
           <input
             type="tel"
             name="phoneNumber"
-            placeholder="Phone Number *"
+            placeholder="WhatsApp Number *"
             value={formData.phoneNumber}
             onChange={handleChange}
             className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-shadow dark:bg-white"
@@ -150,6 +151,18 @@ const ContactForm = () => {
             onChange={handleChange}
             className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-shadow dark:bg-white"
           />
+
+          {formData.visitingCard && (
+            <div className="mb-4 w-full overflow-hidden h-[180px]">
+              <Image
+                className="w-full h-full object-cover"
+                src={URL.createObjectURL(formData.visitingCard)}
+                alt="Uploaded visiting card"
+                width={"100%"}
+                height={180}
+              />
+            </div>
+          )}
 
           <label
             htmlFor="file"
