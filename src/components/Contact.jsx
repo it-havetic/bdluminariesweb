@@ -52,6 +52,12 @@ const ContactForm = () => {
     }
 
     try {
+      // config object for axios post request
+      // onUploadProgress: callback function that is called when the upload progress changes
+      // this function receives the progress event as an argument
+      // the progress event contains the loaded and total properties
+      // by using these properties we can calculate the percentage of the upload
+      // and update the state with the new percentage
       const config = {
         onUploadProgress: (progressEvent) => {
           const { loaded, total } = progressEvent;

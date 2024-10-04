@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "../axios";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { useNavigate, useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-import Marquee from "react-fast-marquee";
-import slogan from "/assets/slogan.png";
-import { AiOutlineProduct } from "react-icons/ai";
-import { IoEyeOff } from "react-icons/io5";
-import axios from "../axios";
-import { HiDotsHorizontal } from "react-icons/hi";
-import Preloader from '../components/Preloader.jsx'
+import Preloader from "../components/Preloader.jsx";
 
 function ProductDetailOne() {
   const [isItemVisible, setIsItemVisible] = useState(false);
@@ -30,7 +24,7 @@ function ProductDetailOne() {
   const bdlSeries = async () => {
     try {
       let res = await axios.get(`/series/group/${id}`);
-      const seriesByGroupId = res.data
+      const seriesByGroupId = res.data;
       setSelectedSeries(seriesByGroupId);
 
       if (seriesByGroupId.length > 0) {
@@ -54,6 +48,7 @@ function ProductDetailOne() {
       // Automatically set the first product as the displayed product if available
       if (products.length > 0) {
         setDisplayedProduct({
+          id: products[0]._id,
           series: products[0].series.name,
           itemCode: products[0].itemCode,
           image: `https://code.bdluminaries.com/${products[0].image}`,
@@ -61,7 +56,6 @@ function ProductDetailOne() {
           description: products[0].description || "No description available.",
         });
         console.log(displayedProduct, "displayedProduct");
-        
       } else {
         setDisplayedProduct(null);
       }
@@ -81,6 +75,10 @@ function ProductDetailOne() {
     }
   }, [seriseID]);
 
+  /**
+   * Handles product click event by updating the displayed product state with the clicked product's data
+   * @param {Object} product The product object containing the series name, item code, image, price, and description
+   */
   const handleProductClick = (product) => {
     setDisplayedProduct({
       series: product.series.name,
@@ -95,20 +93,25 @@ function ProductDetailOne() {
     return (
       <section className="h-[40%]">
         <div className="grid grid-cols-5 items-start w-full gap-1 pr-1 no-scrollbar overflow-y-scroll h-full">
-          {productsToShow.length > 0 ? productsToShow.map((product, i) => (
-            <div
-              key={i}
-              className="bg-[#8ac249] p-1 shadow-md rounded"
-              onClick={() => handleProductClick(product)}
-            >
-              <img
-                src={`https://code.bdluminaries.com/${product.image}`}
-                className="w-full h-11 object-contain"
-                alt={product?.itemCode || "Product image missing"}
-              />
-            </div>
-          )) : <p className="text-[#777777] text-sm font-semibold col-span-5 h-full flex items-center justify-center">This series product is not available</p>
-}
+          {productsToShow.length > 0 ? (
+            productsToShow.map((product, i) => (
+              <div
+                key={i}
+                className="bg-[#8ac249] p-1 shadow-md rounded"
+                onClick={() => handleProductClick(product)}
+              >
+                <img
+                  src={`https://code.bdluminaries.com/${product.image}`}
+                  className="w-full h-11 object-contain"
+                  alt={product?.itemCode || "Product image missing"}
+                />
+              </div>
+            ))
+          ) : (
+            <p className="text-[#777777] text-sm font-semibold col-span-5 h-full flex items-center justify-center">
+              This series product is not available
+            </p>
+          )}
         </div>
       </section>
     );
@@ -148,7 +151,7 @@ function ProductDetailOne() {
 
         <div className="w-[80%] flex flex-col gap-1">
           <div
-            onClick={() => navigate("/test")}
+            onClick={() => navigate(`/test/${displayedProduct?.id}`)}
             className="h-[60%] bg-[#8bc24a] relative grid grid-rows-6 grid-cols-8"
           >
             <div className="col-span-7 row-span-5 flex justify-center items-center">
@@ -159,14 +162,18 @@ function ProductDetailOne() {
                   alt={displayedProduct.itemCode}
                 />
               ) : (
-                <p className="text-[yellow] text-sm font-semibold">This series product is not available</p>
+                <p className="text-[yellow] text-sm font-semibold">
+                  This series product is not available
+                </p>
               )}
             </div>
             <div
               style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
               className="border col-span-1 row-span-5 m-0.5 flex flex-col items-center justify-center"
             >
-              <h2 className="text-white font-semibold text-sm">{displayedProduct?.series}</h2>
+              <h2 className="text-white font-semibold text-sm">
+                {displayedProduct?.series}
+              </h2>
               <p className="text-white font-normal text-sm">*************</p>
             </div>
             <div className="p-0.5 shadow-lg backdrop-filter border border-black/10 border-r-0 border-opacity-30 col-span-8 grid grid-cols-4 gap-0.5 text-[10px]">
@@ -189,7 +196,8 @@ function ProductDetailOne() {
                 </p>
                 <p className="bg-white h-1/2 text-[#cc3903] font-bold flex gap-1 justify-center items-center">
                   {/* <IoEyeOff /> */}
-                  <span className="text-sm -mt-0.5">৳</span> {displayedProduct?.price}
+                  <span className="text-sm -mt-0.5">৳</span>{" "}
+                  {displayedProduct?.price}
                 </p>
               </div>
             </div>
@@ -236,7 +244,6 @@ function ProductDetailOne() {
             </div>
             <div className="grid grid-cols-5 grid-rows-3 gap-1 h-1/2">
               <div className="bg-slate-400 rounded-r-md overflow-hidden">
-                
                 <img
                   className="w-full h-full object-cover"
                   src="/recentVideo/thumnail/3.jpg"
@@ -293,4 +300,3 @@ function ProductDetailOne() {
 }
 
 export default ProductDetailOne;
-
