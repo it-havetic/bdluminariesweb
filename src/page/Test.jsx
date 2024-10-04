@@ -320,7 +320,7 @@ const Test = () => {
               <div className="w-full h-[70%] flex gap-2">
                 <div className="w-1/2">
                   <Image
-                    className="w-full h-full object-cover rounded"
+                    className="w-full h-full object-fill rounded"
                     src={`https://code.bdluminaries.com/${specification?.image}`}
                     alt=""
                   />
