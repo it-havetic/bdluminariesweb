@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Image } from "antd";
 import { useEffect, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { useParams } from "react-router-dom";
@@ -318,19 +318,23 @@ const Test = () => {
                 </h2>
               </div>
               <div className="w-full h-[70%] flex gap-2">
-                <img
-                  className="w-full h-full object-cover rounded"
-                  src={`https://code.bdluminaries.com/${specification?.image}`}
-                  alt=""
-                />
-                <video
-                  className="w-full h-full object-cover rounded"
-                  controls
-                  autoPlay
-                  loop
-                  muted
-                  src={`https://code.bdluminaries.com/${specification?.video}`}
-                />
+                <div className="w-1/2">
+                  <Image
+                    className="w-full h-full object-cover rounded"
+                    src={`https://code.bdluminaries.com/${specification?.image}`}
+                    alt=""
+                  />
+                </div>
+                <div className="w-1/2 overflow-hidden">
+                  <video
+                    className="w-full h-full object-cover rounded"
+                    controls
+                    autoPlay
+                    loop
+                    muted
+                    src={`https://code.bdluminaries.com/${specification?.video}`}
+                  />
+                </div>
               </div>
             </div>
           )}
