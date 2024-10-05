@@ -149,8 +149,8 @@ const Test = () => {
       <Navbar />
       {specification ? (
         <div className=" h-[97%]">
-          <div className="h-[73%] ">
-            <div className="h-[82%]  flex">
+          <div className="h-[78%] ">
+            <div className="h-[78%] flex">
               <div className="w-4/5 h-full   ">
                 <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 mr-2 rounded-r text-center text-sm font-bold">
                   Technical Perameter
@@ -170,87 +170,125 @@ const Test = () => {
                 </div>
               </div>
               {specification && (
-                <div className="w-1/5 h-full bg-pink-500">
-                  <SpecificationItem
-                    sItemClass="h-[20%]"
-                    title={
-                      specification?.watts.length > 0 ? "Watts" : "Dimension"
-                    }
-                    data={
-                      specification?.watts.length > 0
-                        ? specification?.watts
-                        : specification?.dimention
-                    }
-                    items={["1-10W", "11-20W", "21-30W"]}
-                  />
-                  <SpecificationItem
-                    sItemClass="h-[20%]"
-                    title={
-                      specification?.lumens.length > 0 ? "Lumens" : "Shape"
-                    }
-                    data={
-                      specification?.lumens.length > 0
-                        ? specification?.lumens
-                        : specification?.shape
-                    }
-                    items={["110lm/W", "120lm/W", "130lm/W"]}
-                  />
-                  <SpecificationItem
-                    sItemClass="h-[20%]"
-                    title={
-                      specification?.beamAngle.length > 0
-                        ? "Beam Angle"
-                        : "Thickness"
-                    }
-                    data={
-                      specification?.beamAngle.length > 0
-                        ? specification?.beamAngle
-                        : specification?.thickness
-                    }
-                    items={["8D", "12D", "24D", "36D", "45D", "+"]}
-                  />
-                  <SpecificationItem
-                    sItemClass="h-[20%]"
-                    title={
-                      specification?.rimColor.length > 0
-                        ? "Rim Color"
-                        : "Mounting"
-                    }
-                    data={
-                      specification?.rimColor.length > 0
-                        ? specification?.rimColor
-                        : specification?.mounting
-                    }
-                    items={["White", "Black", "Chrome", "Rose Gold", "+"]}
-                  />
-                  <SpecificationItem
-                    sItemClass="h-[20%]"
-                    title={
-                      specification?.mounting_array.length > 0
-                        ? "Mounting"
-                        : "Finish"
-                    }
-                    data={
-                      specification?.mounting_array.length > 0
-                        ? specification?.mounting_array
-                        : specification?.finish
-                    }
-                    items={[
-                      "Surface",
-                      "Recessed",
-                      "Base Plait",
-                      "Pendant",
-                      "F-Standing",
-                      "+",
-                    ]}
-                  />
+                <div className="w-1/5 h-full bg-pink-500 flex flex-col">
+                  {specification?.cri.length > 0 || specification?.dimension ? (
+                    <SpecificationItem
+                      sItemClass="h-full"
+                      title={
+                        specification?.cri.length > 0 ? "CRI" : "Dimension"
+                      }
+                      data={
+                        specification?.cri.length > 0
+                          ? specification?.cri
+                          : specification?.dimention
+                      }
+                      items={["<80", ">80", ">90", ">92", ">95", ">97", "+"]}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  {specification?.cct.length > 0 || specification?.shape ? (
+                    <SpecificationItem
+                      sItemClass="h-full"
+                      title={specification?.cct.length > 0 ? "CCT" : "Shape"}
+                      data={
+                        specification?.cct.length > 0
+                          ? specification?.cct
+                          : specification?.shape
+                      }
+                      items={[
+                        "3000K",
+                        "2700K",
+                        "6400K",
+                        "5000K",
+                        "4000K",
+                        "3500K",
+                        "2000K",
+                      ]}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  
+                  {specification?.dimming.length > 0 ||
+                  specification?.thickness ? (
+                    <SpecificationItem
+                      sItemClass="h-full"
+                      title={
+                        specification?.dimming.length > 0
+                          ? "Dimming"
+                          : "Thickness"
+                      }
+                      data={
+                        specification?.dimming.length > 0
+                          ? specification?.dimming
+                          : specification?.thickness
+                      }
+                      items={[
+                        "Wireless",
+                        "2.4g",
+                        "0-10V",
+                        "DALi",
+                        "Gizbee",
+                        "Mash 5.0",
+                        "DMX512",
+                        "24VDC",
+                        "+",
+                      ]}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  {specification?.bodyColor.length > 0 ||
+                  specification?.mounting ? (
+                    <SpecificationItem
+                      sItemClass="h-full"
+                      title={
+                        specification?.bodyColor.length > 0
+                          ? "Body Color"
+                          : "Mounting"
+                      }
+                      data={
+                        specification?.bodyColor.length > 0
+                          ? specification?.bodyColor
+                          : specification?.mounting
+                      }
+                      items={[
+                        "White",
+                        "Black",
+                        "Gold",
+                        "Chrome",
+                        "Rose Gold",
+                        "+",
+                      ]}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  {specification?.glare.length > 0 || specification?.finish ? (
+                    <SpecificationItem
+                      sItemClass="h-full"
+                      title={
+                        specification?.glare.length > 0 ? "Glare/UGI" : "Finish"
+                      }
+                      data={
+                        specification?.glare.length > 0
+                          ? specification?.glare
+                          : specification?.finish
+                      }
+                      items={["LMS", "Parabolic", "Honeycomb", "+"]}
+                    />
+                  ) : (
+                    ""
+                  )}
                 </div>
               )}
             </div>
             {specification && (
-              <div className="h-[18%] bg-gray-100 grid grid-cols-5">
+              <div className="h-[22%] bg-gray-100 flex-row-reverse flex justify-end">
                 <SpecificationItem
-                  title={specification?.ip.length > 0 ? "ip" : "Customization"}
+                  sItemClass="w-full"
+                  title={specification?.ip.length > 0 ? "IP" : "Customization"}
                   data={
                     specification?.ip.length > 0
                       ? specification?.ip
@@ -259,66 +297,82 @@ const Test = () => {
                   items={["20", "40", "65", "66", "67", "68", "+"]}
                 />
                 <SpecificationItem
-                  title={specification?.glare.length > 0 ? "Glare" : "Capacity"}
+                  sItemClass="w-full"
+                  title={
+                    specification?.mounting_array.length > 0
+                      ? "Glare"
+                      : "Capacity"
+                  }
                   data={
-                    specification?.glare.length > 0
-                      ? specification?.glare
+                    specification?.mounting_array.length > 0
+                      ? specification?.mounting_array
                       : specification?.capacity
                   }
-                  items={["LMS", "Parabolic", "Honeycomb", "+"]}
+                  items={[
+                    "Surface",
+                    "Recessed",
+                    "Base Plait",
+                    "Pendant",
+                    "Floor Standing",
+                    "+",
+                  ]}
                 />
-                {specification?.bodyColor.length > 0 && (
+
+                <SpecificationItem
+                  sItemClass="w-full"
+                  title={
+                    specification?.rimColor.length > 0
+                      ? "Rim Color"
+                      : "Protocol"
+                  }
+                  data={
+                    specification?.rimColor.length > 0
+                      ? specification?.rimColor
+                      : specification?.protocol
+                  }
+                  items={["White", "Black", "Chrome", "Rose Gold", "+"]}
+                />
+
+                {specification?.beamAngle.length > 0 && (
                   <SpecificationItem
-                    title="Body Color"
-                    data={specification.bodyColor}
-                    items={[
-                      "White",
-                      "Black",
-                      "Gold",
-                      "Chrome",
-                      "Rose Gold",
-                      "+",
-                    ]}
+                    sItemClass="w-full"
+                    title="B-Angle"
+                    data={specification.beamAngle}
+                    items={["8D", "12D", "24D", "36D", "45D", "+"]}
                   />
                 )}
-                {specification?.dimming.length > 0 && (
+                {specification?.lumens.length > 0 && (
                   <SpecificationItem
-                    title="Dimming"
-                    data={specification.dimming}
-                    items={["0/1-10W", "DALI", "Phase", "PWM", "24VDC"]}
+                    sItemClass="w-full"
+                    title="lumens"
+                    data={specification.lumens}
+                    items={["110lm/W", "120lm/W", "130lm/W"]}
                   />
                 )}
-                {specification?.cct.length > 0 && (
+                {specification?.watts.length > 0 && (
                   <SpecificationItem
-                    title="CCT"
-                    data={specification.cct}
-                    items={[
-                      "3000K",
-                      "2700K",
-                      "6400K",
-                      "5000K",
-                      "4000K",
-                      "3500K",
-                      "2000K",
-                    ]}
+                    sItemClass="w-full"
+                    title="Watts"
+                    data={specification.watts}
+                    items={["1-10W", "11-20W", "21-30W"]}
                   />
                 )}
               </div>
             )}
           </div>
           {specification && (
-            <div className="h-[27%] bg-slate-200 p-3">
-              <div className="w-full h-[30%] ">
+            <div className="h-[22%] bg-slate-200 p-3">
+              <div className="w-full h-[23%] ">
                 <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 rounded text-center text-sm font-bold">
                   Installation Guideline
                 </h2>
-                <h2 className="flex justify-around items-center p-1 border-l border-t uppercase text-black rounded text-center text-sm font-bold">
+                {/* <h2 className="flex justify-around items-center p-1 border-l border-t uppercase text-black rounded text-center text-sm font-bold">
                   <span>Image</span>
                   <span>Vedio</span>
-                </h2>
+                </h2> */}
               </div>
-              <div className="w-full h-[70%] flex gap-2">
-                <div className="w-1/2">
+              <div className="w-full h-[77%] flex gap-2">
+                <div className="w-1/2 flex justify-center items-center overflow-hidden">
                   <Image
                     className="w-full h-full object-fill rounded"
                     src={`https://code.bdluminaries.com/${specification?.image}`}
