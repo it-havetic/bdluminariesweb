@@ -1,32 +1,14 @@
 import React, { useEffect } from "react";
+import { IoClose, IoHomeOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import "../components/IconMenu.css";
-import {Link} from "react-router-dom"
-import {
-  IoClose,
-  IoHomeOutline,
-  IoSettingsOutline,
-  IoMailOutline,
-  IoKeyOutline,
-  IoCameraOutline,
-  IoGameControllerOutline,
-  IoPersonOutline,
-  IoVideocamOutline,
-} from "react-icons/io5";
 
-import { FcAbout } from "react-icons/fc";
-import { FaRegLightbulb } from "react-icons/fa";
-import { GiBookmark } from "react-icons/gi";
-import { FaBook } from "react-icons/fa";
+import { FaLinkedinIn, FaRegLightbulb } from "react-icons/fa";
 import { IoBookOutline } from "react-icons/io5";
-import { MdOutlineContactPhone } from "react-icons/md";
 import { LuYoutube } from "react-icons/lu";
+import { MdOutlineContactPhone } from "react-icons/md";
 import { RiFacebookBoxLine } from "react-icons/ri";
 import { SiTiktok } from "react-icons/si";
-import { FaLinkedinIn } from "react-icons/fa";
-
-
-
-
 
 const MenuIcon = ({ className }) => {
   useEffect(() => {
@@ -66,17 +48,25 @@ const MenuIcon = ({ className }) => {
           </Link>
         </li>
         <li style={{ "--i": 1, "--clr": "#fee800" }}>
-          <Link to="/profile" onMouseEnter={handleHover} className="group innerA">
+          <Link
+            to="/profile"
+            onMouseEnter={handleHover}
+            className="group innerA"
+          >
             <FaRegLightbulb className="z-10 text-2xl group-hover:text-[#161616] " />
           </Link>
         </li>
         <li style={{ "--i": 2, "--clr": "#04fc43" }}>
-          <Link to="academy" onMouseEnter={handleHover} className="group innerA">
+          <Link to="/blog" onMouseEnter={handleHover} className="group innerA">
             <IoBookOutline className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>
         <li style={{ "--i": 3, "--clr": "#fe00f1" }}>
-          <Link to="/contact" onMouseEnter={handleHover} className="group innerA">
+          <Link
+            to="/contact"
+            onMouseEnter={handleHover}
+            className="group innerA"
+          >
             <MdOutlineContactPhone className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>

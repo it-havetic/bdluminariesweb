@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "../axios";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import axios from "../axios";
 
 const RecentWork = () => {
   const [shuffledContent, setShuffledContent] = useState([]);
@@ -20,7 +20,9 @@ const RecentWork = () => {
   useEffect(() => {
     const fetchRecentWork = async () => {
       try {
-        const response = await axios.get("https://code.bdluminaries.com/api/v1/recent-works");
+        const response = await axios.get(
+          "https://code.bdluminaries.com/api/v1/recent-works"
+        );
         const data = response.data;
 
         const formattedContent = data.flatMap((work) => {
@@ -54,7 +56,7 @@ const RecentWork = () => {
     const fetchMockupData = async () => {
       try {
         const response = await axios.get("/mockup-zones");
-        const data = response.data;
+        const data = response.data.sort((a, b) => a.prioroty - b.prioroty);
 
         const images = data.flatMap((zone) =>
           zone.images.map((image) => ({
@@ -137,7 +139,12 @@ const RecentWork = () => {
               <div
                 key={item.id}
                 className="shadow-md rounded"
-                onClick={() => displayContent(item.type, item.type === "video" ? item.video : item.image)}
+                onClick={() =>
+                  displayContent(
+                    item.type,
+                    item.type === "video" ? item.video : item.image
+                  )
+                }
               >
                 <img
                   src={item.type === "video" ? item.thumbnail : item.image}

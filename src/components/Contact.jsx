@@ -93,7 +93,9 @@ const ContactForm = () => {
 
   return (
     <>
-      <Navbar />
+      <div className="sticky top-0 z-[999]">
+        <Navbar />
+      </div>
       <div className="min-h-screen bg-gray-100 flex flex-col items-center p-3 pb-12 mt-0">
         <div className="text-2xl mb-6 text-center relative">
           <p className="text-[#686868] font-bold text-xl uppercase">

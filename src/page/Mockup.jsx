@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
-import Marquee from "react-fast-marquee";
+import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-import slogan from "/assets/slogan.png";
-import { AiOutlineProduct } from "react-icons/ai";
 import Navbar from "../components/Navbar";
 
 const Mockup = () => {
@@ -26,12 +23,14 @@ const Mockup = () => {
         const data = await response.json();
 
         // Process the data to extract only image data
-        const imageWorks = data.flatMap((item) =>
-          item.images.map((image) => ({
-            src: image,
-            id: item._id,
-          }))
-        );
+        const imageWorks = data
+          .sort((a, b) => a.prioroty - b.prioroty)
+          .flatMap((item) =>
+            item.images.map((image) => ({
+              src: image,
+              id: item._id,
+            }))
+          );
         setRecentWorks(imageWorks); // Set recent works with only images
       } catch (error) {
         console.error("Error fetching recent works:", error);
@@ -51,18 +50,20 @@ const Mockup = () => {
         const data = await response.json();
 
         // Process the data to extract images and videos
-        const combinedContent = data.flatMap((zone) => {
-          const imagesWithType = zone.images.map((img) => ({
-            type: "image",
-            src: `https://code.bdluminaries.com/${img}`,
-          }));
-          const videosWithType = zone.videos.map((vid) => ({
-            type: "video",
-            video: `https://code.bdluminaries.com/${vid.video}`,
-            thumbnail: `https://code.bdluminaries.com/${vid.thumbnail}`,
-          }));
-          return [...imagesWithType, ...videosWithType];
-        });
+        const combinedContent = data
+          .sort((a, b) => a.prioroty - b.prioroty)
+          .flatMap((zone) => {
+            const imagesWithType = zone.images.map((img) => ({
+              type: "image",
+              src: `https://code.bdluminaries.com/${img}`,
+            }));
+            const videosWithType = zone.videos.map((vid) => ({
+              type: "video",
+              video: `https://code.bdluminaries.com/${vid.video}`,
+              thumbnail: `https://code.bdluminaries.com/${vid.thumbnail}`,
+            }));
+            return [...imagesWithType, ...videosWithType];
+          });
 
         // Shuffle the combined array
         const shuffled = combinedContent.sort(() => Math.random() - 0.5);
