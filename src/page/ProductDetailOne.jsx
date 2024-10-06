@@ -239,7 +239,6 @@ function ProductDetailOne() {
               <h2 className="text-white font-semibold text-sm">
                 {displayedProduct?.series}
               </h2>
-              <p className="text-white font-normal text-sm">*************</p>
             </div>
             <div className="p-0.5 shadow-lg backdrop-filter border border-black/10 border-r-0 border-opacity-30 col-span-8 grid grid-cols-4 gap-0.5 text-[10px]">
               <div>
