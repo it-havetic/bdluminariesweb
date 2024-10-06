@@ -225,8 +225,7 @@ const Test = () => {
                           : specification?.thickness
                       }
                       items={[
-                        "Wireless",
-                        "2.4g",
+                        "Wireless 2.4g",
                         "0-10V",
                         "DALi",
                         "Gizbee",
