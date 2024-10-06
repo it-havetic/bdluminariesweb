@@ -171,11 +171,11 @@ const Test = () => {
               </div>
               {specification && (
                 <div className="w-1/5 h-full bg-pink-500 flex flex-col">
-                  {specification?.cri.length > 0 || specification?.dimension ? (
+                  {specification?.cri.length > 0 || specification?.dimention ? (
                     <SpecificationItem
                       sItemClass="h-full"
                       title={
-                        specification?.cri.length > 0 ? "CRI" : "Dimension"
+                        specification?.cri.length > 0 ? "CRI" : "Dimention"
                       }
                       data={
                         specification?.cri.length > 0
@@ -209,7 +209,7 @@ const Test = () => {
                   ) : (
                     ""
                   )}
-                  
+
                   {specification?.dimming.length > 0 ||
                   specification?.thickness ? (
                     <SpecificationItem
@@ -300,7 +300,7 @@ const Test = () => {
                   sItemClass="w-full"
                   title={
                     specification?.mounting_array.length > 0
-                      ? "Glare"
+                      ? "Mounting"
                       : "Capacity"
                   }
                   data={

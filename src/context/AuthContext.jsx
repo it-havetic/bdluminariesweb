@@ -18,9 +18,7 @@ const AuthContextProvider = ({ children }) => {
     const getUserStatus = async (id) => {
       if (authUser) {
         try {
-          const res = await axios.get(
-            `http://localhost:3000/api/v1/users/${id}`
-          );
+          const res = await axios.get(`users/${id}`);
           if (res.status === 200) {
             console.log(res.data);
             if (res.data.status !== "active") {
