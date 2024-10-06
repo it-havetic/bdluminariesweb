@@ -171,44 +171,42 @@ const Test = () => {
               </div>
               {specification && (
                 <div className="w-1/5 h-full bg-pink-500 flex flex-col">
-                  {specification?.cri.length > 0 || specification?.dimention ? (
-                    <SpecificationItem
-                      sItemClass="h-full"
-                      title={
-                        specification?.cri.length > 0 ? "CRI" : "Dimention"
-                      }
-                      data={
-                        specification?.cri.length > 0
-                          ? specification?.cri
-                          : specification?.dimention
-                      }
-                      items={["<80", ">80", ">90", ">92", ">95", ">97", "+"]}
-                    />
-                  ) : (
-                    ""
-                  )}
-                  {specification?.cct.length > 0 || specification?.shape ? (
-                    <SpecificationItem
-                      sItemClass="h-full"
-                      title={specification?.cct.length > 0 ? "CCT" : "Shape"}
-                      data={
-                        specification?.cct.length > 0
-                          ? specification?.cct
-                          : specification?.shape
-                      }
-                      items={[
-                        "3000K",
-                        "2700K",
-                        "6400K",
-                        "5000K",
-                        "4000K",
-                        "3500K",
-                        "2000K",
-                      ]}
-                    />
-                  ) : (
-                    ""
-                  )}
+                  <SpecificationItem
+                    sItemClass="h-full"
+                    title={
+                      specification?.mounting_array.length > 0
+                        ? "Mounting"
+                        : "Capacity"
+                    }
+                    data={
+                      specification?.mounting_array.length > 0
+                        ? specification?.mounting_array
+                        : specification?.capacity
+                    }
+                    items={[
+                      "Surface",
+                      "Recessed",
+                      "Base Plate",
+                      "Pendant",
+                      "F-Standing",
+                      "+",
+                    ]}
+                  />
+
+                  <SpecificationItem
+                    sItemClass="h-full"
+                    title={
+                      specification?.rimColor.length > 0
+                        ? "Rim Color"
+                        : "Protocol"
+                    }
+                    data={
+                      specification?.rimColor.length > 0
+                        ? specification?.rimColor
+                        : specification?.protocol
+                    }
+                    items={["White", "Black", "Chrome", "Rose Gold", "+"]}
+                  />
 
                   {specification?.dimming.length > 0 ||
                   specification?.thickness ? (
@@ -295,42 +293,45 @@ const Test = () => {
                   }
                   items={["20", "40", "65", "66", "67", "68", "+"]}
                 />
-                <SpecificationItem
-                  sItemClass="w-full"
-                  title={
-                    specification?.mounting_array.length > 0
-                      ? "Mounting"
-                      : "Capacity"
-                  }
-                  data={
-                    specification?.mounting_array.length > 0
-                      ? specification?.mounting_array
-                      : specification?.capacity
-                  }
-                  items={[
-                    "Surface",
-                    "Recessed",
-                    "Base Plait",
-                    "Pendant",
-                    "Floor Standing",
-                    "+",
-                  ]}
-                />
 
-                <SpecificationItem
-                  sItemClass="w-full"
-                  title={
-                    specification?.rimColor.length > 0
-                      ? "Rim Color"
-                      : "Protocol"
-                  }
-                  data={
-                    specification?.rimColor.length > 0
-                      ? specification?.rimColor
-                      : specification?.protocol
-                  }
-                  items={["White", "Black", "Chrome", "Rose Gold", "+"]}
-                />
+                {specification?.cri.length > 0 || specification?.dimention ? (
+                  <SpecificationItem
+                    sItemClass="w-full"
+                    title={specification?.cri.length > 0 ? "CRI" : "Dimention"}
+                    data={
+                      specification?.cri.length > 0
+                        ? specification?.cri
+                        : specification?.dimention
+                    }
+                    items={["<80", ">80", ">90", ">92", ">95", ">97", "+"]}
+                  />
+                ) : (
+                  ""
+                )}
+                {specification?.cct.length > 0 || specification?.shape ? (
+                  <SpecificationItem
+                    sItemClass="w-full"
+                    title={specification?.cct.length > 0 ? "CCT" : "Shape"}
+                    data={
+                      specification?.cct.length > 0
+                        ? specification?.cct
+                        : specification?.shape
+                    }
+                    items={[
+                      "8000K",
+                      "7500K",
+                      "6500K",
+                      "5000K",
+                      "4000K",
+                      "3000K",
+                      "2700K",
+                      "2000K",
+                      "+",
+                    ]}
+                  />
+                ) : (
+                  ""
+                )}
 
                 {specification?.beamAngle.length > 0 && (
                   <SpecificationItem
