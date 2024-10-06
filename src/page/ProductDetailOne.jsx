@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import axios from "../axios";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -13,6 +13,7 @@ function ProductDetailOne() {
 
   let navigate = useNavigate();
   const { id } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [selectedSeries, setSelectedSeries] = useState([]);
   const [productsToShow, setProductsToShow] = useState([]);
@@ -30,8 +31,10 @@ function ProductDetailOne() {
       if (seriesByGroupId.length > 0) {
         // Automatically select the first series and fetch its products
         const firstSeriesId = seriesByGroupId[0]._id;
-        getProductsBySeries(firstSeriesId);
-        setSeriseID(firstSeriesId);
+        setSearchParams({ series: firstSeriesId });
+
+        getProductsBySeries(searchParams.get("series") || firstSeriesId);
+        setSeriseID(searchParams.get("series") || firstSeriesId);
       }
     } catch (error) {
       console.error("Error fetching the series data:", error);
@@ -40,8 +43,11 @@ function ProductDetailOne() {
 
   // Fetch products based on series ID
   const getProductsBySeries = async (seriesId) => {
+    setSearchParams({ series: seriesId });
     try {
-      let res = await axios.get(`/products/series/${seriesId}`);
+      let res = await axios.get(
+        `/products/series/${searchParams.get("series") || seriesId}`
+      );
       const products = res.data;
       setProductsToShow(products);
 
@@ -71,9 +77,10 @@ function ProductDetailOne() {
   // When seriseID changes, update the products to show
   useEffect(() => {
     if (seriseID) {
+      setSearchParams({ series: seriseID });
       getProductsBySeries(seriseID);
     }
-  }, [seriseID]);
+  }, [seriseID, searchParams]);
 
   /**
    * Handles product click event by updating the displayed product state with the clicked product's data
@@ -134,7 +141,10 @@ function ProductDetailOne() {
               <div
                 key={item._id}
                 className="shadow-md rounded bg-[#8ac249] cursor-pointer"
-                onClick={() => setSeriseID(item._id)} // Update products when clicked
+                onClick={() => {
+                  console.log(item);
+                  setSeriseID(item._id);
+                }} // Update products when clicked
               >
                 <img
                   src={`https://code.bdluminaries.com/${item.image}`}
