@@ -95,7 +95,6 @@ function ProductDetailOne() {
     try {
       let res = await axios.get("/recent-works");
       if (res.status === 200) {
-        console.log(res.data);
         const recentWorks = res.data.filter((item) =>
           item.series.includes(searchParams.get("series"))
         );
@@ -121,8 +120,6 @@ function ProductDetailOne() {
       console.error("Error fetching recent works:", error);
     }
   };
-
-  console.log(refaranceImageAndVideo);
 
   /**
    * Handles product click event by updating the displayed product state with the clicked product's data
@@ -273,17 +270,17 @@ function ProductDetailOne() {
                 <h2 className="text-xs font-bold z-10 text-center uppercase bg-[#F15B26] pl-3 text-white py-0.5 absolute w-full left-0 top-0">
                   Reference Photo
                 </h2>
-                <div className="w-full overflow-hidden bg-red-500 h-full">
+                <div className="w-full overflow-hidden h-full">
                   <Image
                     className="w-full object-cover"
-                    src={seletedImage || refaranceImageAndVideo.image[0]}
+                    src={seletedImage || refaranceImageAndVideo?.image[0]}
                     alt=""
                   />
                 </div>
               </div>
               {/* image navigate */}
               <div className="overflow-y-scroll space-y-1 h-full row-span-3">
-                {refaranceImageAndVideo.image.map((item) => (
+                {refaranceImageAndVideo?.image?.map((item) => (
                   <div
                     key={item}
                     className="bg-slate-400 rounded-l-md overflow-hidden"
@@ -302,7 +299,7 @@ function ProductDetailOne() {
             <div className="grid grid-cols-5 grid-rows-3 gap-1 h-1/2">
               {/* image navigate */}
               <div className="overflow-y-scroll space-y-1 h-full row-span-3">
-                {refaranceImageAndVideo.video.map((item, idx) => (
+                {refaranceImageAndVideo?.video?.map((item, idx) => (
                   <div
                     key={idx}
                     className="bg-slate-400 rounded-md overflow-hidden"
@@ -312,7 +309,7 @@ function ProductDetailOne() {
                   >
                     <img
                       className="w-full h-full object-cover"
-                      src={item.thumbnail}
+                      src={item?.thumbnail}
                       alt=""
                     />
                   </div>
@@ -323,11 +320,11 @@ function ProductDetailOne() {
                 <h2 className="text-xs font-bold z-10 text-center uppercase bg-[#F15B26] pl-3 text-white py-0.5 absolute w-full left-0 top-0">
                   Reference Video
                 </h2>
-                <div className="w-full rounded overflow-hidden bg-red-500 h-full">
+                <div className="w-full rounded overflow-hidden h-full">
                   <video
                     className="w-full h-full object-cover"
                     src={
-                      seletedVideo.video ||
+                      seletedVideo?.video ||
                       refaranceImageAndVideo?.video[0]?.video
                     }
                     alt=""
