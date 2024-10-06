@@ -43,7 +43,6 @@ function ProductDetailOne() {
 
   // Fetch products based on series ID
   const getProductsBySeries = async (seriesId) => {
-    setSearchParams({ series: seriesId });
     try {
       let res = await axios.get(
         `/products/series/${searchParams.get("series") || seriesId}`
@@ -77,10 +76,9 @@ function ProductDetailOne() {
   // When seriseID changes, update the products to show
   useEffect(() => {
     if (seriseID) {
-      setSearchParams({ series: seriseID });
       getProductsBySeries(seriseID);
     }
-  }, [seriseID, searchParams]);
+  }, [searchParams]);
 
   /**
    * Handles product click event by updating the displayed product state with the clicked product's data
@@ -144,6 +142,7 @@ function ProductDetailOne() {
                 onClick={() => {
                   console.log(item);
                   setSeriseID(item._id);
+                  setSearchParams({ series: item._id });
                 }} // Update products when clicked
               >
                 <img
