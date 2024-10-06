@@ -104,7 +104,7 @@ const ContactForm = () => {
           <span className="Contactwith absolute text-lg left-0 top-7 -rotate-45 text-[#F15B26]">
             with
           </span>
-          <span className="font-bold text-[#8AC249]">bdLUMINARIES</span>
+          <span className="font-bdlHeading font-bold text-sm tracking-tight text-[#8AC249]">bdLUMINARIES</span>
         </div>
 
         {success && (
@@ -201,7 +201,7 @@ const ContactForm = () => {
 
           <button
             type="submit"
-            className={`w-full py-3 bg-green-600 text-white font-semibold rounded-lg transition-all hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 ${
+            className={`w-full font-bdlHeading py-3 bg-green-600 text-white font-semibold rounded-lg transition-all hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 ${
               isSubmitting ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={isSubmitting}
