@@ -275,7 +275,7 @@ const Test = () => {
                           ? specification?.glare
                           : specification?.finish
                       }
-                      items={["LMS", "Parabolic", "Honeycomb", "+"]}
+                      items={["Lens", "Parabolic", "Honeycomb", "+"]}
                     />
                   ) : (
                     ""
