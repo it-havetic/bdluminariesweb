@@ -149,7 +149,7 @@ const Test = () => {
       <Navbar />
       {specification ? (
         <div className=" h-[97%]">
-          <div className="h-[78%] ">
+          <div className="h-[70%] ">
             <div className="h-[78%] flex">
               <div className="w-4/5 h-full   ">
                 <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 mr-2 rounded-r text-center text-sm font-bold">
@@ -361,7 +361,7 @@ const Test = () => {
             )}
           </div>
           {specification && (
-            <div className="h-[22%] bg-slate-200 p-3">
+            <div className="h-[30%] bg-slate-200 p-3">
               <div className="w-full h-[23%] ">
                 <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 rounded text-center text-sm font-bold">
                   Installation Guideline
