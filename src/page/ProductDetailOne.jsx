@@ -1,3 +1,4 @@
+import { Image, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import axios from "../axios";
@@ -7,9 +8,9 @@ import Preloader from "../components/Preloader.jsx";
 
 function ProductDetailOne() {
   const [isItemVisible, setIsItemVisible] = useState(false);
-  const handleToggle = () => {
-    setIsItemVisible(!isItemVisible);
-  };
+  // const handleToggle = () => {
+  //   setIsItemVisible(!isItemVisible);
+  // };
 
   let navigate = useNavigate();
   const { id } = useParams();
@@ -18,18 +19,22 @@ function ProductDetailOne() {
   const [selectedSeries, setSelectedSeries] = useState([]);
   const [productsToShow, setProductsToShow] = useState([]);
   const [seriseID, setSeriseID] = useState();
-
   const [displayedProduct, setDisplayedProduct] = useState({});
-
+  const [refaranceImageAndVideo, setRefaranceImageAndVideo] = useState({
+    image: [],
+    video: [],
+  });
+  const [seletedImage, setSeletedImage] = useState();
+  const [seletedVideo, setSeletedVideo] = useState();
   const [loading, setLoading] = useState(false);
 
-  // Fetch series based on group ID and set the first series's products to productsToShow
-
+  // Fetch series data
   useEffect(() => {
     bdlSeries();
+    fetchRecentWorks();
   }, []);
 
-  // When seriseID changes, update the products to show
+  // Fetch products based on series ID
   useEffect(() => {
     if (seriseID) {
       getProductsBySeries(seriseID);
@@ -86,6 +91,39 @@ function ProductDetailOne() {
     }
   };
 
+  const fetchRecentWorks = async () => {
+    try {
+      let res = await axios.get("/recent-works");
+      if (res.status === 200) {
+        console.log(res.data);
+        const recentWorks = res.data.filter((item) =>
+          item.series.includes(searchParams.get("series"))
+        );
+        const recentWorksWithImage = recentWorks.flatMap((item) => {
+          return item.images.map(
+            (image) => `https://code.bdluminaries.com/${image}`
+          );
+        });
+        const recentWorksWithVideo = recentWorks.flatMap((item) => {
+          return item.videos.map((video) => {
+            return {
+              video: `https://code.bdluminaries.com/${video.video}`,
+              thumbnail: `https://code.bdluminaries.com/${video.thumbnail}`,
+            };
+          });
+        });
+        setRefaranceImageAndVideo({
+          video: [...recentWorksWithVideo],
+          image: [...recentWorksWithImage],
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching recent works:", error);
+    }
+  };
+
+  console.log(refaranceImageAndVideo);
+
   /**
    * Handles product click event by updating the displayed product state with the clicked product's data
    * @param {Object} product The product object containing the series name, item code, image, price, and description
@@ -102,7 +140,11 @@ function ProductDetailOne() {
 
   const renderProducts = () => {
     if (loading) {
-      return;
+      return (
+        <div className="w-full h-[40%] flex items-center justify-center">
+          <Spin spinning={loading} size="large" />;
+        </div>
+      );
     }
     return (
       <section className="h-[40%]">
@@ -227,84 +269,73 @@ function ProductDetailOne() {
         <section className="h-full">
           <div className="h-[91%] flex flex-col gap-y-1">
             <div className="grid grid-cols-5 grid-rows-3 gap-1 h-1/2">
-              <div className="bg-slate-500 col-span-4 row-span-3 relative rounded-r-lg overflow-hidden">
-                <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-0.5 absolute w-full left-0 top-0">
+              <div className="bg-slate-500 col-span-4 row-span-3 relative rounded-r-lg overflow-hidden flex flex-col">
+                <h2 className="text-xs font-bold z-10 text-center uppercase bg-[#F15B26] pl-3 text-white py-0.5 absolute w-full left-0 top-0">
                   Reference Photo
                 </h2>
-                <img
-                  className="w-full h-full object-cover"
-                  src="/assets/recent/r1.png"
-                  alt=""
-                />
+                <div className="w-full overflow-hidden bg-red-500 h-full">
+                  <Image
+                    className="w-full object-cover"
+                    src={seletedImage || refaranceImageAndVideo.image[0]}
+                    alt=""
+                  />
+                </div>
               </div>
-              <div className="bg-slate-400 rounded-l-md overflow-hidden">
-                <img
-                  className="w-full h-full object-cover"
-                  src="/assets/recent/r2.png"
-                  alt=""
-                />
-              </div>
-              <div className="bg-slate-400 rounded-l-md overflow-hidden">
-                <img
-                  className="w-full h-full object-cover"
-                  src="/assets/recent/r3.png"
-                  alt=""
-                />
-              </div>
-              <div className="bg-slate-400 rounded-l-md overflow-hidden">
-                <img
-                  className="w-full h-full object-cover"
-                  src="/assets/recent/r4.png"
-                  alt=""
-                />
+              {/* image navigate */}
+              <div className="overflow-y-scroll space-y-1 h-full row-span-3">
+                {refaranceImageAndVideo.image.map((item) => (
+                  <div
+                    key={item}
+                    className="bg-slate-400 rounded-l-md overflow-hidden"
+                    onClick={() => setSeletedImage(item)}
+                  >
+                    <img
+                      className="w-full h-full object-cover"
+                      src={item}
+                      alt=""
+                    />
+                  </div>
+                ))}
               </div>
             </div>
+            {/*  */}
             <div className="grid grid-cols-5 grid-rows-3 gap-1 h-1/2">
-              <div className="bg-slate-400 rounded-r-md overflow-hidden">
-                <img
-                  className="w-full h-full object-cover"
-                  src="/recentVideo/thumnail/3.jpg"
-                  alt=""
-                />
+              {/* image navigate */}
+              <div className="overflow-y-scroll space-y-1 h-full row-span-3">
+                {refaranceImageAndVideo.video.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-slate-400 rounded-md overflow-hidden"
+                    onClick={() => {
+                      setSeletedVideo(item);
+                    }}
+                  >
+                    <img
+                      className="w-full h-full object-cover"
+                      src={item.thumbnail}
+                      alt=""
+                    />
+                  </div>
+                ))}
               </div>
-              <div className="bg-slate-500 col-span-4 row-span-3 relative rounded-l-lg overflow-hidden">
-                <h2 className="text-xs font-bold text-center uppercase bg-[#F15B26] pl-3 text-white py-0.5 absolute w-full left-0 top-0">
+
+              <div className="bg-slate-500 col-span-4 row-span-3 relative rounded-l-lg overflow-hidden flex flex-col">
+                <h2 className="text-xs font-bold z-10 text-center uppercase bg-[#F15B26] pl-3 text-white py-0.5 absolute w-full left-0 top-0">
                   Reference Video
                 </h2>
-                <video
-                  className="w-full h-full object-cover"
-                  controls
-                  muted
-                  src="/recentVideo/1.mp4"
-                />
-              </div>
-              <div className="bg-slate-400 rounded-r-md overflow-hidden">
-                {/* <video
-                  className="w-full h-full object-cover"
-                  controls
-                  autoPlay
-                  muted
-                  src="/recentVideo/3.mp4"
-                /> */}
-                <img
-                  className="w-full h-full object-cover"
-                  src="/recentVideo/thumnail/2.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="bg-slate-400 rounded-r-md overflow-hidden">
-                {/* <video
-                  className="w-full h-full object-cover"
-                  controls
-                  autoPlay
-                  muted
-                  src="/recentVideo/2.mp4"
-                /> */}
-                <img
-                  className="w-full h-full object-cover"
-                  src="/recentVideo/thumnail/1.jpg"
-                  alt=""
-                />
+                <div className="w-full rounded overflow-hidden bg-red-500 h-full">
+                  <video
+                    className="w-full h-full object-cover"
+                    src={
+                      seletedVideo.video ||
+                      refaranceImageAndVideo?.video[0]?.video
+                    }
+                    alt=""
+                    muted
+                    controls
+                    autoPlay={false}
+                  />
+                </div>
               </div>
             </div>
           </div>
