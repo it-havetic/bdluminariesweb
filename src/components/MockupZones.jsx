@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
 import axios from "../axios";
 
 const MockupZones = () => {
@@ -35,27 +35,26 @@ const MockupZones = () => {
     fetchMockupZones();
   }, []);
 
-  const handleImageClick = (image) => {
-    navigate("/mockup", { state: { selectedImage: image } });
+  const handleImageClick = (zone) => {
+    console.log(zone);
+    navigate("/mockup", { state: { selectedImage: zone } });
   };
 
   return (
     <Slider className="h-[48.5%]" {...settings}>
-      {zones.map((zone) =>
-        zone.images.map((image, index) => (
-          <div
-            key={index}
-            onClick={() => handleImageClick(image)}
-            className="h-full"
-          >
-            <img
-              className="image h-full w-full object-cover"
-              src={`https://code.bdluminaries.com/${image}`}
-              alt={`Zone ${zone.name}`}
-            />
-          </div>
-        ))
-      )}
+      {zones.map((zone, index) => (
+        <div key={index} onClick={() => handleImageClick(zone)}>
+          {zone.images.map((image, index) => (
+            <div key={index} className="h-full">
+              <img
+                className="image h-full w-full object-cover"
+                src={`https://code.bdluminaries.com/${image}`}
+                alt={`Zone ${zone.name}`}
+              />
+            </div>
+          ))}
+        </div>
+      ))}
     </Slider>
   );
 };

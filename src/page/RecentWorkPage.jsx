@@ -48,7 +48,35 @@ const RecentWork = () => {
       }
     };
 
+    const seletedRecentWork = async () => {
+      try {
+        const res = await axios.get(`recent-works/${location.state.seletedId}`);
+        if (res.status === 200) {
+          const formattedSingleContent = [res.data].flatMap((work) => {
+            const images = work.images.map((image) => ({
+              id: work._id,
+              image: `https://code.bdluminaries.com/${image}`,
+              type: "image",
+            }));
+
+            const videos = work.videos.map((video) => ({
+              id: video._id,
+              video: `https://code.bdluminaries.com/${video.video}`,
+              thumbnail: `https://code.bdluminaries.com/${video.thumbnail}`,
+              type: "video",
+            }));
+
+            return [...images, ...videos];
+          });
+          setSelectedContent(formattedSingleContent);
+        }
+      } catch (error) {
+        console.error("Error fetching recent works:", error);
+      }
+    };
+
     fetchRecentWork();
+    seletedRecentWork();
   }, []);
 
   // Fetch mockup images
@@ -77,7 +105,10 @@ const RecentWork = () => {
   // Set the content to display based on clicked image or video
   useEffect(() => {
     if (recentWork.length > 0) {
-      const shuffled = recentWork.sort(() => Math.random() - 0.5);
+      const shuffled = [
+        ...selectedContent,
+        ...recentWork.sort(() => Math.random() - 0.5),
+      ];
       setShuffledContent(shuffled);
     }
 

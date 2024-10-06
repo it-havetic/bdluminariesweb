@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -12,6 +12,8 @@ const Mockup = () => {
   });
   const [shuffledContent, setShuffledContent] = useState([]);
   const [recentWorks, setRecentWorks] = useState([]); // State for recent works
+  const [mockupImages, setMockupImages] = useState([]); // State for mockup images
+  const [singleMockupZoneImages, setSingleMockupZoneImages] = useState([]);
 
   // Fetch data for recent works from the API
   useEffect(() => {
@@ -65,24 +67,56 @@ const Mockup = () => {
             return [...imagesWithType, ...videosWithType];
           });
 
-        // Shuffle the combined array
-        const shuffled = combinedContent.sort(() => Math.random() - 0.5);
-        setShuffledContent(shuffled);
-
-        // If the user clicked an image, show it
-        if (location.state?.selectedImage) {
-          setSelectedContent({
-            type: "image",
-            src: `https://code.bdluminaries.com/${location.state.selectedImage}`,
-          });
-        }
+        setMockupImages(combinedContent);
       } catch (error) {
         console.error("Error fetching mockup data:", error);
       }
     };
-
     fetchMockupData();
-  }, [location.state]);
+
+    const fetchSingleMockupData = async () => {
+      try {
+        const response = await fetch(
+          `https://code.bdluminaries.com/api/v1/mockup-zones/${location.state.selectedImage.name}`
+        );
+        const data = await response.json();
+        console.log(data);
+
+        // Process the data to extract images and videos
+        const combinedSingleContent = [data].flatMap((zone) => {
+          const imagesWithType = zone.images.map((img) => ({
+            type: "image",
+            src: `https://code.bdluminaries.com/${img}`,
+          }));
+          const videosWithType = zone.videos.map((vid) => ({
+            type: "video",
+            video: `https://code.bdluminaries.com/${vid.video}`,
+            thumbnail: `https://code.bdluminaries.com/${vid.thumbnail}`,
+          }));
+          return [...imagesWithType, ...videosWithType];
+        });
+        setSingleMockupZoneImages(combinedSingleContent);
+      } catch (error) {
+        console.error("Error fetching mockup data:", error);
+      }
+    };
+    fetchSingleMockupData();
+  }, []);
+
+  useEffect(() => {
+    const shuffled = [
+      ...singleMockupZoneImages,
+      ...mockupImages.sort(() => 0.5 - Math.random()),
+    ];
+    setShuffledContent(shuffled);
+
+    if (location.state?.selectedImage) {
+      setSelectedContent({
+        type: "image",
+        src: `https://code.bdluminaries.com/${location.state.selectedImage.images[0]}`,
+      });
+    }
+  }, [location, mockupImages, singleMockupZoneImages]);
 
   const displayContent = (type, source) => {
     setSelectedContent({ type, src: source });

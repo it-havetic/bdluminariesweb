@@ -40,8 +40,9 @@ const RecentWorks = () => {
   }, []);
 
   // Function to handle clicking on an image
-  const handleImageClick = (image) => {
-    navigate("/work", { state: { selectedImage: image } });
+  const handleImageClick = (image, id) => {
+    console.log(id, image);
+    navigate("/work", { state: { selectedImage: image, seletedId: id } });
   };
 
   // for button
@@ -91,11 +92,7 @@ const RecentWorks = () => {
               work.images
                 .filter((image, index) => index < 4)
                 .map((image, index) => (
-                  <div
-                    key={`${work._id}-${index}`}
-                    onClick={() => handleImageClick(image)} // Handle image click
-                    className="h-full"
-                  >
+                  <div key={`${work._id}-${index}`} className="h-full">
                     <img
                       className="image h-full w-full object-cover"
                       src={`https://code.bdluminaries.com/${image}`}
@@ -107,7 +104,7 @@ const RecentWorks = () => {
         </Slider>
       </div>
       <div
-        onClick={() => handleImageClick(works[0]?.images[0])}
+        onClick={() => handleImageClick(works[0]?.images[0], works[0]?._id)}
         className={`one bg-red-400 relative cursor-pointer ${
           activeIndex >= 1 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500 `}
@@ -123,7 +120,7 @@ const RecentWorks = () => {
         </p>
       </div>
       <div
-        onClick={() => handleImageClick(works[1]?.images[0])}
+        onClick={() => handleImageClick(works[1]?.images[0], works[1]?._id)}
         className={`sixteen bg-rose-400 relative ${
           activeIndex >= 16 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -138,7 +135,7 @@ const RecentWorks = () => {
         </p>
       </div>
       <div
-        onClick={() => handleImageClick(works[2]?.images[0])}
+        onClick={() => handleImageClick(works[2]?.images[0], works[2]?._id)}
         className={`fifteen bg-fuchsia-400 relative ${
           activeIndex >= 15 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -153,7 +150,7 @@ const RecentWorks = () => {
         </p>
       </div>
       <div
-        onClick={() => handleImageClick(works[3]?.images[0])}
+        onClick={() => handleImageClick(works[3]?.images[0], works[3]?._id)}
         className={`fourteen bg-emerald-400 relative cursor-pointer ${
           activeIndex >= 14 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -168,7 +165,7 @@ const RecentWorks = () => {
         </p>
       </div>
       <div
-        onClick={() => handleImageClick(works[4]?.images[0])}
+        onClick={() => handleImageClick(works[4]?.images[0], works[4]?._id)}
         className={`thirteen bg-amber-400 relative cursor-pointer ${
           activeIndex >= 13 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -183,7 +180,7 @@ const RecentWorks = () => {
         </p>
       </div>
       <div
-        onClick={() => handleImageClick(works[5]?.images[0])}
+        onClick={() => handleImageClick(works[5]?.images[0], works[5]?._id)}
         className={`two bg-blue-400 relative cursor-pointer ${
           activeIndex >= 2 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -204,7 +201,7 @@ const RecentWorks = () => {
         onClick={() => navigate("/work")}
       ></div>
       <div
-        onClick={() => handleImageClick(works[6]?.images[0])}
+        onClick={() => handleImageClick(works[6]?.images[0], works[6]?._id)}
         className={`twelve bg-lime-400 relative cursor-pointer ${
           activeIndex >= 12 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -219,7 +216,7 @@ const RecentWorks = () => {
         </p>
       </div>
       <div
-        onClick={() => handleImageClick(works[7]?.images[0])}
+        onClick={() => handleImageClick(works[7]?.images[0], works[7]?._id)}
         className={`three bg-green-400 relative cursor-pointer ${
           activeIndex >= 3 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -235,7 +232,7 @@ const RecentWorks = () => {
       </div>
 
       <div
-        onClick={() => handleImageClick(works[8]?.images[0])}
+        onClick={() => handleImageClick(works[8]?.images[0], works[8]?._id)}
         className={`eleven bg-cyan-400 relative cursor-pointer ${
           activeIndex >= 11 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -251,7 +248,7 @@ const RecentWorks = () => {
       </div>
 
       <div
-        onClick={() => handleImageClick(works[9]?.images[0])}
+        onClick={() => handleImageClick(works[9]?.images[0], works[9]?._id)}
         className={`four bg-yellow-400 relative cursor-pointer ${
           activeIndex >= 4 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -267,7 +264,7 @@ const RecentWorks = () => {
       </div>
 
       <div
-        onClick={() => handleImageClick(works[10]?.images[0])}
+        onClick={() => handleImageClick(works[10]?.images[0], works[10]?._id)}
         className={`ten bg-gray-400 relative cursor-pointer ${
           activeIndex >= 10 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -282,7 +279,7 @@ const RecentWorks = () => {
         </p>
       </div>
       <div
-        onClick={() => handleImageClick(works[11]?.images[0])}
+        onClick={() => handleImageClick(works[11]?.images[0], works[11]?._id)}
         className={`five bg-purple-400 relative cursor-pointer ${
           activeIndex >= 5 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -298,7 +295,7 @@ const RecentWorks = () => {
       </div>
 
       <div
-        onClick={() => handleImageClick(works[12]?.images[0])}
+        onClick={() => handleImageClick(works[12]?.images[0], works[12]?._id)}
         className={`six bg-pink-400 relative cursor-pointer ${
           activeIndex >= 6 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -313,7 +310,7 @@ const RecentWorks = () => {
         </p>
       </div>
       <div
-        onClick={() => handleImageClick(works[13]?.images[0])}
+        onClick={() => handleImageClick(works[13]?.images[0], works[13]?._id)}
         className={`seven bg-indigo-400 relative cursor-pointer ${
           activeIndex >= 7 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -328,7 +325,7 @@ const RecentWorks = () => {
         </p>
       </div>
       <div
-        onClick={() => handleImageClick(works[14]?.images[0])}
+        onClick={() => handleImageClick(works[14]?.images[0], works[14]?._id)}
         className={`eight bg-violet-400 relative cursor-pointer ${
           activeIndex >= 8 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
@@ -343,7 +340,7 @@ const RecentWorks = () => {
         </p>
       </div>
       <div
-        onClick={() => handleImageClick(works[15]?.images[0])}
+        onClick={() => handleImageClick(works[15]?.images[0], works[15]?._id)}
         className={`nine bg-orange-400 relative cursor-pointer ${
           activeIndex >= 9 ? "opacity-100 visible" : "opacity-0 invisible"
         } transition-opacity duration-500`}
