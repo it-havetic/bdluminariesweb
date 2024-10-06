@@ -1,13 +1,16 @@
-import { Image, Spin } from "antd";
-import React, { useEffect, useState } from "react";
+import { Button, Form, Image, Input, Modal, Spin } from "antd";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import axios from "../axios";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Preloader from "../components/Preloader.jsx";
+import { AuthContext } from "../context/AuthContext.jsx";
 
 function ProductDetailOne() {
-  const [isItemVisible, setIsItemVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const { authUser, login } = useContext(AuthContext);
+  const [form] = Form.useForm();
   // const handleToggle = () => {
   //   setIsItemVisible(!isItemVisible);
   // };
@@ -27,6 +30,12 @@ function ProductDetailOne() {
   const [seletedImage, setSeletedImage] = useState();
   const [seletedVideo, setSeletedVideo] = useState();
   const [loading, setLoading] = useState(false);
+
+  const handleLogin = async (values) => {
+    await login(values);
+    setIsModalVisible(false); // Close the modal after login
+    form.resetFields();
+  };
 
   // Fetch series data
   useEffect(() => {
@@ -206,13 +215,11 @@ function ProductDetailOne() {
         </div>
 
         <div className="w-[80%] flex flex-col gap-1">
-          <div
-            onClick={() => navigate(`/test/${displayedProduct?.id}`)}
-            className="h-[60%] bg-[#8bc24a] relative grid grid-rows-6 grid-cols-8"
-          >
+          <div className="h-[60%] bg-[#8bc24a] relative grid grid-rows-6 grid-cols-8">
             <div className="col-span-7 row-span-5 flex justify-center items-center">
               {displayedProduct ? (
                 <img
+                  onClick={() => navigate(`/test/${displayedProduct?.id}`)}
                   className="h-full w-full object-contain"
                   src={displayedProduct.image}
                   alt={displayedProduct.itemCode}
@@ -246,14 +253,20 @@ function ProductDetailOne() {
                   {displayedProduct?.description}
                 </p>
               </div>
-              <div>
+              <div
+                onClick={() => {
+                  if (!authUser?.user) {
+                    setIsModalVisible(true);
+                  }
+                }}
+              >
                 <p className="bg-black h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
                   MRP
                 </p>
                 <p className="bg-white h-1/2 text-[#cc3903] font-bold flex gap-1 justify-center items-center">
                   {/* <IoEyeOff /> */}
                   <span className="text-sm -mt-0.5">৳</span>{" "}
-                  {displayedProduct?.price}
+                  {authUser?.user ? displayedProduct?.price : "***"}
                 </p>
               </div>
             </div>
@@ -290,6 +303,7 @@ function ProductDetailOne() {
                       className="w-full h-full object-cover"
                       src={item}
                       alt=""
+                      loading="lazy"
                     />
                   </div>
                 ))}
@@ -311,6 +325,7 @@ function ProductDetailOne() {
                       className="w-full h-full object-cover"
                       src={item?.thumbnail}
                       alt=""
+                      loading="lazy"
                     />
                   </div>
                 ))}
@@ -322,6 +337,7 @@ function ProductDetailOne() {
                 </h2>
                 <div className="w-full rounded overflow-hidden h-full">
                   <video
+                    loading="lazy"
                     className="w-full h-full object-cover"
                     src={
                       seletedVideo?.video ||
@@ -340,6 +356,47 @@ function ProductDetailOne() {
       </main>
 
       <Footer />
+
+      <Modal
+        title="User Login"
+        visible={isModalVisible}
+        onCancel={() => setIsModalVisible(false)}
+        footer={null} // Remove the default footer buttons
+      >
+        {/* Login Form */}
+        <Form
+          form={form}
+          name="loginForm"
+          layout="vertical"
+          onFinish={handleLogin}
+          maskChanging={false}
+        >
+          {/* Email Input */}
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[{ required: true, message: "Please input your email!" }]}
+          >
+            <Input type="email" placeholder="Enter your email" />
+          </Form.Item>
+
+          {/* Password Input */}
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password placeholder="Enter your password" />
+          </Form.Item>
+
+          {/* Submit Button */}
+          <Form.Item>
+            <Button type="primary" htmlType="submit" block>
+              Log In
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   );
 }

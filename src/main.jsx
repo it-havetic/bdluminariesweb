@@ -1,13 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
 import "slick-carousel/slick/slick.css";
-import './index.css'
-import './App.css'
+import "./App.css";
+import App from "./App.jsx";
+import AuthContextProvider from "./context/AuthContext.jsx";
+import "./index.css";
 
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <AuthContextProvider>
     <App />
-  </React.StrictMode>,
-)
+  </AuthContextProvider>
+);
