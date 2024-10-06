@@ -22,19 +22,30 @@ function ProductDetailOne() {
   const [displayedProduct, setDisplayedProduct] = useState({});
 
   // Fetch series based on group ID and set the first series's products to productsToShow
+
+  useEffect(() => {
+    bdlSeries();
+  }, []);
+
+  // When seriseID changes, update the products to show
+  useEffect(() => {
+    if (seriseID) {
+      getProductsBySeries(seriseID);
+    }
+  }, [seriseID]);
+
   const bdlSeries = async () => {
     try {
       let res = await axios.get(`/series/group/${id}`);
       const seriesByGroupId = res.data;
       setSelectedSeries(seriesByGroupId);
 
-      if (seriesByGroupId.length > 0) {
-        // Automatically select the first series and fetch its products
-        const firstSeriesId = seriesByGroupId[0]._id;
-        setSearchParams({ series: firstSeriesId });
+      if (!searchParams.get("series")) {
+        setSearchParams({ series: seriesByGroupId[0]._id });
+      }
 
-        getProductsBySeries(searchParams.get("series") || firstSeriesId);
-        setSeriseID(searchParams.get("series") || firstSeriesId);
+      if (seriesByGroupId.length > 0) {
+        setSeriseID(searchParams.get("series"));
       }
     } catch (error) {
       console.error("Error fetching the series data:", error);
@@ -44,9 +55,7 @@ function ProductDetailOne() {
   // Fetch products based on series ID
   const getProductsBySeries = async (seriesId) => {
     try {
-      let res = await axios.get(
-        `/products/series/${searchParams.get("series") || seriesId}`
-      );
+      let res = await axios.get(`/products/series/${seriesId}`);
       const products = res.data;
       setProductsToShow(products);
 
@@ -60,7 +69,6 @@ function ProductDetailOne() {
           price: products[0].price,
           description: products[0].description || "No description available.",
         });
-        console.log(displayedProduct, "displayedProduct");
       } else {
         setDisplayedProduct(null);
       }
@@ -68,17 +76,6 @@ function ProductDetailOne() {
       console.error("Error fetching the products:", error);
     }
   };
-
-  useEffect(() => {
-    bdlSeries();
-  }, []);
-
-  // When seriseID changes, update the products to show
-  useEffect(() => {
-    if (seriseID) {
-      getProductsBySeries(seriseID);
-    }
-  }, [searchParams]);
 
   /**
    * Handles product click event by updating the displayed product state with the clicked product's data
@@ -140,7 +137,6 @@ function ProductDetailOne() {
                 key={item._id}
                 className="shadow-md rounded bg-[#8ac249] cursor-pointer"
                 onClick={() => {
-                  console.log(item);
                   setSeriseID(item._id);
                   setSearchParams({ series: item._id });
                 }} // Update products when clicked
