@@ -21,6 +21,8 @@ function ProductDetailOne() {
 
   const [displayedProduct, setDisplayedProduct] = useState({});
 
+  const [loading, setLoading] = useState(false);
+
   // Fetch series based on group ID and set the first series's products to productsToShow
 
   useEffect(() => {
@@ -46,6 +48,9 @@ function ProductDetailOne() {
 
       if (seriesByGroupId.length > 0) {
         setSeriseID(searchParams.get("series"));
+        getProductsBySeries(
+          searchParams.get("series") || seriesByGroupId[0]._id
+        );
       }
     } catch (error) {
       console.error("Error fetching the series data:", error);
@@ -54,8 +59,12 @@ function ProductDetailOne() {
 
   // Fetch products based on series ID
   const getProductsBySeries = async (seriesId) => {
+    setLoading(true);
     try {
       let res = await axios.get(`/products/series/${seriesId}`);
+      if (res.status === 200) {
+        setLoading(false);
+      }
       const products = res.data;
       setProductsToShow(products);
 
@@ -92,6 +101,9 @@ function ProductDetailOne() {
   };
 
   const renderProducts = () => {
+    if (loading) {
+      return;
+    }
     return (
       <section className="h-[40%]">
         <div className="grid grid-cols-5 items-start w-full gap-1 pr-1 no-scrollbar overflow-y-scroll h-full">
