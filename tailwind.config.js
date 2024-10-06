@@ -4,6 +4,7 @@ export default {
   theme: {
     fontFamily: {
       sign: ["Dancing Script", "cursive"],
+      bdlHeading: ["bdlHeading", "sans-serif"],
     },
     extend: {
       dropShadow: {
@@ -18,7 +19,6 @@ export default {
       },
 
       // for preloader
-      
     },
   },
   plugins: [

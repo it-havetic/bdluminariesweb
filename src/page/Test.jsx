@@ -149,8 +149,8 @@ const Test = () => {
       <Navbar />
       {specification ? (
         <div className=" h-[97%]">
-          <div className="h-[70%] ">
-            <div className="h-[78%] flex">
+          <div className="h-[75%] ">
+            <div className="h-[81%] flex">
               <div className="w-4/5 h-full   ">
                 <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 mr-2 rounded-r text-center text-sm font-bold">
                   Technical Perameter
@@ -159,11 +159,11 @@ const Test = () => {
                   {productsToShow?.map((product) => (
                     <div
                       key={product.id}
-                      className="bg-[#8ac249] p-1 shadow-md rounded"
+                      className="bg-[#8ac249] p-1 shadow-md rounded flex items-center justify-center"
                     >
-                      <img
+                      <Image
                         src={`https://code.bdluminaries.com/${product.image}`}
-                        className="w-full h-14 object-contain"
+                        className="!w-full !h-14 object-contain "
                       />
                     </div>
                   ))}
@@ -209,7 +209,7 @@ const Test = () => {
                   ) : (
                     ""
                   )}
-                  
+
                   {specification?.dimming.length > 0 ||
                   specification?.thickness ? (
                     <SpecificationItem
@@ -225,8 +225,7 @@ const Test = () => {
                           : specification?.thickness
                       }
                       items={[
-                        "Wireless",
-                        "2.4g",
+                        "Wireless 2.4g",
                         "0-10V",
                         "DALi",
                         "Gizbee",
@@ -285,7 +284,7 @@ const Test = () => {
               )}
             </div>
             {specification && (
-              <div className="h-[22%] bg-gray-100 flex-row-reverse flex justify-end">
+              <div className="h-[19%] bg-gray-100 flex-row-reverse flex justify-end">
                 <SpecificationItem
                   sItemClass="w-full"
                   title={specification?.ip.length > 0 ? "IP" : "Customization"}
@@ -300,7 +299,7 @@ const Test = () => {
                   sItemClass="w-full"
                   title={
                     specification?.mounting_array.length > 0
-                      ? "Glare"
+                      ? "Mounting"
                       : "Capacity"
                   }
                   data={
@@ -361,7 +360,7 @@ const Test = () => {
             )}
           </div>
           {specification && (
-            <div className="h-[30%] bg-slate-200 p-3">
+            <div className="h-[25%] bg-slate-200 p-3">
               <div className="w-full h-[23%] ">
                 <h2 className="bg-orange-600 p-1 border-l border-t uppercase text-gray-200 rounded text-center text-sm font-bold">
                   Installation Guideline
