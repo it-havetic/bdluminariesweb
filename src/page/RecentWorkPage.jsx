@@ -88,8 +88,8 @@ const RecentWork = () => {
 
         const images = data.flatMap((zone) =>
           zone.images.map((image) => ({
-            id: zone._id,
-            image: image,
+            name: zone.name,
+            images: [image],
           }))
         );
 
@@ -105,10 +105,14 @@ const RecentWork = () => {
   // Set the content to display based on clicked image or video
   useEffect(() => {
     if (recentWork.length > 0) {
-      const shuffled = [
-        ...selectedContent,
-        ...recentWork.sort(() => Math.random() - 0.5),
-      ];
+      // Shuffle recent work only
+      const shuffledRecentWork = recentWork.sort(() => Math.random() - 0.5);
+
+      // If selected content exists, add it to the front of shuffled content
+      const shuffled = selectedContent.src
+        ? [selectedContent, ...shuffledRecentWork]
+        : shuffledRecentWork;
+
       setShuffledContent(shuffled);
     }
 
@@ -121,7 +125,8 @@ const RecentWork = () => {
   }, [recentWork, location.state]);
 
   const handleImageClick = (mockupItem) => {
-    navigate("/mockup", { state: { selectedImage: mockupItem.image } });
+    console.log(mockupItem);
+    navigate("/mockup", { state: { selectedImage: mockupItem } });
   };
 
   const displayContent = (type, source) => {
@@ -193,12 +198,12 @@ const RecentWork = () => {
             </h3>
             {mockupImages.map((mockupItem) => (
               <div
-                key={mockupItem.id}
+                key={mockupItem.name}
                 onClick={() => handleImageClick(mockupItem)}
                 className="shadow-md rounded cursor-pointer"
               >
                 <img
-                  src={`https://code.bdluminaries.com/${mockupItem.image}`}
+                  src={`https://code.bdluminaries.com/${mockupItem.images[0]}`}
                   className="w-full h-14 object-cover rounded"
                   alt="Mockup"
                 />
