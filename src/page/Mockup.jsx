@@ -122,8 +122,10 @@ const Mockup = () => {
     setSelectedContent({ type, src: source });
   };
 
-  const handleImageClick = (image) => {
-    navigate("/work", { state: { selectedImage: image } });
+  const handleImageClick = (image, id) => {
+    console.log(image, id);
+    // navigate("/work", { state: { selectedImage: image , } });
+    navigate("/work", { state: { selectedImage: image, seletedId: id } });
   };
 
   return (
@@ -160,7 +162,7 @@ const Mockup = () => {
             {recentWorks.map((image) => (
               <div
                 key={image.id}
-                onClick={() => handleImageClick(image.src)}
+                onClick={() => handleImageClick(image.src, image.id)}
                 className="shadow-md rounded"
               >
                 <img

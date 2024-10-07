@@ -198,7 +198,6 @@ const RecentWorks = () => {
         className={`seventeen bg-violet-400 col-span-3 row-span-3 ${
           activeIndex === 17 ? "opacity-0" : "opacity-0"
         } transition-opacity duration-500`}
-        // onClick={() => navigate("/work")}
       ></div>
       <div
         onClick={() => handleImageClick(works[6]?.images[0], works[6]?._id)}

@@ -105,14 +105,12 @@ const RecentWork = () => {
   // Set the content to display based on clicked image or video
   useEffect(() => {
     if (recentWork.length > 0) {
-      // Shuffle recent work only
-      const shuffledRecentWork = recentWork.sort(() => Math.random() - 0.5);
-
-      // If selected content exists, add it to the front of shuffled content
-      const shuffled = selectedContent.src
-        ? [selectedContent, ...shuffledRecentWork]
-        : shuffledRecentWork;
-
+      const shuffled = [
+        ...(Array.isArray(selectedContent)
+          ? selectedContent
+          : [selectedContent]),
+        ...recentWork.sort(() => Math.random() - 0.5),
+      ];
       setShuffledContent(shuffled);
     }
 
@@ -125,7 +123,6 @@ const RecentWork = () => {
   }, [recentWork, location.state]);
 
   const handleImageClick = (mockupItem) => {
-    console.log(mockupItem);
     navigate("/mockup", { state: { selectedImage: mockupItem } });
   };
 
@@ -198,7 +195,7 @@ const RecentWork = () => {
             </h3>
             {mockupImages.map((mockupItem) => (
               <div
-                key={mockupItem.name}
+                key={mockupItem.id}
                 onClick={() => handleImageClick(mockupItem)}
                 className="shadow-md rounded cursor-pointer"
               >
