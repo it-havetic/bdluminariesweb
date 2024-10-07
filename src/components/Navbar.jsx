@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { AiOutlineProduct } from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -35,14 +35,16 @@ const Navbar = () => {
       >
         <div className="flex items-center">
           {greetings.length > 0 ? (
-            greetings.map((greeting) => (
-              <img
-                key={greeting._id}
-                className="h-7"
-                src={`https://code.bdluminaries.com/${greeting.image}`}
-                alt={greeting.title}
-              />
-            ))
+            greetings
+              .filter((greeting) => greeting.status === "active")
+              .map((greeting) => (
+                <img
+                  key={greeting._id}
+                  className="h-7"
+                  src={`https://code.bdluminaries.com/${greeting.image}`}
+                  alt={greeting.title}
+                />
+              ))
           ) : (
             // Fallback in case data is not yet loaded
             <>
