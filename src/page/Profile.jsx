@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 
 import {
@@ -10,10 +10,10 @@ import {
   FaUserTie,
 } from "react-icons/fa";
 import { MdOutlineConstruction } from "react-icons/md";
-import LogoMarquee from "../components/LogoMarquee";
-import Progress from "../components/Progress";
-import Navbar from "../components/Navbar";
 import axios from "../axios";
+import LogoMarquee from "../components/LogoMarquee";
+import Navbar from "../components/Navbar";
+import Progress from "../components/Progress";
 
 const Profile = () => {
   let navigate = useNavigate();
@@ -33,7 +33,7 @@ const Profile = () => {
       } catch (error) {
         console.error("Error fetching the group data:", error);
       }
-    }
+    };
     getData();
   }, []);
 
@@ -43,20 +43,16 @@ const Profile = () => {
 
       <div className="h-[97%] grid grid-cols-1 grid-rows-9 gap-0">
         <div className="row-span-2 bg-slate-400">
-
-          {
-            profileData.map((item) => (
-              <video
-                key={item.id}
-                className="w-full h-full object-cover"
-                controls
-                autoPlay
-                loop
-                src={`https://code.bdluminaries.com/${item.video}`}
-              />
-            ))
-          }
-
+          {profileData.map((item) => (
+            <video
+              key={item.id}
+              className="w-full h-full object-cover"
+              controls
+              autoPlay
+              loop
+              src={`https://code.bdluminaries.com/${item.video}`}
+            />
+          ))}
         </div>
         <div className="row-span-3 bg-[#33420a] px-4 pt-5  text-justify text-[#eeeeee] overflow-scroll  grid grid-cols-6 gap-2 ">
           <div className="col-span-3 flex flex-col justify-around">
@@ -70,9 +66,7 @@ const Profile = () => {
             </div>
             <div>
               <p className="text-xs mb-3">
-                {profileData.map((item) => (
-                  item.article
-                ))}
+                {profileData.map((item) => item.article)}
               </p>
 
               <p className="text-lg font-sign">Javed A. Bhuiya</p>
@@ -81,54 +75,82 @@ const Profile = () => {
             </div>
           </div>
 
-          {
-            profileData.map((item) => (
-              <img
-                className="h-[100%] object-cover rounded-b-2xl col-span-3"
-                src={`https://code.bdluminaries.com/${item.image}`}
-                alt=""
-              />
-            ))
-          }
+          {profileData.map((item) => (
+            <img
+              className="h-[100%] object-cover rounded-b-2xl col-span-3"
+              src={`https://code.bdluminaries.com/${item.image}`}
+              alt=""
+            />
+          ))}
         </div>
         <div className="row-span-4 grid grid-cols-3 grid-rows-2 px-2 pt-4 pb-0 gap-1 bg-[#33420a]">
           {/* Completed Projects */}
           <Progress
             progressName="Completed Projects"
-            progressValue={profileData.length > 0 ? profileData[0].completedProjects : 0}
-            progressRate={profileData.length > 0 ? profileData[0].completedProjects : "N/A"}
+            progressValue={
+              profileData.length > 0
+                ? (profileData[0].completedProjects / 1000) * 100
+                : 0
+            }
+            progressRate={
+              profileData.length > 0 ? profileData[0].completedProjects : "N/A"
+            }
             icon={FaBriefcase}
           />
 
           {/* Satisfied Clients */}
           <Progress
             progressName="Satisfied Clients"
-            progressValue={profileData.length > 0 ? profileData[0].satisfiedclients : 0}
-            progressRate={profileData.length > 0 ? profileData[0].satisfiedclients : "N/A"}
+            progressValue={95}
+            progressRate={
+              profileData.length > 0
+                ? Math.floor(
+                    ((profileData[0].completedProjects +
+                      profileData[0].underConstruction +
+                      profileData[0].ongoingProjects) /
+                      profileData[0].completedProjects) *
+                      100 -
+                      (profileData[0].ongoingProjects +
+                        profileData[0].underConstruction)
+                  ) + "%"
+                : "N/A"
+            }
             icon={FaUserTie}
           />
 
           {/* Under Construction */}
           <Progress
             progressName="Under Construction"
-            progressValue={profileData.length > 0 ? profileData[0].underConstruction : 0}
-            progressRate={profileData.length > 0 ? profileData[0].underConstruction : "N/A"}
+            progressValue={
+              profileData.length > 0 ? profileData[0].underConstruction : 0
+            }
+            progressRate={
+              profileData.length > 0 ? profileData[0].underConstruction : "N/A"
+            }
             icon={MdOutlineConstruction}
           />
 
           {/* Ongoing Projects */}
           <Progress
             progressName="Ongoing Projects"
-            progressValue={profileData.length > 0 ? profileData[0].ongoingProjects : 0}
-            progressRate={profileData.length > 0 ? profileData[0].ongoingProjects : "N/A"}
+            progressValue={
+              profileData.length > 0 ? profileData[0].ongoingProjects : 0
+            }
+            progressRate={
+              profileData.length > 0 ? profileData[0].ongoingProjects : "N/A"
+            }
             icon={FaHammer}
           />
 
           {/* Team Members */}
           <Progress
             progressName="Team Members"
-            progressValue={profileData.length > 0 ? profileData[0].teamMembers : 0}
-            progressRate={profileData.length > 0 ? profileData[0].teamMembers : "N/A"}
+            progressValue={
+              profileData.length > 0 ? profileData[0].teamMembers : 0
+            }
+            progressRate={
+              profileData.length > 0 ? profileData[0].teamMembers : "N/A"
+            }
             icon={FaUsers}
           />
 
@@ -136,7 +158,9 @@ const Profile = () => {
           <Progress
             progressName="Awards Won"
             progressValue={profileData.length > 0 ? profileData[0].awards : 0}
-            progressRate={profileData.length > 0 ? profileData[0].awards : "N/A"}
+            progressRate={
+              profileData.length > 0 ? profileData[0].awards : "N/A"
+            }
             icon={FaTrophy}
           />
 
@@ -145,7 +169,6 @@ const Profile = () => {
             <LogoMarquee />
           </div>
         </div>
-
       </div>
 
       <Footer />
