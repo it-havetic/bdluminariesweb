@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-import slogan from "/assets/slogan.png";
 
 import { HiDotsHorizontal } from "react-icons/hi";
 import axios from "../axios";
-import b7 from "/assets/b7.png";
 import MenuIcon from "../components/MenuIcon";
 import Preloader from "../components/Preloader";
+import b7 from "/assets/b7.png";
 
 import "./Menu.css";
 
@@ -39,8 +38,10 @@ const Menu = () => {
   // Fetch active images
   const fetchActiveImages = async () => {
     try {
-      let res = await axios.get("https://code.bdluminaries.com/api/v1/greeting");
-      setActiveImages(res.data.filter(item => item.status === "active"));
+      let res = await axios.get(
+        "https://code.bdluminaries.com/api/v1/greeting"
+      );
+      setActiveImages(res.data.filter((item) => item.status === "active"));
     } catch (error) {
       console.error("Error fetching active images:", error);
     }
@@ -99,12 +100,12 @@ const Menu = () => {
         <div className="h-[48%] relative flex justify-center items-center">
           <img className="w-96 h-96" src="/menu.gif" alt="" />
           <ul className="menuDesignUl h-96 w-96 absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-[#e56a6a00]">
-          <Link
+            <Link
               className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute -rotate-[126deg] left-[110px] top-[79px]"
               to={`/product/detail/one/${groups[0]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[0].name	}
+                {groups[0].name}
               </button>
             </Link>
             <Link
@@ -112,7 +113,7 @@ const Menu = () => {
               to={`/product/detail/one/${groups[9]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[9].name	}
+                {groups[9].name}
               </button>
             </Link>
             <Link
@@ -120,7 +121,7 @@ const Menu = () => {
               to={`/product/detail/one/${groups[7]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[7].name	}
+                {groups[7].name}
               </button>
             </Link>
             <Link
@@ -128,7 +129,7 @@ const Menu = () => {
               to={`/product/detail/one/${groups[4]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[4].name	}
+                {groups[4].name}
               </button>
             </Link>
             <Link
@@ -136,7 +137,7 @@ const Menu = () => {
               to={`/product/detail/one/${groups[5]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[5].name	}
+                {groups[5].name}
               </button>
             </Link>
             <Link
@@ -144,7 +145,7 @@ const Menu = () => {
               to={`/product/detail/one/${groups[6]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[6].name	}
+                {groups[6].name}
               </button>
             </Link>
             <Link
@@ -152,15 +153,15 @@ const Menu = () => {
               to={`/product/detail/one/${groups[8]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[8].name	}
+                {groups[8].name}
               </button>
-            </Link> 
+            </Link>
             <Link
               className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[157deg] left-[71px] top-[207px]"
               to={`/product/detail/one/${groups[2]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[2].name	}
+                {groups[2].name}
               </button>
             </Link>
             <Link
@@ -168,7 +169,7 @@ const Menu = () => {
               to={`/product/detail/one/${groups[1]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[1].name	}
+                {groups[1].name}
               </button>
             </Link>
             <Link
@@ -176,7 +177,7 @@ const Menu = () => {
               to={`/product/detail/one/${groups[3]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[3].name	}
+                {groups[3].name}
               </button>
             </Link>
           </ul>
@@ -227,6 +228,7 @@ const Menu = () => {
           <video
             loop
             muted
+            poster="/poster.jpg"
             className="w-full h-full object-cover rounded-md shadow-sm"
             controls
             src="/consultancy.mp4"
