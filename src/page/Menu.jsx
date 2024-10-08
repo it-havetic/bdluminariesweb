@@ -185,11 +185,11 @@ const Menu = () => {
         </div>
         <div className="flex items-center justify-between h-7 bg-[#000000] ">
           <Link
-            className="flex items-center justify-center w-[20%] text-xs"
+            className="flex h-full items-center justify-center w-[20%] text-xs"
             to="/"
           >
             <img
-              className="w-4/5 drop-shadow-custom"
+              className="h-full drop-shadow-custom"
               src="/assets/bdl.png"
               alt=""
             />
