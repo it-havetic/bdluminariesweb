@@ -149,10 +149,14 @@ const Test = () => {
       <Navbar />
       {specification ? (
         <div className=" h-[97%] flex flex-col justify-between">
+          <h2 className="bg-orange-600 p-1  uppercase text-gray-200 mt-1 mx-1 rounded text-center text-sm font-bold">
+            Technical Perameter
+          </h2>
           <div className="h-[44%] ">
             <div className="h-[100%] ">
               <div className="w-[100%] h-full   ">
-                <div className="h-[100%] grid grid-cols-4 gap-2  overflow-y-scroll no-scrollbar p-2">
+                <div className="h-[100%] grid grid-cols-4">
+                  <div className="col-span-3 grid grid-cols-3 gap-1 overflow-y-scroll no-scrollbar p-1">
                   {productsToShow?.map((product) => (
                     <div
                       key={product.id}
@@ -164,13 +168,63 @@ const Test = () => {
                       />
                     </div>
                   ))}
+                  </div>
+                  <div className="col-span-1  pt-1">
+                  {specification?.dimming.length > 0 || specification?.thickness ? (
+                <SpecificationItem
+                  sItemClass="h-1/2 w-full"
+                  title={
+                    specification?.dimming.length > 0 ? "Dimming" : "Thickness"
+                  }
+                  data={
+                    specification?.dimming.length > 0
+                      ? specification?.dimming
+                      : specification?.thickness
+                  }
+                  items={[
+                    "Wireless 2.4g",
+                    "0-10V",
+                    "DALi",
+                    "ZiGbee",
+                    "Mash 5.0",
+                    "DMX512",
+                    "24VDC",
+                    "+",
+                  ]}
+                />
+              ) : (
+                ""
+              )}
+              {specification?.cct.length > 0 || specification?.shape ? (
+                <SpecificationItem
+                  sItemClass="h-1/2 w-full"
+                  title={specification?.cct.length > 0 ? "CCT" : "Shape"}
+                  data={
+                    specification?.cct.length > 0
+                      ? specification?.cct
+                      : specification?.shape
+                  }
+                  items={[
+                    "8000K",
+                    "7500K",
+                    "6500K",
+                    "5000K",
+                    "4000K",
+                    "3000K",
+                    "2700K",
+                    "2000K",
+                    "+",
+                  ]}
+                />
+              ) : (
+                ""
+              )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <h2 className="bg-orange-600 p-1  uppercase text-gray-200 mb-2 rounded text-center text-sm font-bold">
-            Technical Perameter
-          </h2>
+          
           {specification && (
             <div className="h-[16%] bg-gray-100 flex justify-end ">
               <SpecificationItem
@@ -208,31 +262,7 @@ const Test = () => {
                 items={["White", "Black", "Chrome", "Rose Gold", "+"]}
               />
 
-              {specification?.dimming.length > 0 || specification?.thickness ? (
-                <SpecificationItem
-                  sItemClass="h-full w-full"
-                  title={
-                    specification?.dimming.length > 0 ? "Dimming" : "Thickness"
-                  }
-                  data={
-                    specification?.dimming.length > 0
-                      ? specification?.dimming
-                      : specification?.thickness
-                  }
-                  items={[
-                    "Wireless 2.4g",
-                    "0-10V",
-                    "DALi",
-                    "ZiGbee",
-                    "Mash 5.0",
-                    "DMX512",
-                    "24VDC",
-                    "+",
-                  ]}
-                />
-              ) : (
-                ""
-              )}
+              
               {specification?.bodyColor.length > 0 ||
               specification?.mounting ? (
                 <SpecificationItem
@@ -272,24 +302,31 @@ const Test = () => {
           )}
           {specification && (
             <div className="h-[16%] bg-gray-100 flex-row-reverse flex justify-end">
+             {specification?.lumens.length > 0 && specification?.watts ? (
               <div className="w-full h-full bg-[#d6cbb4] flex flex-col justify-between">
-                {specification?.lumens.length > 0 && (
-                  <SpecificationItem
-                    sItemClass="w-full h-full"
-                    title="lumens"
-                    data={specification.lumens}
-                    items={["110lm/W", "120lm/W", "130lm/W"]}
-                  />
-                )}
-                {specification?.watts.length > 0 && (
-                  <SpecificationItem
-                    sItemClass="w-full h-full"
-                    title="Watts"
-                    data={specification.watts}
-                    items={["1-10W", "11-20W", "21-30W"]}
-                  />
-                )}
-              </div>
+              {specification?.lumens.length > 0 && (
+                <SpecificationItem
+                  sItemClass="w-full h-full"
+                  title="lumens"
+                  data={specification.lumens}
+                  items={["110lm/W", "120lm/W", "130lm/W"]}
+                />
+              )}
+              {specification?.watts.length > 0 && (
+                <SpecificationItem
+                  sItemClass="w-full h-full"
+                  title="Watts"
+                  data={specification.watts}
+                  items={["1-10W", "11-20W", "21-30W"]}
+                />
+              )}
+            </div>
+             ):null} 
+
+
+
+
+
               {specification?.cri.length > 0 || specification?.dimention ? (
                 <SpecificationItem
                   sItemClass="w-full"
@@ -304,30 +341,7 @@ const Test = () => {
               ) : (
                 ""
               )}
-              {specification?.cct.length > 0 || specification?.shape ? (
-                <SpecificationItem
-                  sItemClass="w-full"
-                  title={specification?.cct.length > 0 ? "CCT" : "Shape"}
-                  data={
-                    specification?.cct.length > 0
-                      ? specification?.cct
-                      : specification?.shape
-                  }
-                  items={[
-                    "8000K",
-                    "7500K",
-                    "6500K",
-                    "5000K",
-                    "4000K",
-                    "3000K",
-                    "2700K",
-                    "2000K",
-                    "+",
-                  ]}
-                />
-              ) : (
-                ""
-              )}
+              
 
               {specification?.beamAngle.length > 0 && (
                 <SpecificationItem

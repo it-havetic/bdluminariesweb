@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../axios";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { Image } from "antd";
 
 const RecentWork = () => {
   const [shuffledContent, setShuffledContent] = useState([]);
@@ -146,19 +147,21 @@ const RecentWork = () => {
             />
           )}
           {selectedContent.type === "image" && (
-            <img
+            <Image
+            height='100%'
               className="w-full h-full object-cover"
-              src={selectedContent.src}
+              src={selectedContent?.src}
               alt="Selected"
             />
           )}
-          {!selectedContent.src && (
-            <img
+          {/* {!selectedContent.src && (
+            <Image
+            height='100%'
               className="w-full h-full object-cover"
               src="/assets/recent/r1.png"
               alt="Default"
             />
-          )}
+          )} */}
         </div>
 
         {/* Recent works and mockup sections */}
@@ -180,7 +183,7 @@ const RecentWork = () => {
                 }
               >
                 <img
-                  src={item.type === "video" ? item.thumbnail : item.image}
+                  src={item.type === "video" ? item.thumbnail : item?.image}
                   className="w-full h-14 object-cover rounded"
                   alt={item.type}
                 />
