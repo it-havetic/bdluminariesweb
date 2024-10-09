@@ -72,6 +72,7 @@ const RecentWork = () => {
         if (res.status === 200) {
           console.log("single", res.data);
           setSingelRecentWork(res.data);
+          setSearchParams({ type: "image", src: res.data.images[0] });
           const formattedSingleContent = [res.data].flatMap((work) => {
             const images = work.images.map((image) => ({
               id: work._id,
@@ -132,7 +133,7 @@ const RecentWork = () => {
         src,
       });
     }
-  }, [recentWork, searchParams]);
+  }, [recentWork, singelRecentWork]);
 
   const handleImageClick = (mockupItem) => {
     navigate(`/mockup/${mockupItem.name}`);
@@ -154,7 +155,7 @@ const RecentWork = () => {
         <div>
           {searchParams.get("type") === "video" && (
             <video
-              className="w-full h-full object-cover"
+              className="w-full h-full object-fit"
               controls
               autoPlay
               muted
@@ -166,7 +167,8 @@ const RecentWork = () => {
           {searchParams.get("type") === "image" && (
             <Image
               height="100%"
-              className="w-full h-full object-cover"
+              width="100%"
+              className="!w-full h-full object-cover"
               src={`https://code.bdluminaries.com/${
                 searchParams.get("src") || selectedContent.src
               }`}

@@ -78,7 +78,7 @@ const Mockup = () => {
         );
         const data = await response.json();
         // Set selected content to the first image in the mockup
-
+        setSearchParams({ type: "image", src: data.images[0] });
         // Process the data to extract images and videos
         const combinedSingleContent = [data].flatMap((zone) => {
           const imagesWithType = zone.images.map((img) => ({
@@ -145,6 +145,7 @@ const Mockup = () => {
           )}
           {searchParams.get("type") === "image" && (
             <Image
+              width="100%"
               height="100%"
               className="w-full h-full object-cover"
               src={`https://code.bdluminaries.com/` + searchParams.get("src")}
