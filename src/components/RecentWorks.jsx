@@ -42,7 +42,7 @@ const RecentWorks = () => {
   // Function to handle clicking on an image
   const handleImageClick = (image, id) => {
     console.log(id, image);
-    navigate("/work", { state: { selectedImage: image, seletedId: id } });
+    navigate(`/work/${id}`);
   };
 
   // for button

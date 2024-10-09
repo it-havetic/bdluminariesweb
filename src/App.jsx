@@ -109,9 +109,9 @@ const App = () => {
         <Route path="/product/detail/one/:id" element={<ProductDetailOne />} />
         <Route path="/product/detail" element={<ProductDetails />} />
         <Route path="/product/detail/next" element={<ProductDetailNext />} />
-        <Route path="/mockup" element={<Mockup />} />
+        <Route path="/mockup/:id" element={<Mockup />} />
         {/* <Route path="/mockup/:id" element={<Mockup />} /> */}
-        <Route path="/work" element={<RecentWork />} />
+        <Route path="/work/:id" element={<RecentWork />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/Menu" element={<Menu />} />
         <Route path="/test/:id" element={<Test />} />
