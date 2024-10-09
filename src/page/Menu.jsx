@@ -10,6 +10,7 @@ import Preloader from "../components/Preloader";
 import b7 from "/assets/b7.png";
 
 import "./Menu.css";
+import Consultancy from "../components/Consultancy";
 
 const Menu = () => {
   let navigate = useNavigate();
@@ -224,16 +225,10 @@ const Menu = () => {
             <HiDotsHorizontal />
           </div>
         </div>
-        <div className="h-[48%] p-4">
-          <video
-            loop
-            muted
-            poster="/poster.jpg"
-            className="w-full h-full object-cover rounded-md shadow-sm"
-            controls
-            src="/consultancy.mp4"
-          />
-        </div>
+        
+
+<Consultancy />
+
       </div>
       <Footer />
     </div>
