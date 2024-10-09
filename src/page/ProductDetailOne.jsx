@@ -47,7 +47,6 @@ function ProductDetailOne() {
   useEffect(() => {
     if (seriseID) {
       getProductsBySeries(seriseID);
-
     }
     fetchRecentWorks();
   }, [seriseID]);
