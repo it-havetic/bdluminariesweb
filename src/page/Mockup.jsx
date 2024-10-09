@@ -77,9 +77,7 @@ const Mockup = () => {
           `https://code.bdluminaries.com/api/v1/mockup-zones/${id}`
         );
         const data = await response.json();
-        setSearchParams({ src: data.images[0], type: "image" });
         // Set selected content to the first image in the mockup
-        setSearchParams({ src: data.images[0], type: "image" });
 
         // Process the data to extract images and videos
         const combinedSingleContent = [data].flatMap((zone) => {

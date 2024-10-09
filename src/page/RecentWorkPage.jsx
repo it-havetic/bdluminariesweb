@@ -72,7 +72,6 @@ const RecentWork = () => {
         if (res.status === 200) {
           console.log("single", res.data);
           setSingelRecentWork(res.data);
-          setSearchParams({ type: "image", src: res.data.images[0] });
           const formattedSingleContent = [res.data].flatMap((work) => {
             const images = work.images.map((image) => ({
               id: work._id,
@@ -105,19 +104,35 @@ const RecentWork = () => {
   // Set the content to display based on clicked image or video
   useEffect(() => {
     if (recentWork.length > 0) {
+      // Ensure that selectedContent is properly initialized and merged with recentWork
+      const selectedArray = Array.isArray(selectedContent)
+        ? selectedContent
+        : [selectedContent];
+
+      // Ensure the src and type in selectedContent are valid before setting shuffledContent
+      const filteredContent = selectedArray.filter(
+        (item) => item.src && item.type
+      );
+
       const shuffled = [
-        ...(Array.isArray(selectedContent)
-          ? selectedContent
-          : [selectedContent]),
+        ...filteredContent,
         ...recentWork.sort(() => Math.random() - 0.5),
       ];
+
       setShuffledContent(shuffled);
     }
-    setSelectedContent({
-      type: searchParams.get("type") || "image",
-      src: searchParams.get("src"),
-    });
-  }, [recentWork, singelRecentWork]);
+
+    // Safely set selectedContent using searchParams
+    const type = searchParams.get("type") || "image";
+    const src = searchParams.get("src");
+
+    if (src) {
+      setSelectedContent({
+        type,
+        src,
+      });
+    }
+  }, [recentWork, searchParams]);
 
   const handleImageClick = (mockupItem) => {
     navigate(`/mockup/${mockupItem.name}`);
@@ -172,24 +187,32 @@ const RecentWork = () => {
                 key={index}
                 className="shadow-md rounded"
                 onClick={() => {
-                  setSearchParams({
-                    src: item.type === "video" ? item.video : item.image,
-                    type: item.type,
-                  });
-                  console.log("mir");
-                  displayContent(
-                    item.type,
-                    item.type === "video" ? item.video : item.image
-                  );
+                  if (item.type && (item.image || item.video)) {
+                    setSearchParams({
+                      src: item.type === "video" ? item.video : item.image,
+                      type: item.type,
+                    });
+                    displayContent(
+                      item.type,
+                      item.type === "video" ? item.video : item.image
+                    );
+                  }
                 }}
               >
-                <img
-                  src={`https://code.bdluminaries.com/${
-                    item.type === "video" ? item.thumbnail : item.image
-                  }`}
-                  className="w-full h-14 object-cover rounded"
-                  alt={item.type}
-                />
+                {item.type === "image" && item.image && (
+                  <img
+                    src={`https://code.bdluminaries.com/${item.image}`}
+                    className="w-full h-14 object-cover rounded"
+                    alt="Image"
+                  />
+                )}
+                {item.type === "video" && item.thumbnail && (
+                  <img
+                    src={`https://code.bdluminaries.com/${item.thumbnail}`}
+                    className="w-full h-14 object-cover rounded"
+                    alt="Video"
+                  />
+                )}
               </div>
             ))}
           </div>
