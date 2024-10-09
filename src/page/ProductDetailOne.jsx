@@ -20,6 +20,7 @@ function ProductDetailOne() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [selectedSeries, setSelectedSeries] = useState([]);
+  const [subSeries, setSubSeries] = useState([]);
   const [productsToShow, setProductsToShow] = useState([]);
   const [seriseID, setSeriseID] = useState();
   const [displayedProduct, setDisplayedProduct] = useState({});
@@ -77,6 +78,9 @@ function ProductDetailOne() {
     setLoading(true);
     try {
       let res = await axios.get(`/products/series/${seriesId}`);
+      let res2 = await axios.get('/sub-series');
+      setSubSeries(res2.data);
+
       if (res.status === 200) {
         setLoading(false);
       }
@@ -214,9 +218,28 @@ function ProductDetailOne() {
                 <div className="text-[8px] tracking-widest font-semibold text-center bg-[#1d1d1d] text-white uppercase py-1">
                   <h3 className="-mt-0.5">{item.name}</h3>
                 </div>
+
+                {/* Sub-series section */}
+                <div className="px-2">
+                  {subSeries
+                    .filter(sub => sub.series._id === item._id) // Filter sub-series for this series
+                    .map((subItem) => (
+                      <div key={subItem._id} className="flex flex-col">
+                        <img
+                          src={`https://code.bdluminaries.com/${subItem.image}`}
+                          className="w-full h-11 object-contain"
+                          alt={subItem.series.name}
+                        />
+                        <h3 className="text-[8px] tracking-widest font-semibold text-center bg-[#ff702e] text-white uppercase py-1 -mt-0.5">
+                          {subItem.name}
+                        </h3>
+                      </div>
+                    ))}
+                </div>
               </div>
             ))}
           </div>
+
         </div>
 
         <div className="w-[80%] flex flex-col gap-1">
