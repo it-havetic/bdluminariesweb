@@ -115,7 +115,7 @@ const RecentWork = () => {
     }
     setSelectedContent({
       type: searchParams.get("type") || "image",
-      src: searchParams.get("src") || `${singelRecentWork?.images[0]}`,
+      src: searchParams.get("src"),
     });
   }, [recentWork, singelRecentWork]);
 

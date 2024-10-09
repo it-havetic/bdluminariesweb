@@ -109,18 +109,11 @@ const Mockup = () => {
       ...mockupImages.sort(() => 0.5 - Math.random()),
     ];
     setShuffledContent(shuffled);
-
-    // if (singleMockupZoneImages.length > 0) {
-    //   setSelectedContent({
-    //     type: "image",
-    //     src: `${singleMockupZoneImages[0].src}`,
-    //   });
-    // }
     setSelectedContent({
       type: searchParams.get("type") || "image",
-      src: searchParams.get("src") || `${singleMockupZoneImages[0].src}`,
+      src: searchParams.get("src"),
     });
-  }, [mockupImages, singleMockupZoneImages, searchParams]);
+  }, [mockupImages, singleMockupZoneImages]);
 
   const displayContent = (type, source) => {
     setSelectedContent({ type, src: source });
@@ -128,8 +121,8 @@ const Mockup = () => {
 
   // Function to handle image click
   const handleImageClick = (image, id) => {
-    console.log(image, id);
-    // navigate("/work", { state: { selectedImage: image , } });
+    console.log(id);
+    navigate(`/work/${id}`);
     // navigate("/work", { state: { selectedImage: image, seletedId: id } });
   };
 
@@ -149,20 +142,14 @@ const Mockup = () => {
               className="w-full h-full object-cover"
               controls
               autoPlay
-              src={
-                `https://code.bdluminaries.com/` + searchParams.get("src") ||
-                selectedContent.src
-              }
+              src={`https://code.bdluminaries.com/` + searchParams.get("src")}
             />
           )}
           {searchParams.get("type") === "image" && (
             <Image
               height="100%"
               className="w-full h-full object-cover"
-              src={
-                `https://code.bdluminaries.com/` + searchParams.get("src") ||
-                selectedContent.src
-              }
+              src={`https://code.bdluminaries.com/` + searchParams.get("src")}
               alt="Image missing"
             />
           )}
