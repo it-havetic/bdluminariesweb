@@ -233,7 +233,7 @@ function ProductDetailOne() {
             </div>
             <div
               style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
-              className="border col-span-1 row-span-5 m-0.5 flex flex-col items-center justify-center"
+              className="border-l border-[#ffffff60] col-span-1 row-span-5  flex flex-col items-center justify-center"
             >
               <h2 className="text-white font-semibold text-sm">
                 {displayedProduct?.series}

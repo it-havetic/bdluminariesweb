@@ -3,7 +3,7 @@ import { IoClose, IoHomeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import "../components/IconMenu.css";
 
-import { FaLinkedinIn, FaRegLightbulb } from "react-icons/fa";
+import { FaInstagram, FaLinkedinIn, FaPhoneAlt, FaRegLightbulb } from "react-icons/fa";
 import { IoBookOutline } from "react-icons/io5";
 import { LuYoutube } from "react-icons/lu";
 import { MdOutlineContactPhone } from "react-icons/md";
@@ -44,7 +44,7 @@ const MenuIcon = ({ className }) => {
         </div>
         <li style={{ "--i": 0, "--clr": "#F15B26" }}>
           <Link to="/" onMouseEnter={handleHover} className="group innerA">
-            <IoHomeOutline className="z-10 group-hover:text-[#161616] " />
+            <FaInstagram  className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>
         <li style={{ "--i": 1, "--clr": "#fee800" }}>
@@ -67,7 +67,7 @@ const MenuIcon = ({ className }) => {
             onMouseEnter={handleHover}
             className="group innerA"
           >
-            <MdOutlineContactPhone className="z-10 group-hover:text-[#161616] " />
+            <FaPhoneAlt className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>
         <li style={{ "--i": 4, "--clr": "#FF0000" }}>

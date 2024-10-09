@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { Image } from "antd";
 
 const Mockup = () => {
   const location = useLocation();
@@ -144,7 +145,8 @@ const Mockup = () => {
             />
           )}
           {selectedContent.type === "image" && (
-            <img
+            <Image
+            height='100%'
               className="w-full h-full object-cover"
               src={selectedContent.src}
               alt="Image missing"
