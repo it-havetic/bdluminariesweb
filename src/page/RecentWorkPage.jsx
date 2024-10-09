@@ -201,14 +201,14 @@ const RecentWork = () => {
               >
                 {item.type === "image" && item.image && (
                   <img
-                    src={`https://code.bdluminaries.com/${item.image}`}
+                    src={`https://code.bdluminaries.com/${item?.image}`}
                     className="w-full h-14 object-cover rounded"
                     alt="Image"
                   />
                 )}
                 {item.type === "video" && item.thumbnail && (
                   <img
-                    src={`https://code.bdluminaries.com/${item.thumbnail}`}
+                    src={`https://code.bdluminaries.com/${item?.thumbnail}`}
                     className="w-full h-14 object-cover rounded"
                     alt="Video"
                   />
