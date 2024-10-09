@@ -137,6 +137,7 @@ function ProductDetailOne() {
    */
   const handleProductClick = (product) => {
     setDisplayedProduct({
+      id: product._id,
       series: product.series.name,
       itemCode: product.itemCode,
       image: `https://code.bdluminaries.com/${product.image}`,
@@ -161,7 +162,10 @@ function ProductDetailOne() {
               <div
                 key={i}
                 className="bg-[#8ac249] p-1 shadow-md rounded"
-                onClick={() => handleProductClick(product)}
+                onClick={() => {
+                  console.log(product);
+                  handleProductClick(product);
+                }}
               >
                 <img
                   src={`https://code.bdluminaries.com/${product.image}`}
