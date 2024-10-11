@@ -244,7 +244,7 @@ function ProductDetailOne() {
         </div>
 
         <div className="w-[80%] flex flex-col gap-1">
-          <div className="h-[60%] bg-[#8bc24a] relative grid grid-rows-6 grid-cols-8">
+          <div className="h-[60%] bg-[#8bc24a] relative grid grid-rows-6 grid-cols-8 rounded-ss">
             <div className="col-span-7 row-span-5 flex justify-center items-center">
               {displayedProduct ? (
                 <img
