@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Preloader from "../components/Preloader.jsx";
 import { AuthContext } from "../context/AuthContext.jsx";
+import { IoEyeOff } from "react-icons/io5";
 
 function ProductDetailOne() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -224,13 +225,13 @@ function ProductDetailOne() {
                   {subSeries
                     .filter(sub => sub.series._id === item._id) // Filter sub-series for this series
                     .map((subItem) => (
-                      <div key={subItem._id} className="flex flex-col">
+                      <div key={subItem._id} className="flex flex-col my-1">
                         <img
                           src={`https://code.bdluminaries.com/${subItem.image}`}
                           className="w-full h-11 object-contain"
                           alt={subItem.series.name}
                         />
-                        <h3 className="text-[8px] tracking-widest font-semibold text-center bg-[#ff702e] text-white uppercase py-1 -mt-0.5">
+                        <h3 className="text-[8px] tracking-widest font-semibold text-center bg-[#ff702e] text-[#000000] uppercase py-1 -mt-0.5 rounded-sm leading-none">
                           {subItem.name}
                         </h3>
                       </div>
@@ -276,7 +277,7 @@ function ProductDetailOne() {
                 </p>
               </div>
               <div className="bg-white col-span-2 overflow-y-scroll no-scrollbar">
-                <p className="text-gray-800 font-bold text-left px-0.5 leading-3 text-[8px]">
+                <p className="text-gray-800 font-bold text-left px-0.5 leading-tight text-[8px]">
                   {displayedProduct?.description}
                 </p>
               </div>
@@ -290,10 +291,9 @@ function ProductDetailOne() {
                 <p className="bg-black h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
                   MRP
                 </p>
-                <p className="bg-white h-1/2 text-[#cc3903] font-bold flex gap-1 justify-center items-center">
-                  {/* <IoEyeOff /> */}
+                <p className="bg-white h-1/2 text-[#cc3903] font-bold flex gap-1 justify-center items-center cursor-pointer">
                   <span className="text-sm -mt-0.5">৳</span>{" "}
-                  {authUser?.user ? displayedProduct?.price : "***"}
+                  {authUser?.user ? displayedProduct?.price : <IoEyeOff />}
                 </p>
               </div>
             </div>
