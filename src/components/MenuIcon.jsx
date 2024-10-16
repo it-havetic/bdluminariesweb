@@ -43,7 +43,7 @@ const MenuIcon = ({ className }) => {
           <IoClose />
         </div>
         <li style={{ "--i": 0, "--clr": "#F15B26" }}>
-          <Link to="/" onMouseEnter={handleHover} className="group innerA">
+          <Link to="https://www.instagram.com/accounts/login/?next=https%3A%2F%2Ffamilycenter.instagram.com%2Finvite%2Fp%2FUQ4KtJFka321kKbKQA0orEvY_rmQFvj4df8o4%2F%3F__coig_login%3D1" onMouseEnter={handleHover} className="group innerA">
             <FaInstagram  className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>
@@ -76,12 +76,12 @@ const MenuIcon = ({ className }) => {
           </Link>
         </li>
         <li style={{ "--i": 5, "--clr": "#1877F2" }}>
-          <Link to="#" onMouseEnter={handleHover} className="group innerA">
+          <Link to="https://www.facebook.com/people/BD-Luminaries/61567166872903/?mibextid=kFxxJD" onMouseEnter={handleHover} className="group innerA">
             <RiFacebookBoxLine className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>
         <li style={{ "--i": 6, "--clr": "#00f2ea" }}>
-          <Link to="#" onMouseEnter={handleHover} className="group innerA">
+          <Link to="https://www.tiktok.com/@bdluminaries?lang=en" onMouseEnter={handleHover} className="group innerA">
             <SiTiktok className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>
