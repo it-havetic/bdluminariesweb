@@ -184,7 +184,7 @@ const RecentWork = () => {
             <h3 className="text-xs col-span-3 bg-[#F15B26] sticky top-0 left-0 h-7 flex items-center justify-center text-center text-white font-bold w-full shadow-md rounded-b">
               Recent Work
             </h3>
-            {shuffledContent.map((item, index) => (
+            {shuffledContent.filter((_,i)=> i > 0).map((item, index) => (
               <div
                 key={index}
                 className="shadow-md rounded"

@@ -221,7 +221,7 @@ function ProductDetailOne() {
                 </div>
 
                 {/* Sub-series section */}
-                <div className="px-2">
+                {/* <div className="px-2">
                   {subSeries
                     .filter(sub => sub.series._id === item._id) // Filter sub-series for this series
                     .map((subItem) => (
@@ -236,7 +236,7 @@ function ProductDetailOne() {
                         </h3>
                       </div>
                     ))}
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
@@ -312,6 +312,8 @@ function ProductDetailOne() {
                 </h2>
                 <div className="w-full overflow-hidden h-full">
                   <Image
+                  width="100%"
+                    height="100%"
                     className="w-full object-cover"
                     src={seletedImage || refaranceImageAndVideo?.image[0]}
                     alt=""
