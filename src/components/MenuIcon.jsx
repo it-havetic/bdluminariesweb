@@ -3,7 +3,7 @@ import { IoClose, IoHomeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import "../components/IconMenu.css";
 
-import { FaLinkedinIn, FaRegLightbulb } from "react-icons/fa";
+import { FaInstagram, FaLinkedinIn, FaPhoneAlt, FaRegLightbulb } from "react-icons/fa";
 import { IoBookOutline } from "react-icons/io5";
 import { LuYoutube } from "react-icons/lu";
 import { MdOutlineContactPhone } from "react-icons/md";
@@ -43,8 +43,8 @@ const MenuIcon = ({ className }) => {
           <IoClose />
         </div>
         <li style={{ "--i": 0, "--clr": "#F15B26" }}>
-          <Link to="/" onMouseEnter={handleHover} className="group innerA">
-            <IoHomeOutline className="z-10 group-hover:text-[#161616] " />
+          <Link to="https://www.instagram.com/accounts/login/?next=https%3A%2F%2Ffamilycenter.instagram.com%2Finvite%2Fp%2FUQ4KtJFka321kKbKQA0orEvY_rmQFvj4df8o4%2F%3F__coig_login%3D1" onMouseEnter={handleHover} className="group innerA">
+            <FaInstagram  className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>
         <li style={{ "--i": 1, "--clr": "#fee800" }}>
@@ -67,7 +67,7 @@ const MenuIcon = ({ className }) => {
             onMouseEnter={handleHover}
             className="group innerA"
           >
-            <MdOutlineContactPhone className="z-10 group-hover:text-[#161616] " />
+            <FaPhoneAlt className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>
         <li style={{ "--i": 4, "--clr": "#FF0000" }}>
@@ -76,12 +76,12 @@ const MenuIcon = ({ className }) => {
           </Link>
         </li>
         <li style={{ "--i": 5, "--clr": "#1877F2" }}>
-          <Link to="#" onMouseEnter={handleHover} className="group innerA">
+          <Link to="https://www.facebook.com/people/BD-Luminaries/61567166872903/?mibextid=kFxxJD" onMouseEnter={handleHover} className="group innerA">
             <RiFacebookBoxLine className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>
         <li style={{ "--i": 6, "--clr": "#00f2ea" }}>
-          <Link to="#" onMouseEnter={handleHover} className="group innerA">
+          <Link to="https://www.tiktok.com/@bdluminaries?lang=en" onMouseEnter={handleHover} className="group innerA">
             <SiTiktok className="z-10 group-hover:text-[#161616] " />
           </Link>
         </li>

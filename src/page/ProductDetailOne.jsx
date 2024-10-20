@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Preloader from "../components/Preloader.jsx";
 import { AuthContext } from "../context/AuthContext.jsx";
+import { IoEyeOff } from "react-icons/io5";
 
 function ProductDetailOne() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -20,6 +21,7 @@ function ProductDetailOne() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [selectedSeries, setSelectedSeries] = useState([]);
+  const [subSeries, setSubSeries] = useState([]);
   const [productsToShow, setProductsToShow] = useState([]);
   const [seriseID, setSeriseID] = useState();
   const [displayedProduct, setDisplayedProduct] = useState({});
@@ -47,7 +49,6 @@ function ProductDetailOne() {
   useEffect(() => {
     if (seriseID) {
       getProductsBySeries(seriseID);
-
     }
     fetchRecentWorks();
   }, [seriseID]);
@@ -78,6 +79,9 @@ function ProductDetailOne() {
     setLoading(true);
     try {
       let res = await axios.get(`/products/series/${seriesId}`);
+      let res2 = await axios.get('/sub-series');
+      setSubSeries(res2.data);
+
       if (res.status === 200) {
         setLoading(false);
       }
@@ -138,6 +142,7 @@ function ProductDetailOne() {
    */
   const handleProductClick = (product) => {
     setDisplayedProduct({
+      id: product._id,
       series: product.series.name,
       itemCode: product.itemCode,
       image: `https://code.bdluminaries.com/${product.image}`,
@@ -162,7 +167,10 @@ function ProductDetailOne() {
               <div
                 key={i}
                 className="bg-[#8ac249] p-1 shadow-md rounded"
-                onClick={() => handleProductClick(product)}
+                onClick={() => {
+                  console.log(product);
+                  handleProductClick(product);
+                }}
               >
                 <img
                   src={`https://code.bdluminaries.com/${product.image}`}
@@ -211,13 +219,32 @@ function ProductDetailOne() {
                 <div className="text-[8px] tracking-widest font-semibold text-center bg-[#1d1d1d] text-white uppercase py-1">
                   <h3 className="-mt-0.5">{item.name}</h3>
                 </div>
+
+                {/* Sub-series section */}
+                {/* <div className="px-2">
+                  {subSeries
+                    .filter(sub => sub.series._id === item._id) // Filter sub-series for this series
+                    .map((subItem) => (
+                      <div key={subItem._id} className="flex flex-col my-1">
+                        <img
+                          src={`https://code.bdluminaries.com/${subItem.image}`}
+                          className="w-full h-11 object-contain"
+                          alt={subItem.series.name}
+                        />
+                        <h3 className="text-[8px] tracking-widest font-semibold text-center bg-[#ff702e] text-[#000000] uppercase py-1 -mt-0.5 rounded-sm leading-none">
+                          {subItem.name}
+                        </h3>
+                      </div>
+                    ))}
+                </div> */}
               </div>
             ))}
           </div>
+
         </div>
 
         <div className="w-[80%] flex flex-col gap-1">
-          <div className="h-[60%] bg-[#8bc24a] relative grid grid-rows-6 grid-cols-8">
+          <div className="h-[60%] bg-[#8bc24a] relative grid grid-rows-6 grid-cols-8 rounded-ss">
             <div className="col-span-7 row-span-5 flex justify-center items-center">
               {displayedProduct ? (
                 <img
@@ -234,7 +261,7 @@ function ProductDetailOne() {
             </div>
             <div
               style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
-              className="border col-span-1 row-span-5 m-0.5 flex flex-col items-center justify-center"
+              className="border-l border-[#ffffff60] col-span-1 row-span-5  flex flex-col items-center justify-center"
             >
               <h2 className="text-white font-semibold text-sm">
                 {displayedProduct?.series}
@@ -250,7 +277,7 @@ function ProductDetailOne() {
                 </p>
               </div>
               <div className="bg-white col-span-2 overflow-y-scroll no-scrollbar">
-                <p className="text-gray-800 font-bold text-left px-0.5 leading-3 text-[8px]">
+                <p className="text-gray-800 font-bold text-left px-0.5 leading-tight text-[8px]">
                   {displayedProduct?.description}
                 </p>
               </div>
@@ -264,10 +291,9 @@ function ProductDetailOne() {
                 <p className="bg-black h-1/2 text-[#cc3903] font-bold flex justify-center items-center">
                   MRP
                 </p>
-                <p className="bg-white h-1/2 text-[#cc3903] font-bold flex gap-1 justify-center items-center">
-                  {/* <IoEyeOff /> */}
+                <p className="bg-white h-1/2 text-[#cc3903] font-bold flex gap-1 justify-center items-center cursor-pointer">
                   <span className="text-sm -mt-0.5">৳</span>{" "}
-                  {authUser?.user ? displayedProduct?.price : "***"}
+                  {authUser?.user ? displayedProduct?.price : <IoEyeOff />}
                 </p>
               </div>
             </div>
@@ -286,6 +312,8 @@ function ProductDetailOne() {
                 </h2>
                 <div className="w-full overflow-hidden h-full">
                   <Image
+                  width="100%"
+                    height="100%"
                     className="w-full object-cover"
                     src={seletedImage || refaranceImageAndVideo?.image[0]}
                     alt=""

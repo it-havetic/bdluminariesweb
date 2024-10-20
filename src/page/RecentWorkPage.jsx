@@ -1,20 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Image } from "antd";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import axios from "../axios";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Preloader from "../components/Preloader";
 
 const RecentWork = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { id } = useParams();
   const [shuffledContent, setShuffledContent] = useState([]);
   const [mockupImages, setMockupImages] = useState([]);
   const [recentWork, setRecentWork] = useState([]);
+  const [singelRecentWork, setSingelRecentWork] = useState();
   const [selectedContent, setSelectedContent] = useState({
     type: "",
     src: "",
   });
 
-  const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchMockupData = async () => {
+      try {
+        const response = await axios.get("/mockup-zones");
+        const data = response.data.sort((a, b) => a.prioroty - b.prioroty);
+        console.log(data);
+        setMockupImages(data);
+      } catch (error) {
+        console.error("Error fetching mockup data:", error);
+      }
+    };
+    fetchMockupData();
+  }, []);
 
   // Fetch recent works from API
   useEffect(() => {
@@ -28,14 +46,14 @@ const RecentWork = () => {
         const formattedContent = data.flatMap((work) => {
           const images = work.images.map((image) => ({
             id: work._id,
-            image: `https://code.bdluminaries.com/${image}`,
+            image: `${image}`,
             type: "image",
           }));
 
           const videos = work.videos.map((video) => ({
             id: video._id,
-            video: `https://code.bdluminaries.com/${video.video}`,
-            thumbnail: `https://code.bdluminaries.com/${video.thumbnail}`,
+            video: `${video.video}`,
+            thumbnail: `${video.thumbnail}`,
             type: "video",
           }));
 
@@ -50,19 +68,22 @@ const RecentWork = () => {
 
     const seletedRecentWork = async () => {
       try {
-        const res = await axios.get(`recent-works/${location.state.seletedId}`);
+        const res = await axios.get(`recent-works/${id}`);
         if (res.status === 200) {
+          console.log("single", res.data);
+          setSingelRecentWork(res.data);
+          setSearchParams({ type: "image", src: res.data.images[0] });
           const formattedSingleContent = [res.data].flatMap((work) => {
             const images = work.images.map((image) => ({
               id: work._id,
-              image: `https://code.bdluminaries.com/${image}`,
+              image: `${image}`,
               type: "image",
             }));
 
             const videos = work.videos.map((video) => ({
               id: video._id,
-              video: `https://code.bdluminaries.com/${video.video}`,
-              thumbnail: `https://code.bdluminaries.com/${video.thumbnail}`,
+              video: `${video.video}`,
+              thumbnail: `${video.thumbnail}`,
               type: "video",
             }));
 
@@ -80,55 +101,51 @@ const RecentWork = () => {
   }, []);
 
   // Fetch mockup images
-  useEffect(() => {
-    const fetchMockupData = async () => {
-      try {
-        const response = await axios.get("/mockup-zones");
-        const data = response.data.sort((a, b) => a.prioroty - b.prioroty);
-
-        const images = data.flatMap((zone) =>
-          zone.images.map((image) => ({
-            name: zone.name,
-            images: [image],
-          }))
-        );
-
-        setMockupImages(images);
-      } catch (error) {
-        console.error("Error fetching mockup data:", error);
-      }
-    };
-
-    fetchMockupData();
-  }, []);
 
   // Set the content to display based on clicked image or video
   useEffect(() => {
     if (recentWork.length > 0) {
+      // Ensure that selectedContent is properly initialized and merged with recentWork
+      const selectedArray = Array.isArray(selectedContent)
+        ? selectedContent
+        : [selectedContent];
+
+      // Ensure the src and type in selectedContent are valid before setting shuffledContent
+      const filteredContent = selectedArray.filter(
+        (item) => item.src && item.type
+      );
+
       const shuffled = [
-        ...(Array.isArray(selectedContent)
-          ? selectedContent
-          : [selectedContent]),
+        ...filteredContent,
         ...recentWork.sort(() => Math.random() - 0.5),
       ];
+
       setShuffledContent(shuffled);
     }
 
-    if (location.state?.selectedImage) {
+    // Safely set selectedContent using searchParams
+    const type = searchParams.get("type") || "image";
+    const src = searchParams.get("src");
+
+    if (src) {
       setSelectedContent({
-        type: "image",
-        src: `https://code.bdluminaries.com/${location.state.selectedImage}`,
+        type,
+        src,
       });
     }
-  }, [recentWork, location.state]);
+  }, [recentWork, singelRecentWork]);
 
   const handleImageClick = (mockupItem) => {
-    navigate("/mockup", { state: { selectedImage: mockupItem } });
+    navigate(`/mockup/${mockupItem.name}`);
   };
 
   const displayContent = (type, source) => {
     setSelectedContent({ type, src: source });
   };
+
+  if (!singelRecentWork) {
+    return <Preloader />;
+  }
 
   return (
     <div className="h-screen pb-9 bg-gray-100">
@@ -136,27 +153,26 @@ const RecentWork = () => {
       <div className="h-[97%] grid grid-rows-2 grid-cols-1">
         {/* Main display section */}
         <div>
-          {selectedContent.type === "video" && (
+          {searchParams.get("type") === "video" && (
             <video
-              className="w-full h-full object-cover"
+              className="w-full h-full object-fit"
               controls
               autoPlay
               muted
-              src={selectedContent.src}
+              src={`https://code.bdluminaries.com/${
+                searchParams.get("src") || selectedContent.src
+              }`}
             />
           )}
-          {selectedContent.type === "image" && (
-            <img
-              className="w-full h-full object-cover"
-              src={selectedContent.src}
+          {searchParams.get("type") === "image" && (
+            <Image
+              height="100%"
+              width="100%"
+              className="!w-full h-full object-cover"
+              src={`https://code.bdluminaries.com/${
+                searchParams.get("src") || selectedContent.src
+              }`}
               alt="Selected"
-            />
-          )}
-          {!selectedContent.src && (
-            <img
-              className="w-full h-full object-cover"
-              src="/assets/recent/r1.png"
-              alt="Default"
             />
           )}
         </div>
@@ -168,22 +184,37 @@ const RecentWork = () => {
             <h3 className="text-xs col-span-3 bg-[#F15B26] sticky top-0 left-0 h-7 flex items-center justify-center text-center text-white font-bold w-full shadow-md rounded-b">
               Recent Work
             </h3>
-            {shuffledContent.map((item) => (
+            {shuffledContent.filter((_,i)=> i > 0).map((item, index) => (
               <div
-                key={item.id}
+                key={index}
                 className="shadow-md rounded"
-                onClick={() =>
-                  displayContent(
-                    item.type,
-                    item.type === "video" ? item.video : item.image
-                  )
-                }
+                onClick={() => {
+                  if (item.type && (item.image || item.video)) {
+                    setSearchParams({
+                      src: item.type === "video" ? item.video : item.image,
+                      type: item.type,
+                    });
+                    displayContent(
+                      item.type,
+                      item.type === "video" ? item.video : item.image
+                    );
+                  }
+                }}
               >
-                <img
-                  src={item.type === "video" ? item.thumbnail : item.image}
-                  className="w-full h-14 object-cover rounded"
-                  alt={item.type}
-                />
+                {item.type === "image" && item.image && (
+                  <img
+                    src={`https://code.bdluminaries.com/${item?.image}`}
+                    className="w-full h-14 object-cover rounded"
+                    alt="Image"
+                  />
+                )}
+                {item.type === "video" && item.thumbnail && (
+                  <img
+                    src={`https://code.bdluminaries.com/${item?.thumbnail}`}
+                    className="w-full h-14 object-cover rounded"
+                    alt="Video"
+                  />
+                )}
               </div>
             ))}
           </div>

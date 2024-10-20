@@ -10,6 +10,7 @@ import Preloader from "../components/Preloader";
 import b7 from "/assets/b7.png";
 
 import "./Menu.css";
+import Consultancy from "../components/Consultancy";
 
 const Menu = () => {
   let navigate = useNavigate();
@@ -102,14 +103,6 @@ const Menu = () => {
           <ul className="menuDesignUl h-96 w-96 absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-[#e56a6a00]">
             <Link
               className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute -rotate-[126deg] left-[110px] top-[79px]"
-              to={`/product/detail/one/${groups[0]._id}`}
-            >
-              <button className="text-[5px] p-4 rounded text-white">
-                {groups[0].name}
-              </button>
-            </Link>
-            <Link
-              className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute -rotate-[51deg] left-[248px] top-[79px]"
               to={`/product/detail/one/${groups[9]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
@@ -117,47 +110,15 @@ const Menu = () => {
               </button>
             </Link>
             <Link
+              className="opacity-0 inline-block bg-orange-600 h-14 w-10 absolute -rotate-[51deg] left-[248px] top-[79px]"
+              to={`/product/detail/one/${groups[0]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[0].name}
+              </button>
+            </Link>
+            <Link
               className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute -rotate-[17deg] left-[285px] top-[135px]"
-              to={`/product/detail/one/${groups[7]._id}`}
-            >
-              <button className="text-[5px] p-4 rounded text-white">
-                {groups[7].name}
-              </button>
-            </Link>
-            <Link
-              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[19deg] left-[284px] top-[205px]"
-              to={`/product/detail/one/${groups[4]._id}`}
-            >
-              <button className="text-[5px] p-4 rounded text-white">
-                {groups[4].name}
-              </button>
-            </Link>
-            <Link
-              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[54deg] left-[244px] top-[260px]"
-              to={`/product/detail/one/${groups[5]._id}`}
-            >
-              <button className="text-[5px] p-4 rounded text-white">
-                {groups[5].name}
-              </button>
-            </Link>
-            <Link
-              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[90deg] left-[177px] top-[281px]"
-              to={`/product/detail/one/${groups[6]._id}`}
-            >
-              <button className="text-[5px] p-4 rounded text-white">
-                {groups[6].name}
-              </button>
-            </Link>
-            <Link
-              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[126deg] left-[112px] top-[261px]"
-              to={`/product/detail/one/${groups[8]._id}`}
-            >
-              <button className="text-[5px] p-4 rounded text-white">
-                {groups[8].name}
-              </button>
-            </Link>
-            <Link
-              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[157deg] left-[71px] top-[207px]"
               to={`/product/detail/one/${groups[2]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
@@ -165,7 +126,31 @@ const Menu = () => {
               </button>
             </Link>
             <Link
-              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[195deg] left-[69px] top-[136px]"
+              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[19deg] left-[284px] top-[205px]"
+              to={`/product/detail/one/${groups[5]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[5].name}
+              </button>
+            </Link>
+            <Link
+              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[54deg] left-[244px] top-[260px]"
+              to={`/product/detail/one/${groups[4]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[4].name}
+              </button>
+            </Link>
+            <Link
+              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[90deg] left-[177px] top-[281px]"
+              to={`/product/detail/one/${groups[3]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[3].name}
+              </button>
+            </Link>
+            <Link
+              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[126deg] left-[112px] top-[261px]"
               to={`/product/detail/one/${groups[1]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
@@ -173,11 +158,27 @@ const Menu = () => {
               </button>
             </Link>
             <Link
-              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute -rotate-[90deg] left-[177px] top-[57px]"
-              to={`/product/detail/one/${groups[3]._id}`}
+              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[157deg] left-[71px] top-[207px]"
+              to={`/product/detail/one/${groups[7]._id}`}
             >
               <button className="text-[5px] p-4 rounded text-white">
-                {groups[3].name}
+                {groups[7].name}
+              </button>
+            </Link>
+            <Link
+              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute rotate-[195deg] left-[69px] top-[136px]"
+              to={`/product/detail/one/${groups[8]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[8].name}
+              </button>
+            </Link>
+            <Link
+              className="opacity-0  inline-block bg-orange-600 h-14 w-10 absolute -rotate-[90deg] left-[177px] top-[57px]"
+              to={`/product/detail/one/${groups[6]._id}`}
+            >
+              <button className="text-[5px] p-4 rounded text-white">
+                {groups[6].name}
               </button>
             </Link>
           </ul>
@@ -224,16 +225,10 @@ const Menu = () => {
             <HiDotsHorizontal />
           </div>
         </div>
-        <div className="h-[48%] p-4">
-          <video
-            loop
-            muted
-            poster="/poster.jpg"
-            className="w-full h-full object-cover rounded-md shadow-sm"
-            controls
-            src="/consultancy.mp4"
-          />
-        </div>
+        
+
+<Consultancy />
+
       </div>
       <Footer />
     </div>

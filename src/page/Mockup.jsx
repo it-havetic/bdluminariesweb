@@ -1,10 +1,13 @@
+import { Image } from "antd";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Preloader from "../components/Preloader";
 
 const Mockup = () => {
-  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const [selectedContent, setSelectedContent] = useState({
     type: "",
@@ -25,14 +28,7 @@ const Mockup = () => {
         const data = await response.json();
 
         // Process the data to extract only image data
-        const imageWorks = data
-          .sort((a, b) => a.prioroty - b.prioroty)
-          .flatMap((item) =>
-            item.images.map((image) => ({
-              src: image,
-              id: item._id,
-            }))
-          );
+        const imageWorks = data.sort((a, b) => a.prioroty - b.prioroty);
         setRecentWorks(imageWorks); // Set recent works with only images
       } catch (error) {
         console.error("Error fetching recent works:", error);
@@ -42,6 +38,7 @@ const Mockup = () => {
     fetchRecentWorks();
   }, []);
 
+  // Fetch data for mockup images from the API
   useEffect(() => {
     // Function to fetch mockup data from the API
     const fetchMockupData = async () => {
@@ -57,12 +54,12 @@ const Mockup = () => {
           .flatMap((zone) => {
             const imagesWithType = zone.images.map((img) => ({
               type: "image",
-              src: `https://code.bdluminaries.com/${img}`,
+              src: `${img}`,
             }));
             const videosWithType = zone.videos.map((vid) => ({
               type: "video",
-              video: `https://code.bdluminaries.com/${vid.video}`,
-              thumbnail: `https://code.bdluminaries.com/${vid.thumbnail}`,
+              video: `${vid.video}`,
+              thumbnail: `${vid.thumbnail}`,
             }));
             return [...imagesWithType, ...videosWithType];
           });
@@ -77,21 +74,21 @@ const Mockup = () => {
     const fetchSingleMockupData = async () => {
       try {
         const response = await fetch(
-          `https://code.bdluminaries.com/api/v1/mockup-zones/${location.state.selectedImage.name}`
+          `https://code.bdluminaries.com/api/v1/mockup-zones/${id}`
         );
         const data = await response.json();
-        console.log(data);
-
+        // Set selected content to the first image in the mockup
+        setSearchParams({ type: "image", src: data.images[0] });
         // Process the data to extract images and videos
         const combinedSingleContent = [data].flatMap((zone) => {
           const imagesWithType = zone.images.map((img) => ({
             type: "image",
-            src: `https://code.bdluminaries.com/${img}`,
+            src: `${img}`,
           }));
           const videosWithType = zone.videos.map((vid) => ({
             type: "video",
-            video: `https://code.bdluminaries.com/${vid.video}`,
-            thumbnail: `https://code.bdluminaries.com/${vid.thumbnail}`,
+            video: `${vid.video}`,
+            thumbnail: `${vid.thumbnail}`,
           }));
           return [...imagesWithType, ...videosWithType];
         });
@@ -103,30 +100,33 @@ const Mockup = () => {
     fetchSingleMockupData();
   }, []);
 
+  // Shuffle mockup images
   useEffect(() => {
     const shuffled = [
       ...singleMockupZoneImages,
       ...mockupImages.sort(() => 0.5 - Math.random()),
     ];
     setShuffledContent(shuffled);
-
-    if (location.state?.selectedImage) {
-      setSelectedContent({
-        type: "image",
-        src: `https://code.bdluminaries.com/${location.state.selectedImage.images[0]}`,
-      });
-    }
-  }, [location, mockupImages, singleMockupZoneImages]);
+    setSelectedContent({
+      type: searchParams.get("type") || "image",
+      src: searchParams.get("src"),
+    });
+  }, [mockupImages, singleMockupZoneImages]);
 
   const displayContent = (type, source) => {
     setSelectedContent({ type, src: source });
   };
 
+  // Function to handle image click
   const handleImageClick = (image, id) => {
-    console.log(image, id);
-    // navigate("/work", { state: { selectedImage: image , } });
-    navigate("/work", { state: { selectedImage: image, seletedId: id } });
+    console.log(id);
+    navigate(`/work/${id}`);
+    // navigate("/work", { state: { selectedImage: image, seletedId: id } });
   };
+
+  if (!singleMockupZoneImages.length > 0) {
+    return <Preloader />;
+  }
 
   return (
     <div className="h-screen pb-9  bg-gray-100">
@@ -135,18 +135,20 @@ const Mockup = () => {
       <div className="h-[97%] grid grid-rows-2 grid-cols-1">
         {/* Main Display Section */}
         <div className="">
-          {selectedContent.type === "video" && (
+          {searchParams.get("type") === "video" && (
             <video
               className="w-full h-full object-cover"
               controls
               autoPlay
-              src={selectedContent.src}
+              src={`https://code.bdluminaries.com/` + searchParams.get("src")}
             />
           )}
-          {selectedContent.type === "image" && (
-            <img
+          {searchParams.get("type") === "image" && (
+            <Image
+              width="100%"
+              height="100%"
               className="w-full h-full object-cover"
-              src={selectedContent.src}
+              src={`https://code.bdluminaries.com/` + searchParams.get("src")}
               alt="Image missing"
             />
           )}
@@ -159,14 +161,14 @@ const Mockup = () => {
             <h3 className="text-xs bg-[#F15B26] sticky top-0 left-0 py-1.5 text-center text-white font-bold w-full shadow-md rounded-b">
               Recent work
             </h3>
-            {recentWorks.map((image) => (
+            {recentWorks.map((work) => (
               <div
-                key={image.id}
-                onClick={() => handleImageClick(image.src, image.id)}
+                key={work.id}
+                onClick={() => handleImageClick(work.images[0], work._id)}
                 className="shadow-md rounded"
               >
                 <img
-                  src={`https://code.bdluminaries.com/${image.src}`}
+                  src={`https://code.bdluminaries.com/${work.images[0]}`}
                   className="w-full h-14 object-cover rounded"
                   alt="Recent work"
                 />
@@ -183,15 +185,21 @@ const Mockup = () => {
               <div
                 key={item.id}
                 className="shadow-md rounded h-14"
-                onClick={() =>
+                onClick={() => {
+                  setSearchParams({
+                    src: item.type === "video" ? item.video : item.src,
+                    type: item.type,
+                  });
                   displayContent(
                     item.type,
                     item.type === "video" ? item.video : item.src // Updated to use src for images
-                  )
-                }
+                  );
+                }}
               >
                 <img
-                  src={item.type === "video" ? item.thumbnail : item.src} // Updated to use src for images
+                  src={`https://code.bdluminaries.com/${
+                    item.type === "video" ? item.thumbnail : item.src
+                  } `} // Updated to use src for images
                   className="w-full h-14 object-cover rounded"
                   alt={item.type}
                 />
